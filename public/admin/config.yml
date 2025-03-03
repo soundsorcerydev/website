@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+collections:
+  # - name: "blog" # Used in routes, e.g., /admin/collections/blog
+  #   label: "Blog" # Used in the UI
+  #   folder: "src/content/blog" # The path to the folder where the documents are stored
+  #   media_folder: "src/assets/blogimages" # Location where files will be stored in the repo
+  #   public_folder: "src/assets/blogimages" # The src attribute for uploaded media
+  #   create: true # Allow users to create new documents in this collection
+  #   fields: # The fields for each document, usually in frontmatter
+  #     - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+  #     - { label: "Title", name: "title", widget: "string" }
+  #     - { label: "Publish Date", name: "date", widget: "datetime" }
+  #     - { label: "Featured Image", name: "thumbnail", widget: "image" }
+  #     - { label: "Rating (scale of 1-5)", name: "rating", widget: "number" }
+  #     - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "photos" # Used in routes, e.g., /admin/collections/blog
+    label: "Photos" # Used in the UI
+    # folder: "src/content/photos" # The path to the folder where the documents are stored
+    media_folder: "src/assets/images" # Location where files will be stored in the repo
+    public_folder: "src/assets/images" # The src attribute for uploaded media
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields for each document, usually in frontmatter
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Images", name: "thumbnail", widget: "image" }

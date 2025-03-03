@@ -1,0 +1,42 @@
+---
+const { pathname } = Astro.url;
+
+let links: string[];
+const linkNames = ["Home", "Mission", "Photo", "Contact", "Donate"];
+
+if (pathname == "/") {
+    links = ["", "mission", "photo", "contact", "donate"];
+} else {
+    links = ["/", "/mission", "/photo", "/contact", "/donate"];
+}
+---
+
+<header
+    class="max-w-screen flex justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 sm:rounded-b-md border border-gray-300 backdrop-blur-xs"
+>
+    <div
+        id="navbar"
+        class="flex flex-1 items-center justify-around md:items-stretch"
+    >
+        <div
+            class="flex flex-row items-center gap-4 lg:gap-6 border border-dashed border-gray-500 rounded-md font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
+        >
+            {
+                links.map((link, index) => (
+                    <div class="flex space-x-4 text-2xl">
+                        <a
+                            class="hover:text-gray-950 dark:hover:text-pink-300 dark:text-gray-500"
+                            href={link}
+                        >
+                            {linkNames[index]}
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</header>
+
+<script>
+    const navbar = document.getElementById("navbar");
+</script>
