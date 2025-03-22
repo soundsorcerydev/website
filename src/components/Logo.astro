@@ -1,16 +1,15 @@
 ---
 import { Image } from "astro:assets";
+const { width, height } = Astro.props;
 ---
 
-<div class="flex justify-end p-4 py-20">
-    <a href="/">
+<div class="flex">
         <Image
             src="/src/assets/soundsorcery.webp"
             alt="Sound Sorcery logo"
-            width="320"
-            height="320"
             class="rounded-md"
             loading="eager"
+            {width}
+            {height}
         />
-    </a>
 </div>

@@ -1,61 +1,27 @@
-<footer class="rounded-md border border-gray-500">
-    <div class="max-w-screen-lg mx-auto flex flex-col p-2">
-        <p>
-            We work on Gadigal country, and their Elders, past and present, have
-            lived with this land for millennia. Only through acknowledging their
-            wisdom and unbroken connection to this place, deep listening and
-            informed action, can we hope to move forward. Respect and thanks,
-            always.
-        </p>
-        <div class="flex flex-row p-4 justify-between items-center">
-            <p class="text-sm text-center text-gray-500">
-                Built by <a
+---
+import Logo from "./Logo.astro";
+---
+
+<footer class="bg-pink">
+    <div class="flex flex-col-reverse sm:flex-row p-5 gap-8 decoration-mauve justify-between">
+        <div class="max-w-screen-lg flex flex-col gap-8 justify-around">
+            <p>
+                Sound Sorcery acknowledges the Gadigal people of the Eora Nation
+                as the traditional owners of the land on which we meet. We pay
+                our respects to Elders past and present. Sovereignty was never
+                ceded.
+            </p>
+            <p class="text-xs text-start">
+                Website by <a
                     href="https://ashsahu.com"
                     target="_blank"
-                    class="text-gray-500 underline">Ash Sahu</a
+                    class="font-medium">Ash Sahu</a
                 >
             </p>
-            <div class="flex justify-center items-center space-x-1">
-                <a
-                    href="https://linktr.ee/soundsorcery"
-                    target="_blank"
-                    class="inline-flex justify-center p-2 text-gray-500 rounded-md cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-950"
-                >
-                    <svg
-                        role="img"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                    >
-                        <path
-                            d="m13.73635 5.85251 4.00467-4.11665 2.3248 2.3808-4.20064 4.00466h5.9085v3.30473h-5.9365l4.22865 4.10766-2.3248 2.3338L12.0005 12.099l-5.74052 5.76852-2.3248-2.3248 4.22864-4.10766h-5.9375V8.12132h5.9085L3.93417 4.11666l2.3248-2.3808 4.00468 4.11665V0h3.4727zm-3.4727 10.30614h3.4727V24h-3.4727z"
-                        >
-                        </path></svg
-                    >
-                    <span class="sr-only">LinkTree</span>
-                </a>
-                <a
-                    href="https://www.instagram.com/sound_sorcery_jam/"
-                    target="_blank"
-                    class="inline-flex justify-center p-2 text-gray-500 rounded-md cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-950"
-                >
-                    <svg
-                    role="img"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M2 6C2 3.79086 3.79086 2 6 2H18C20.2091 2 22 3.79086 22 6V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V6ZM6 4C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM17.5 8C18.3284 8 19 7.32843 19 6.5C19 5.67157 18.3284 5 17.5 5C16.6716 5 16 5.67157 16 6.5C16 7.32843 16.6716 8 17.5 8Z"
-                            fill="#000000"></path>
-                    </svg>
-                    <span class="sr-only">Instagram</span>
-                </a>
-            </div>
+        </div>
+        <div class="flex flex-col items-center">
+            <Logo width={100} height={100} />
+            <a href="/website/src/pages/contact.astro"> Contact Us</a>
         </div>
     </div>
 </footer>
