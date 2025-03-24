@@ -1,16 +1,30 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 const { pathname } = Astro.url;
 const isHomepage = pathname === "/";
+interface NavSubItem {
+    name: string;
+    path: string;
+    external?: boolean;
+}
+interface NavItem {
+    name: string;
+    path: string;
+    external?: boolean;
+    submenu?: NavSubItem[];
+}
 
 const projectPosts = await getCollection("projects");
-const projects = projectPosts.map((project) => ({
-    name: project.data.title,
-    path: `Projects/${project.slug}`,
-}));
+const projects: NavSubItem[] = projectPosts.map(
+    (project: CollectionEntry<"projects">) => ({
+        name: project.data.title,
+        path: `Projects/${project.slug}`,
+    }),
+);
 
-const navItems = [
+const navItems: NavItem[] = [
     {
         name: "Home",
         path: "",
@@ -40,7 +54,7 @@ const navItems = [
     { name: "Contact", path: "contact" },
 ];
 
-const buildUrl = (path, external) => {
+const buildUrl = (path: string, external?: boolean): string => {
     return external ? path : pathname === "/" ? path : `/${path}`;
 };
 ---
@@ -148,26 +162,31 @@ const buildUrl = (path, external) => {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const toggle = document.getElementById("mobile-toggle");
-        const menu = document.getElementById("mobile-menu");
-        const header = document.getElementById("mobile-header");
-        const isHomepage = window.location.pathname === "/";
+        const toggle: HTMLElement | null =
+            document.getElementById("mobile-toggle");
+        const menu: HTMLElement | null = document.getElementById("mobile-menu");
+        const header: HTMLElement | null =
+            document.getElementById("mobile-header");
+        const isHomepage: boolean = window.location.pathname === "/";
 
         toggle?.addEventListener("click", () => {
-            const isOpening = menu.classList.toggle("hidden");
+            const isOpening: boolean =
+                menu?.classList.toggle("hidden") ?? false;
 
             if (isOpening) {
-                header.classList.remove("bg-dark-pink");
-                header.classList.add(isHomepage ? "bg-green" : "bg-light-pink");
+                header?.classList.remove("bg-dark-pink");
+                header?.classList.add(
+                    isHomepage ? "bg-green" : "bg-light-pink",
+                );
                 toggle.classList.remove("text-offwhite");
                 toggle.classList.add(
                     isHomepage ? "text-offwhite" : "text-pink",
                 );
             } else {
-                header.classList.remove(
+                header?.classList.remove(
                     isHomepage ? "bg-green" : "bg-light-pink",
                 );
-                header.classList.add("bg-dark-pink");
+                header?.classList.add("bg-dark-pink");
                 toggle.classList.remove(
                     isHomepage ? "text-offwhite" : "text-pink",
                 );
