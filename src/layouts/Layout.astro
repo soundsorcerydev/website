@@ -1,7 +1,8 @@
 ---
+import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/global.css";
+import Socials from "../components/Socials.astro";
 ---
 
 <!doctype html>
@@ -21,6 +22,7 @@ import "../styles/global.css";
 		<!-- <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"
 		></script> -->
 		<Navbar />
+		<Socials />
 		<div class="flex-1">
 			<slot />
 			<h1>This is a Heading 1 with Schibsted Grotesk</h1>
