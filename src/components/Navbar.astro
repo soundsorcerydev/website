@@ -5,28 +5,16 @@ const { pathname } = Astro.url;
 const isHomepage = pathname === "/";
 
 const projectPosts = await getCollection("projects");
-
-interface SubMenuItem {
-    name: string;
-    path: string;
-    external?: boolean;
-}
-
-interface NavItem {
-    name: string;
-    path: string;
-    external?: boolean;
-    submenu?: SubMenuItem[];
-}
-
-const projectSubmenuItems: SubMenuItem[] = projectPosts.map((project: any) => ({
+const projects = projectPosts.map((project) => ({
     name: project.data.title,
     path: `Projects/${project.slug}`,
-    external: false,
 }));
 
-const navItems: NavItem[] = [
-    { name: "Home", path: "" },
+const navItems = [
+    {
+        name: "Home",
+        path: "",
+    },
     {
         name: "About",
         path: "About",
@@ -44,7 +32,7 @@ const navItems: NavItem[] = [
     {
         name: "Projects",
         path: "Projects",
-        submenu: projectSubmenuItems,
+        submenu: projects,
     },
     { name: "Sponsors", path: "sponsors" },
     { name: "Donate", path: "donate" },
@@ -52,167 +40,102 @@ const navItems: NavItem[] = [
     { name: "Contact", path: "contact" },
 ];
 
-const getFullPath = (path: string, external?: boolean): string => {
-    if (external) return path;
-    return pathname === "/" ? path : `/${path}`;
+const buildUrl = (path, external) => {
+    return external ? path : pathname === "/" ? path : `/${path}`;
 };
 ---
 
-<header
-    class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs bg-transparent"
->
-    <!-- Desktop Navbar -->
-    <div
-        id="desktop-navbar"
-        class="max-w-3/4 w-full justify-around hidden bg-dark-pink rounded-md p-1 md:flex"
-    >
+<header class="sticky top-0 z-50 bg-transparent backdrop-blur-xs">
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex justify-center bg-dark-pink rounded-md p-1">
         {
             navItems.map((item) => (
-                <div class="flex justify-between relative group">
+                <div class="relative group px-3 py-2">
                     {item.submenu ? (
-                        <div class="relative">
-                            <a class="text-offwhite hover:text-pink uppercase cursor-pointer">
+                        <>
+                            <button class="text-offwhite hover:text-pink uppercase">
                                 {item.name}
-                            </a>
-                            <div class="absolute hidden group-hover:block left-0 w-48 bg-dark-pink rounded-md shadow-md z-50">
-                                {item.submenu.map((subitem) => (
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-dark-pink rounded-md mt-1 min-w-[200px]">
+                                {item.submenu.map((sub) => (
                                     <a
-                                        href={getFullPath(
-                                            subitem.path,
-                                            subitem.external,
-                                        )}
-                                        class="block px-4 py-2 text-offwhite hover:text-pink hover:bg-opacity-70"
-                                        target={
-                                            subitem.external
-                                                ? "_blank"
-                                                : undefined
-                                        }
-                                        rel={
-                                            subitem.external
-                                                ? "noopener noreferrer"
-                                                : undefined
-                                        }
+                                        href={buildUrl(sub.path, sub.external)}
+                                        class="block px-4 py-2 text-offwhite hover:text-pink"
+                                        target={sub.external ? "_blank" : null}
                                     >
-                                        {subitem.name}
-                                        {subitem.external && (
-                                            <span class="ml-1">↗</span>
-                                        )}
+                                        {sub.name}
+                                        {sub.external && " ↗"}
                                     </a>
                                 ))}
                             </div>
-                        </div>
+                        </>
                     ) : (
                         <a
+                            href={buildUrl(item.path, item.external)}
                             class="text-offwhite hover:text-pink uppercase"
-                            href={getFullPath(item.path, item.external)}
-                            target={item.external ? "_blank" : undefined}
-                            rel={
-                                item.external
-                                    ? "noopener noreferrer"
-                                    : undefined
-                            }
                         >
                             {item.name}
-                            {item.external && <span class="ml-1">↗</span>}
                         </a>
                     )}
                 </div>
             ))
         }
-    </div>
+    </nav>
 
-    <!-- Mobile -->
+    <!-- Mobile Nav -->
     <div
         id="mobile-header"
-        class={`w-full max-w-full md:hidden ${isHomepage ? "bg-green" : "bg-light-pink"}`}
+        class={`md:hidden ${isHomepage ? "bg-green" : "bg-light-pink"}`}
     >
-        <div class="flex justify-end p-4">
+        <div class="flex justify-between p-4">
+            <div></div>
             <button
-                id="mobile-menu-toggle"
-                class={`font-medium items-end ${isHomepage ? "text-offwhite" : "text-pink"}`}
+                id="mobile-toggle"
+                class={`font-medium ${isHomepage ? "text-offwhite" : "text-pink"}`}
             >
                 Menu
             </button>
         </div>
 
         <div id="mobile-menu" class="hidden bg-dark-pink">
-            <div class="p-4">
+            <div class="p-4 space-y-4">
                 {
                     navItems.map((item) => (
                         <div class="mb-4">
-                            {item.submenu && item.submenu.length > 0 ? (
-                                <div>
-                                    <button
-                                        class="w-full text-left text-offwhite hover:text-pink uppercase font-medium mb-2 flex items-center justify-between"
-                                        data-submenu-toggle={`mobile-${item.name.toLowerCase()}-submenu`}
-                                    >
+                            {item.submenu ? (
+                                <details class="group">
+                                    <summary class="flex justify-between items-center text-offwhite hover:text-pink uppercase cursor-pointer">
                                         {item.name}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-4 w-4"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M19 9l-7 7-7-7"
-                                            />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        id={`mobile-${item.name.toLowerCase()}-submenu`}
-                                        class="hidden pl-4 border-l-2 border-offwhite"
-                                    >
-                                        {item.submenu.map((subitem) => (
-                                            <div class="mb-2">
-                                                <a
-                                                    href={getFullPath(
-                                                        subitem.path,
-                                                        subitem.external,
-                                                    )}
-                                                    class="text-offwhite hover:text-pink"
-                                                    target={
-                                                        subitem.external
-                                                            ? "_blank"
-                                                            : undefined
-                                                    }
-                                                    rel={
-                                                        subitem.external
-                                                            ? "noopener noreferrer"
-                                                            : undefined
-                                                    }
-                                                >
-                                                    {subitem.name}
-                                                    {subitem.external && (
-                                                        <span class="ml-1">
-                                                            ↗
-                                                        </span>
-                                                    )}
-                                                </a>
-                                            </div>
+                                        <span class="transform group-open:rotate-180">
+                                            ▿
+                                        </span>
+                                    </summary>
+                                    <div class="pl-4 mt-2 space-y-2">
+                                        {item.submenu.map((sub) => (
+                                            <a
+                                                href={buildUrl(
+                                                    sub.path,
+                                                    sub.external,
+                                                )}
+                                                class="block py-1 text-offwhite hover:text-pink"
+                                                target={
+                                                    sub.external
+                                                        ? "_blank"
+                                                        : null
+                                                }
+                                            >
+                                                {sub.name}
+                                                {sub.external && " ↗"}
+                                            </a>
                                         ))}
                                     </div>
-                                </div>
+                                </details>
                             ) : (
                                 <a
-                                    href={getFullPath(item.path, item.external)}
-                                    class="text-offwhite hover:text-pink uppercase font-medium"
-                                    target={
-                                        item.external ? "_blank" : undefined
-                                    }
-                                    rel={
-                                        item.external
-                                            ? "noopener noreferrer"
-                                            : undefined
-                                    }
+                                    href={buildUrl(item.path, item.external)}
+                                    class="block text-offwhite hover:text-pink uppercase"
                                 >
                                     {item.name}
-                                    {item.external && (
-                                        <span class="ml-1">↗</span>
-                                    )}
                                 </a>
                             )}
                         </div>
@@ -225,53 +148,30 @@ const getFullPath = (path: string, external?: boolean): string => {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const mobileHeader = document.getElementById("mobile-header");
+        const toggle = document.getElementById("mobile-toggle");
+        const menu = document.getElementById("mobile-menu");
+        const header = document.getElementById("mobile-header");
+        const isHomepage = window.location.pathname === "/";
 
-        if (mobileMenuToggle && mobileMenu && mobileHeader) {
-            mobileMenuToggle.addEventListener("click", () => {
-                mobileMenu.classList.toggle("hidden");
+        toggle?.addEventListener("click", () => {
+            const isOpening = menu.classList.toggle("hidden");
 
-                const isHomepage = window.location.pathname === "/";
-
-                if (mobileMenu.classList.contains("hidden")) {
-                    mobileHeader.classList.remove("bg-dark-pink");
-                    mobileHeader.classList.add(
-                        isHomepage ? "bg-green" : "bg-light-pink",
-                    );
-                    mobileMenuToggle.classList.remove("text-offwhite");
-                    mobileMenuToggle.classList.add(
-                        isHomepage ? "text-offwhite" : "text-pink",
-                    );
-                } else {
-                    mobileHeader.classList.remove(
-                        isHomepage ? "bg-green" : "bg-light-pink",
-                    );
-                    mobileHeader.classList.add("bg-dark-pink");
-                    mobileMenuToggle.classList.remove(
-                        isHomepage ? "text-offwhite" : "text-pink",
-                    );
-                    mobileMenuToggle.classList.add("text-offwhite");
-                }
-            });
-        }
-
-        // Mobile submenu toggles
-        const mobileSubmenuToggles = document.querySelectorAll(
-            "[data-submenu-toggle]",
-        );
-
-        mobileSubmenuToggles.forEach((toggle) => {
-            const toggleElement = toggle as HTMLElement;
-            const submenuId = toggleElement.dataset.submenuToggle as string;
-            const submenuElement = document.getElementById(submenuId);
-
-            if (toggleElement && submenuElement) {
-                toggleElement.addEventListener("click", () => {
-                    submenuElement.classList.toggle("hidden");
-                });
+            if (isOpening) {
+                header.classList.remove("bg-dark-pink");
+                header.classList.add(isHomepage ? "bg-green" : "bg-light-pink");
+                toggle.classList.remove("text-offwhite");
+                toggle.classList.add(
+                    isHomepage ? "text-offwhite" : "text-pink",
+                );
+            } else {
+                header.classList.remove(
+                    isHomepage ? "bg-green" : "bg-light-pink",
+                );
+                header.classList.add("bg-dark-pink");
+                toggle.classList.remove(
+                    isHomepage ? "text-offwhite" : "text-pink",
+                );
+                toggle.classList.add("text-offwhite");
             }
         });
     });
