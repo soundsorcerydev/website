@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 
 const { pathname } = Astro.url;
+const isHomepage = pathname === "/";
 
 const projectPosts = await getCollection("projects");
 
@@ -57,26 +58,23 @@ const getFullPath = (path: string, external?: boolean): string => {
 };
 ---
 
-<header class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs bg-transparent">
+<header
+    class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs bg-transparent"
+>
+    <!-- Desktop Navbar -->
     <div
         id="desktop-navbar"
         class="max-w-3/4 w-full justify-around hidden bg-dark-pink rounded-md p-1 md:flex"
     >
         {
             navItems.map((item) => (
-                <div class="flex justify-between relative">
+                <div class="flex justify-between relative group">
                     {item.submenu ? (
-                        <div class="relative group">
-                            <a
-                                id="about-link"
-                                class="text-offwhite hover:text-pink uppercase cursor-pointer"
-                            >
+                        <div class="relative">
+                            <a class="text-offwhite hover:text-pink uppercase cursor-pointer">
                                 {item.name}
                             </a>
-                            <div
-                                id="about-submenu"
-                                class="absolute hidden left-0 w-48 bg-dark-pink rounded-md shadow-md z-50"
-                            >
+                            <div class="absolute hidden group-hover:block left-0 w-48 bg-dark-pink rounded-md shadow-md z-50">
                                 {item.submenu.map((subitem) => (
                                     <a
                                         href={getFullPath(
@@ -123,12 +121,15 @@ const getFullPath = (path: string, external?: boolean): string => {
         }
     </div>
 
-    <!-- mobile -->
-    <div id="mobile-header" class="w-full max-w-full bg-green md:hidden">
+    <!-- Mobile -->
+    <div
+        id="mobile-header"
+        class={`w-full max-w-full md:hidden ${isHomepage ? "bg-green" : "bg-light-pink"}`}
+    >
         <div class="flex justify-end p-4">
             <button
                 id="mobile-menu-toggle"
-                class="text-pink font-medium items-end"
+                class={`font-medium items-end ${isHomepage ? "text-offwhite" : "text-pink"}`}
             >
                 Menu
             </button>
@@ -224,41 +225,6 @@ const getFullPath = (path: string, external?: boolean): string => {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const desktopDropdownTriggers =
-            document.querySelectorAll("[data-submenu-id]");
-
-        desktopDropdownTriggers.forEach((trigger) => {
-            const triggerElement = trigger as HTMLElement;
-            const submenuId = triggerElement.dataset.submenuId as string;
-            const submenuElement = document.getElementById(submenuId);
-
-            if (triggerElement && submenuElement) {
-                triggerElement.addEventListener("click", (e: Event) => {
-                    e.preventDefault();
-                    submenuElement.classList.toggle("hidden");
-                });
-            }
-        });
-
-        document.addEventListener("click", (e: Event) => {
-            const target = e.target as HTMLElement;
-
-            const isOutsideAllTriggers = ![...desktopDropdownTriggers].some(
-                (trigger) => trigger.contains(target),
-            );
-
-            if (
-                isOutsideAllTriggers &&
-                !target.closest('[id^="desktop-"][id$="-submenu"]')
-            ) {
-                document
-                    .querySelectorAll('[id^="desktop-"][id$="-submenu"]')
-                    .forEach((submenu) => {
-                        submenu.classList.add("hidden");
-                    });
-            }
-        });
-
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
         const mobileMenu = document.getElementById("mobile-menu");
@@ -268,15 +234,25 @@ const getFullPath = (path: string, external?: boolean): string => {
             mobileMenuToggle.addEventListener("click", () => {
                 mobileMenu.classList.toggle("hidden");
 
+                const isHomepage = window.location.pathname === "/";
+
                 if (mobileMenu.classList.contains("hidden")) {
                     mobileHeader.classList.remove("bg-dark-pink");
-                    mobileHeader.classList.add("bg-green");
+                    mobileHeader.classList.add(
+                        isHomepage ? "bg-green" : "bg-light-pink",
+                    );
                     mobileMenuToggle.classList.remove("text-offwhite");
-                    mobileMenuToggle.classList.add("text-pink");
+                    mobileMenuToggle.classList.add(
+                        isHomepage ? "text-offwhite" : "text-pink",
+                    );
                 } else {
-                    mobileHeader.classList.remove("bg-green");
+                    mobileHeader.classList.remove(
+                        isHomepage ? "bg-green" : "bg-light-pink",
+                    );
                     mobileHeader.classList.add("bg-dark-pink");
-                    mobileMenuToggle.classList.remove("text-pink");
+                    mobileMenuToggle.classList.remove(
+                        isHomepage ? "text-offwhite" : "text-pink",
+                    );
                     mobileMenuToggle.classList.add("text-offwhite");
                 }
             });
