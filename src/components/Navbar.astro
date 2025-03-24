@@ -1,42 +1,302 @@
 ---
+import { getCollection } from "astro:content";
+
 const { pathname } = Astro.url;
 
-let links: string[];
-const linkNames = ["Home", "Mission", "Photo", "Contact", "Donate"];
+const projectPosts = await getCollection("projects");
 
-if (pathname == "/") {
-    links = ["", "mission", "photo", "contact", "donate"];
-} else {
-    links = ["/", "/mission", "/photo", "/contact", "/donate"];
+interface SubMenuItem {
+    name: string;
+    path: string;
+    external?: boolean;
 }
+
+interface NavItem {
+    name: string;
+    path: string;
+    external?: boolean;
+    submenu?: SubMenuItem[];
+}
+
+const projectSubmenuItems: SubMenuItem[] = projectPosts.map((project: any) => ({
+    name: project.data.title,
+    path: `Projects/${project.slug}`,
+    external: false,
+}));
+
+const navItems: NavItem[] = [
+    { name: "Home", path: "" },
+    {
+        name: "About",
+        path: "About",
+        submenu: [
+            { name: "Who We Are", path: "About/whoweare" },
+            { name: "Core Team", path: "About/coreteam" },
+            { name: "Collaborator", path: "About/collaborator" },
+            {
+                name: "What's On",
+                path: "https://www.humanitix.com",
+                external: true,
+            },
+        ],
+    },
+    {
+        name: "Projects",
+        path: "Projects",
+        submenu: projectSubmenuItems,
+    },
+    { name: "Sponsors", path: "Sponsors" },
+    { name: "Donate", path: "Donate" },
+    { name: "Blog", path: "Blog" },
+    { name: "Contact", path: "Contact" },
+];
+
+const getFullPath = (path: string, external?: boolean): string => {
+    if (external) return path;
+    return pathname === "/" ? path : `/${path}`;
+};
 ---
 
-<header
-    class="max-w-screen flex justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 sm:rounded-b-md border border-gray-300 backdrop-blur-xs"
->
+<header class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs">
     <div
-        id="navbar"
-        class="flex flex-1 items-center justify-around md:items-stretch"
+        id="desktop-navbar"
+        class="max-w-3/4 w-full justify-around hidden bg-dark-pink rounded-md p-1 md:flex"
     >
-        <div
-            class="flex flex-row items-center gap-4 lg:gap-6 border border-dashed border-gray-500 rounded-md font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
-        >
-            {
-                links.map((link, index) => (
-                    <div class="flex space-x-4 text-2xl">
+        {
+            navItems.map((item) => (
+                <div class="flex justify-between relative">
+                    {item.submenu ? (
+                        <div class="relative group">
+                            <a
+                                id="about-link"
+                                class="text-offwhite hover:text-pink uppercase cursor-pointer"
+                            >
+                                {item.name}
+                            </a>
+                            <div
+                                id="about-submenu"
+                                class="absolute hidden left-0 w-48 bg-dark-pink rounded-md shadow-md z-50"
+                            >
+                                {item.submenu.map((subitem) => (
+                                    <a
+                                        href={getFullPath(
+                                            subitem.path,
+                                            subitem.external,
+                                        )}
+                                        class="block px-4 py-2 text-offwhite hover:text-pink hover:bg-opacity-70"
+                                        target={
+                                            subitem.external
+                                                ? "_blank"
+                                                : undefined
+                                        }
+                                        rel={
+                                            subitem.external
+                                                ? "noopener noreferrer"
+                                                : undefined
+                                        }
+                                    >
+                                        {subitem.name}
+                                        {subitem.external && (
+                                            <span class="ml-1">↗</span>
+                                        )}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
                         <a
-                            class="hover:text-gray-950 dark:hover:text-pink-300 dark:text-gray-500"
-                            href={link}
+                            class="text-offwhite hover:text-pink uppercase"
+                            href={getFullPath(item.path, item.external)}
+                            target={item.external ? "_blank" : undefined}
+                            rel={
+                                item.external
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
                         >
-                            {linkNames[index]}
+                            {item.name}
+                            {item.external && <span class="ml-1">↗</span>}
                         </a>
-                    </div>
-                ))
-            }
+                    )}
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- mobile -->
+    <div id="mobile-header" class="w-full max-w-full bg-pink md:hidden">
+        <div class="flex justify-end p-4">
+            <button
+                id="mobile-menu-toggle"
+                class="text-mauve font-medium items-end"
+            >
+                Menu
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden bg-dark-pink">
+            <div class="p-4">
+                {
+                    navItems.map((item) => (
+                        <div class="mb-4">
+                            {item.submenu && item.submenu.length > 0 ? (
+                                <div>
+                                    <button
+                                        class="w-full text-left text-offwhite hover:text-pink uppercase font-medium mb-2 flex items-center justify-between"
+                                        data-submenu-toggle={`mobile-${item.name.toLowerCase()}-submenu`}
+                                    >
+                                        {item.name}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-4 w-4"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <div
+                                        id={`mobile-${item.name.toLowerCase()}-submenu`}
+                                        class="hidden pl-4 border-l-2 border-offwhite"
+                                    >
+                                        {item.submenu.map((subitem) => (
+                                            <div class="mb-2">
+                                                <a
+                                                    href={getFullPath(
+                                                        subitem.path,
+                                                        subitem.external,
+                                                    )}
+                                                    class="text-offwhite hover:text-pink"
+                                                    target={
+                                                        subitem.external
+                                                            ? "_blank"
+                                                            : undefined
+                                                    }
+                                                    rel={
+                                                        subitem.external
+                                                            ? "noopener noreferrer"
+                                                            : undefined
+                                                    }
+                                                >
+                                                    {subitem.name}
+                                                    {subitem.external && (
+                                                        <span class="ml-1">
+                                                            ↗
+                                                        </span>
+                                                    )}
+                                                </a>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <a
+                                    href={getFullPath(item.path, item.external)}
+                                    class="text-offwhite hover:text-pink uppercase font-medium"
+                                    target={
+                                        item.external ? "_blank" : undefined
+                                    }
+                                    rel={
+                                        item.external
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                >
+                                    {item.name}
+                                    {item.external && (
+                                        <span class="ml-1">↗</span>
+                                    )}
+                                </a>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </header>
 
 <script>
-    const navbar = document.getElementById("navbar");
+    document.addEventListener("DOMContentLoaded", () => {
+        const desktopDropdownTriggers =
+            document.querySelectorAll("[data-submenu-id]");
+
+        desktopDropdownTriggers.forEach((trigger) => {
+            const triggerElement = trigger as HTMLElement;
+            const submenuId = triggerElement.dataset.submenuId as string;
+            const submenuElement = document.getElementById(submenuId);
+
+            if (triggerElement && submenuElement) {
+                triggerElement.addEventListener("click", (e: Event) => {
+                    e.preventDefault();
+                    submenuElement.classList.toggle("hidden");
+                });
+            }
+        });
+
+        document.addEventListener("click", (e: Event) => {
+            const target = e.target as HTMLElement;
+
+            const isOutsideAllTriggers = ![...desktopDropdownTriggers].some(
+                (trigger) => trigger.contains(target),
+            );
+
+            if (
+                isOutsideAllTriggers &&
+                !target.closest('[id^="desktop-"][id$="-submenu"]')
+            ) {
+                document
+                    .querySelectorAll('[id^="desktop-"][id$="-submenu"]')
+                    .forEach((submenu) => {
+                        submenu.classList.add("hidden");
+                    });
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileHeader = document.getElementById("mobile-header");
+
+        if (mobileMenuToggle && mobileMenu && mobileHeader) {
+            mobileMenuToggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+
+                if (mobileMenu.classList.contains("hidden")) {
+                    mobileHeader.classList.remove("bg-dark-pink");
+                    mobileHeader.classList.add("bg-pink");
+                    mobileMenuToggle.classList.remove("text-offwhite");
+                    mobileMenuToggle.classList.add("text-mauve");
+                } else {
+                    mobileHeader.classList.remove("bg-pink");
+                    mobileHeader.classList.add("bg-dark-pink");
+                    mobileMenuToggle.classList.remove("text-mauve");
+                    mobileMenuToggle.classList.add("text-offwhite");
+                }
+            });
+        }
+
+        // Mobile submenu toggles
+        const mobileSubmenuToggles = document.querySelectorAll(
+            "[data-submenu-toggle]",
+        );
+
+        mobileSubmenuToggles.forEach((toggle) => {
+            const toggleElement = toggle as HTMLElement;
+            const submenuId = toggleElement.dataset.submenuToggle as string;
+            const submenuElement = document.getElementById(submenuId);
+
+            if (toggleElement && submenuElement) {
+                toggleElement.addEventListener("click", () => {
+                    submenuElement.classList.toggle("hidden");
+                });
+            }
+        });
+    });
 </script>
