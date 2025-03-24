@@ -57,7 +57,7 @@ const getFullPath = (path: string, external?: boolean): string => {
 };
 ---
 
-<header class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs">
+<header class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs bg-transparent">
     <div
         id="desktop-navbar"
         class="max-w-3/4 w-full justify-around hidden bg-dark-pink rounded-md p-1 md:flex"
@@ -124,11 +124,11 @@ const getFullPath = (path: string, external?: boolean): string => {
     </div>
 
     <!-- mobile -->
-    <div id="mobile-header" class="w-full max-w-full bg-pink md:hidden">
+    <div id="mobile-header" class="w-full max-w-full bg-green md:hidden">
         <div class="flex justify-end p-4">
             <button
                 id="mobile-menu-toggle"
-                class="text-mauve font-medium items-end"
+                class="text-pink font-medium items-end"
             >
                 Menu
             </button>
@@ -270,13 +270,13 @@ const getFullPath = (path: string, external?: boolean): string => {
 
                 if (mobileMenu.classList.contains("hidden")) {
                     mobileHeader.classList.remove("bg-dark-pink");
-                    mobileHeader.classList.add("bg-pink");
+                    mobileHeader.classList.add("bg-green");
                     mobileMenuToggle.classList.remove("text-offwhite");
-                    mobileMenuToggle.classList.add("text-mauve");
+                    mobileMenuToggle.classList.add("text-pink");
                 } else {
-                    mobileHeader.classList.remove("bg-pink");
+                    mobileHeader.classList.remove("bg-green");
                     mobileHeader.classList.add("bg-dark-pink");
-                    mobileMenuToggle.classList.remove("text-mauve");
+                    mobileMenuToggle.classList.remove("text-pink");
                     mobileMenuToggle.classList.add("text-offwhite");
                 }
             });
