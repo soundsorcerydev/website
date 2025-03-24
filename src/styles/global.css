@@ -22,7 +22,8 @@ h1 {
 
 h2, h3 {
     font-family: 'Roboto', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
+    color: #593757;
 }
 
 p {

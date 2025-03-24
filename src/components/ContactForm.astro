@@ -1,0 +1,94 @@
+---
+// ContactForm.astro
+
+const formName = "contact";
+---
+
+<form
+    name="{formName}"
+    method="POST"
+    data-netlify="true"
+    class="bg-green p-4 md:p-8 rounded-lg shadow-md w-full mx-auto"
+>
+    <input type="hidden" name="form-name" value="{formName}" />
+
+    <!-- Name Field -->
+    <div class="mb-4 flex flex-col md:flex-row md:items-center">
+        <label
+            for="name"
+            class="w-full md:w-1/12 text-light-pink text-sm font-bold md:text-right pr-0 md:pr-4 uppercase mb-1 md:mb-0"
+        >
+            Name
+        </label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full md:w-11/12 bg-mint-green rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink"
+        />
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-4 flex flex-col md:flex-row md:items-center">
+        <label
+            for="email"
+            class="w-full md:w-1/12 text-light-pink text-sm font-bold md:text-right pr-0 md:pr-4 uppercase mb-1 md:mb-0"
+        >
+            Email
+        </label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full md:w-11/12 bg-mint-green rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink"
+        />
+    </div>
+
+    <!-- Type Field -->
+    <div class="mb-4 flex flex-col md:flex-row md:items-center">
+        <label
+            for="type"
+            class="w-full md:w-1/12 text-light-pink text-sm font-bold md:text-right pr-0 md:pr-4 uppercase mb-1 md:mb-0"
+        >
+            Type
+        </label>
+        <select
+            id="type"
+            name="type"
+            required
+            class="w-full md:w-11/12 bg-mint-green rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink"
+        >
+            <option value="general enquiry">General Enquiry</option>
+            <option value="sponsor enquiry">Sponsor Enquiry</option>
+        </select>
+    </div>
+
+    <!-- Message Field -->
+    <div class="mb-6 flex flex-col md:flex-row">
+        <label
+            for="message"
+            class="w-full md:w-1/12 text-light-pink text-sm font-bold md:text-right pr-0 md:pr-4 uppercase mb-1 md:mb-0 md:pt-2"
+        >
+            Message
+        </label>
+        <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            class="w-full md:w-11/12 bg-mint-green rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink min-h-48"
+        ></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-center">
+        <button
+            type="submit"
+            class="bg-dark-green text-offwhite px-6 py-2 rounded-lg hover:bg-mint-green hover:text-dark-green focus:outline-none focus:bg-light-pink uppercase"
+        >
+            Submit
+        </button>
+    </div>
+</form>

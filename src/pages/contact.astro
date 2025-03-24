@@ -1,8 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
+import ContactForm from "../components/ContactForm.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-
+    <div class="w-max-screen h-full flex flex-col items-center gap-2">
+        <h2 class="text-4xl p-4 uppercase">Get in Touch</h2>
+        <div class="w-3/4 pb-10">
+            <ContactForm />
+        </div>
+    </div>
 </Layout>
