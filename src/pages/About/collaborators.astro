@@ -19,22 +19,29 @@ const sections = [
     //         { name: "", photo: "", alt: "" },
     //     ],
     // },
-    // {
-    //     title: "Visual Collaborators",
-    //     items: [
-    //         { name: "", photo: "", alt: "" },
-    //         { name: "", photo: "", alt: "" },
-    //         { name: "", photo: "", alt: "" },
-    //     ],
-    // },
-    // {
-    //     title: "Art Workers",
-    //     items: [
-    //         { name: "", photo: "", alt: "" },
-    //         { name: "", photo: "", alt: "" },
-    //         { name: "", photo: "", alt: "" },
-    //     ],
-    // },
+    {
+        title: "Visual Collaborators",
+        items: [
+            { name: "", photo: "", alt: "" },
+            { name: "", photo: "", alt: "" },
+            { name: "", photo: "", alt: "" },
+        ],
+    },
+    {
+        title: "Art Workers",
+        items: [
+            { name: "Ada Flynn", photo: "/src/assets/images/collaborators/artWorkers/AdaFlynn.webp", alt: "Ada Flynn" },
+            { name: "Annika Unsen", photo: "/src/assets/images/collaborators/artWorkers/AnnikaUnsen.webp", alt: "Annika Unsen" },
+            { name: "Damia O Loughlin", photo: "/src/assets/images/collaborators/artWorkers/DamiaOLoughlin.webp", alt: "Damia O Loughlin" },
+            { name: "Dom Parker", photo: "/src/assets/images/collaborators/artWorkers/DomParker.webp", alt: "Dom Parker" },
+            { name: "Elena Acquaviva", photo: "/src/assets/images/collaborators/artWorkers/ElenaAcquaviva.webp", alt: "Elena Acquaviva" },
+            { name: "Michelle Barry", photo: "/src/assets/images/collaborators/artWorkers/MichelleBarry.webp", alt: "Michelle Barry" },
+            { name: "Noah Jovignot", photo: "/src/assets/images/collaborators/artWorkers/NoahJovignot.webp", alt: "Noah Jovignot" },
+            { name: "Romy Dobbie", photo: "/src/assets/images/collaborators/artWorkers/RomyDobbie.webp", alt: "Romy Dobbie" },
+            { name: "Sally Hackett", photo: "/src/assets/images/collaborators/artWorkers/SallyHackett.webp", alt: "Sally Hackett" },
+            { name: "Uma Volgmer", photo: "/src/assets/images/collaborators/artWorkers/UmaVolgmer.webp", alt: "Uma Volgmer" },
+        ],
+    },
     {
         title: "Venue",
         items: [
@@ -64,18 +71,18 @@ const sections = [
 ---
 
 <Layout>
-    <div class="w-max-screen h-full flex flex-col items-center">
+    <div class="max-w-screen h-full flex flex-col items-center justify-around">
         {
             sections.map((section) => (
                     <h2 class="text-4xl p-4 uppercase">{section.title}</h2>
-                    <div class="flex flex-row">
+                    <div class="flex flex-row flex-wrap justify-around">
                         {section.items.map((member) => (
-                            <div class="flex flex-col p-4">
+                            <div class="flex flex-col m-10">
                                 <CollabFrame
                                     src={member.photo}
                                     alt={member.alt}
                                 />
-                                <p class="flex justify-center">{member.name}</p>
+                                <p class="flex justify-center font-semibold">{member.name}</p>
                             </div>
                         ))}
                     </div>
