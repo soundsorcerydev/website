@@ -1,0 +1,17 @@
+---
+import Image from "astro/components/Image.astro";
+const { src, alt } = Astro.props;
+---
+
+<div class="flex justify-center">
+    <div class="rounded-full overflow-hidden w-32 h-32 sm:h-52 sm:w-52 lg:w-80 lg:h-80 filter">
+        <Image
+            src={src}
+            alt={alt}
+            width={300}
+            height={300}
+            class="w-full h-full object-cover grayscale hover:filter-none"
+            loading="lazy"
+        />
+    </div>
+</div>
