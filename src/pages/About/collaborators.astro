@@ -1,67 +1,85 @@
 ---
-import CollabFrame from "../../components/CollabFrame.astro";
 import Layout from "../../layouts/Layout.astro";
+import CollabFrame from "../../components/CollabFrame.astro";
 
-const featArtists = [
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-];
-
-const houseBand = [
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-];
-
-const visualCollabs = [
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-];
-
-const artWorkers = [
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-    { name: "", photo: "" },
-];
-
-const catering = [{ name: "", photo: "" }];
-
-const venue = [
+const sections = [
+    // {
+    //     title: "Featured Artists",
+    //     items: [
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //     ],
+    // },
+    // {
+    //     title: "House Band Musicians",
+    //     items: [
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //     ],
+    // },
+    // {
+    //     title: "Visual Collaborators",
+    //     items: [
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //     ],
+    // },
+    // {
+    //     title: "Art Workers",
+    //     items: [
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //         { name: "", photo: "", alt: "" },
+    //     ],
+    // },
     {
-        name: "The Bearded Tit",
-        photo: "../../assets/images/collaborators/venue/The Bearded Tit (Venue & Bar).webp",
+        title: "Venue",
+        items: [
+            {
+                name: "The Bearded Tit",
+                photo: "/src/assets/images/collaborators/venue/beardedTit.webp",
+                alt: "The Bearded Tit",
+            },
+            {
+                name: "Brand X - City of Sydney Creative studios",
+                photo: "/src/assets/images/collaborators/venue/brandX.webp",
+                alt: "Brand X - City of Sydney Creative studios",
+            },
+        ],
     },
     {
-        name: "Brand X - City of Sydney Creative studios",
-        photo: "../../assets/images/collaborators/venue/Brand X - City of Sydney Creative Studios.webp",
+        title: "Catering",
+        items: [
+            {
+                name: "Auntie Wombat",
+                photo: "/src/assets/images/collaborators/catering/auntieWombat.webp",
+                alt: "Auntie Wombat",
+            },
+        ],
     },
 ];
 ---
 
 <Layout>
-    <div class="w-max-screen h-full flex flex-col items-center gap-2">
-        <h2 class="text-4xl p-4 uppercase">Featured Artists</h2>
-        <div class="w-full"></div>
-        <h2 class="text-4xl p-4 uppercase">House Band Musicians</h2>
-        <div class="w-full"></div>
-        <h2 class="text-4xl p-4 uppercase">Visual Collaborators</h2>
-        <div class="w-full"></div>
-        <h2 class="text-4xl p-4 uppercase">Art Workers</h2>
-        <div class="w-full"></div>
-        <h2 class="text-4xl p-4 uppercase">Venue</h2>
-        <div class="w-full">
-            {
-                venue.map((member) => (
-                    <div class="flex flex-row w-3/4 p-20">
-                        <CollabFrame src={member.photo} />
-                        <p>{member.name}</p>
+    <div class="w-max-screen h-full flex flex-col items-center">
+        {
+            sections.map((section) => (
+                    <h2 class="text-4xl p-4 uppercase">{section.title}</h2>
+                    <div class="flex flex-row">
+                        {section.items.map((member) => (
+                            <div class="flex flex-col p-4">
+                                <CollabFrame
+                                    src={member.photo}
+                                    alt={member.alt}
+                                />
+                                <p class="flex justify-center">{member.name}</p>
+                            </div>
+                        ))}
                     </div>
-                ))
-            }
-        </div>
-        <h2 class="text-4xl p-4 uppercase">Catering</h2>
-        <div class="w-full"></div>
+            ))
+        }
     </div>
 </Layout>
