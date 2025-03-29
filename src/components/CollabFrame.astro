@@ -1,0 +1,17 @@
+---
+import Image from "astro/components/Image.astro"
+const {src} = Astro.props;
+---
+
+<div class="flex">
+    <div class="rounded-4xl">
+        <Image
+            {src}
+            alt="Sound Sorcery logo"
+            class="rounded-full"
+            loading="eager"
+            width="200"
+            height="200"
+        />
+    </div>
+</div>

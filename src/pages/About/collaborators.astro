@@ -1,0 +1,67 @@
+---
+import CollabFrame from "../../components/CollabFrame.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const featArtists = [
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+];
+
+const houseBand = [
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+];
+
+const visualCollabs = [
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+];
+
+const artWorkers = [
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+    { name: "", photo: "" },
+];
+
+const catering = [{ name: "", photo: "" }];
+
+const venue = [
+    {
+        name: "The Bearded Tit",
+        photo: "../../assets/images/collaborators/venue/The Bearded Tit (Venue & Bar).webp",
+    },
+    {
+        name: "Brand X - City of Sydney Creative studios",
+        photo: "../../assets/images/collaborators/venue/Brand X - City of Sydney Creative Studios.webp",
+    },
+];
+---
+
+<Layout>
+    <div class="w-max-screen h-full flex flex-col items-center gap-2">
+        <h2 class="text-4xl p-4 uppercase">Featured Artists</h2>
+        <div class="w-full"></div>
+        <h2 class="text-4xl p-4 uppercase">House Band Musicians</h2>
+        <div class="w-full"></div>
+        <h2 class="text-4xl p-4 uppercase">Visual Collaborators</h2>
+        <div class="w-full"></div>
+        <h2 class="text-4xl p-4 uppercase">Art Workers</h2>
+        <div class="w-full"></div>
+        <h2 class="text-4xl p-4 uppercase">Venue</h2>
+        <div class="w-full">
+            {
+                venue.map((member) => (
+                    <div class="flex flex-row w-3/4 p-20">
+                        <CollabFrame src={member.photo} />
+                        <p>{member.name}</p>
+                    </div>
+                ))
+            }
+        </div>
+        <h2 class="text-4xl p-4 uppercase">Catering</h2>
+        <div class="w-full"></div>
+    </div>
+</Layout>
