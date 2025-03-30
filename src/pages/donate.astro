@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+
+const donation = [
+    "$25 keeps our event free for an audience member or jammer, removing financial barriers.",
+    "$50 pays to subsidise riders for musicians so they can enjoy a beverage on the house.",
+    "$100 pays the mentoring fee for our soundie to mentor an aspiring sound-tech.",
+    "$260 pays for one female/gender diverse musician in the house band.",
+    "$300 pays for the discount hire of a queer-friendly venue for a training workshop.",
+    "$350 pays for our sound engineer to live mix one Sound Sorcery Jam.",
+    "$500 pays for a half-day workshop mentor fee!",
+    "$750 makes a half-day workshop possible with catering! (Hyperlink to workshop page)",
+];
+---
+
+<Layout>
+    <div class="w-max-screen h-full flex flex-col items-center justify-center">
+        <h2 class="text-4xl p-4 uppercase">Donate</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 p-10 px-20">
+            <Image
+                src="/src/assets/images/others/coreTeam.webp"
+                alt="Sound Sorcery logo"
+                class="rounded-md"
+                loading="eager"
+                width="500"
+                height="500"
+            />
+            <div class="flex flex-col">
+                <div class="p-4">
+                    <h3>
+                        Help fund our future projects, events and workshops!
+                    </h3>
+                    {donation.map((item) => <p>{item}</p>)}
+                </div>
+                <div class="flex justify-center">
+                    <form
+                        action="https://www.paypal.com/donate"
+                        method="post"
+                        target="_top"
+                    >
+                    <!-- add business number -->
+                        <input type="hidden" name="business" value="" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="AUD" />
+                        <input
+                            type="image"
+                            src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif"
+                            border="0"
+                            name="submit"
+                            title="PayPal - The safer, easier way to pay online!"
+                            alt="Donate with PayPal button"
+                        />
+                        <img
+                            alt=""
+                            border="0"
+                            src="https://www.paypal.com/en_AU/i/scr/pixel.gif"
+                            width="1"
+                            height="1"
+                        />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col justify-center text-center lg:pt-20">
+            <p class="flex justify-center">Keen to become our sponsor?</p>
+            <a
+                href="/path/to/file.pdf"
+                rel="nofollow noopener noreferrer"
+                referrerpolicy="no-referrer"
+                download="filename.pdf"
+                class="font-semibold pdf-link text-mauve"
+                >Download our partnership document
+            </a>
+        </div>
+        <div class="flex justify-center pb-10">
+            <button
+                type="submit"
+                class="bg-pink text-offwhite px-6 py-2 rounded-lg hover:bg-dark-pink focus:outline-none uppercase"
+            >
+                Get in touch with us
+            </button>
+        </div>
+    </div>
+</Layout>

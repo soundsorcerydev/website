@@ -3,6 +3,8 @@ import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Socials from "../components/Socials.astro";
+
+const { bgColor = 'bg-light-pink' } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,7 +20,7 @@ import Socials from "../components/Socials.astro";
 			content="Bi-monthly jam for women & gender diverse baddies in Gadigal Country"
 		/>
 	</head>
-	<body class="h-min-screen flex flex-col bg-pink">
+	<body class={`min-h-screen flex flex-col ${bgColor}`}>
 		<!-- <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"
 		></script> -->
 		<div class="flex-grow">

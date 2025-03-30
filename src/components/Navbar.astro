@@ -1,217 +1,155 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 const { pathname } = Astro.url;
-
-const projectPosts = await getCollection("projects");
-
-interface SubMenuItem {
+const isHomepage = pathname === "/";
+interface NavSubItem {
     name: string;
     path: string;
     external?: boolean;
 }
-
 interface NavItem {
     name: string;
     path: string;
     external?: boolean;
-    submenu?: SubMenuItem[];
+    submenu?: NavSubItem[];
 }
 
-const projectSubmenuItems: SubMenuItem[] = projectPosts.map((project: any) => ({
-    name: project.data.title,
-    path: `Projects/${project.slug}`,
-    external: false,
-}));
+const projectPosts = await getCollection("projects");
+const projects: NavSubItem[] = projectPosts.map(
+    (project: CollectionEntry<"projects">) => ({
+        name: project.data.title,
+        path: `projects/${project.slug}`,
+    }),
+);
 
 const navItems: NavItem[] = [
-    { name: "Home", path: "" },
+    {
+        name: "Home",
+        path: "",
+    },
     {
         name: "About",
-        path: "About",
+        path: "about",
         submenu: [
-            { name: "Who We Are", path: "About/whoweare" },
-            { name: "Core Team", path: "About/coreteam" },
-            { name: "Collaborator", path: "About/collaborator" },
+            { name: "Who We Are", path: "about/whoweare" },
+            { name: "Core Team", path: "about/coreteam" },
+            { name: "Collaborators", path: "about/collaborators" },
             {
                 name: "What's On",
-                path: "https://www.humanitix.com",
+                path: "https://events.humanitix.com/host/soundsorcery",
                 external: true,
             },
         ],
     },
     {
         name: "Projects",
-        path: "Projects",
-        submenu: projectSubmenuItems,
+        path: "projects",
+        submenu: projects,
     },
-    { name: "Sponsors", path: "Sponsors" },
-    { name: "Donate", path: "Donate" },
-    { name: "Blog", path: "Blog" },
-    { name: "Contact", path: "Contact" },
+    { name: "Sponsors", path: "sponsors" },
+    { name: "Donate", path: "donate" },
+    { name: "Blog", path: "blog" },
+    { name: "Contact", path: "contact" },
 ];
 
-const getFullPath = (path: string, external?: boolean): string => {
-    if (external) return path;
-    return pathname === "/" ? path : `/${path}`;
+const buildUrl = (path: string, external?: boolean): string => {
+    return external ? path : pathname === "/" ? path : `/${path}`;
 };
 ---
 
-<header class="w-full flex justify-center sticky top-0 z-50 backdrop-blur-xs bg-transparent">
-    <div
-        id="desktop-navbar"
-        class="max-w-3/4 w-full justify-around hidden bg-dark-pink rounded-md p-1 md:flex"
-    >
+<header class="sticky top-0 z-50 bg-transparent backdrop-blur-xs">
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex justify-center bg-dark-pink rounded-md p-1">
         {
             navItems.map((item) => (
-                <div class="flex justify-between relative">
+                <div class="relative group px-3 py-2">
                     {item.submenu ? (
-                        <div class="relative group">
-                            <a
-                                id="about-link"
-                                class="text-offwhite hover:text-pink uppercase cursor-pointer"
-                            >
+                        <>
+                            <button class="text-offwhite hover:text-pink uppercase">
                                 {item.name}
-                            </a>
-                            <div
-                                id="about-submenu"
-                                class="absolute hidden left-0 w-48 bg-dark-pink rounded-md shadow-md z-50"
-                            >
-                                {item.submenu.map((subitem) => (
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-dark-pink rounded-md mt-1 min-w-[200px]">
+                                {item.submenu.map((sub) => (
                                     <a
-                                        href={getFullPath(
-                                            subitem.path,
-                                            subitem.external,
-                                        )}
-                                        class="block px-4 py-2 text-offwhite hover:text-pink hover:bg-opacity-70"
-                                        target={
-                                            subitem.external
-                                                ? "_blank"
-                                                : undefined
-                                        }
-                                        rel={
-                                            subitem.external
-                                                ? "noopener noreferrer"
-                                                : undefined
-                                        }
+                                        href={buildUrl(sub.path, sub.external)}
+                                        class="block px-4 py-2 text-offwhite hover:text-pink"
+                                        target={sub.external ? "_blank" : null}
                                     >
-                                        {subitem.name}
-                                        {subitem.external && (
-                                            <span class="ml-1">↗</span>
-                                        )}
+                                        {sub.name}
+                                        {sub.external && " ↗"}
                                     </a>
                                 ))}
                             </div>
-                        </div>
+                        </>
                     ) : (
                         <a
+                            href={buildUrl(item.path, item.external)}
                             class="text-offwhite hover:text-pink uppercase"
-                            href={getFullPath(item.path, item.external)}
-                            target={item.external ? "_blank" : undefined}
-                            rel={
-                                item.external
-                                    ? "noopener noreferrer"
-                                    : undefined
-                            }
                         >
                             {item.name}
-                            {item.external && <span class="ml-1">↗</span>}
                         </a>
                     )}
                 </div>
             ))
         }
-    </div>
+    </nav>
 
-    <!-- mobile -->
-    <div id="mobile-header" class="w-full max-w-full bg-green md:hidden">
-        <div class="flex justify-end p-4">
+    <!-- Mobile Nav -->
+    <div
+        id="mobile-header"
+        class={`md:hidden ${isHomepage ? "bg-green" : "bg-light-pink"}`}
+    >
+        <div class="flex justify-between p-4">
+            <div></div>
             <button
-                id="mobile-menu-toggle"
-                class="text-pink font-medium items-end"
+                id="mobile-toggle"
+                class={`font-medium ${isHomepage ? "text-offwhite" : "text-pink"}`}
             >
                 Menu
             </button>
         </div>
 
         <div id="mobile-menu" class="hidden bg-dark-pink">
-            <div class="p-4">
+            <div class="p-4 space-y-4">
                 {
                     navItems.map((item) => (
                         <div class="mb-4">
-                            {item.submenu && item.submenu.length > 0 ? (
-                                <div>
-                                    <button
-                                        class="w-full text-left text-offwhite hover:text-pink uppercase font-medium mb-2 flex items-center justify-between"
-                                        data-submenu-toggle={`mobile-${item.name.toLowerCase()}-submenu`}
-                                    >
+                            {item.submenu ? (
+                                <details class="group">
+                                    <summary class="flex justify-between items-center text-offwhite hover:text-pink uppercase cursor-pointer">
                                         {item.name}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-4 w-4"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M19 9l-7 7-7-7"
-                                            />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        id={`mobile-${item.name.toLowerCase()}-submenu`}
-                                        class="hidden pl-4 border-l-2 border-offwhite"
-                                    >
-                                        {item.submenu.map((subitem) => (
-                                            <div class="mb-2">
-                                                <a
-                                                    href={getFullPath(
-                                                        subitem.path,
-                                                        subitem.external,
-                                                    )}
-                                                    class="text-offwhite hover:text-pink"
-                                                    target={
-                                                        subitem.external
-                                                            ? "_blank"
-                                                            : undefined
-                                                    }
-                                                    rel={
-                                                        subitem.external
-                                                            ? "noopener noreferrer"
-                                                            : undefined
-                                                    }
-                                                >
-                                                    {subitem.name}
-                                                    {subitem.external && (
-                                                        <span class="ml-1">
-                                                            ↗
-                                                        </span>
-                                                    )}
-                                                </a>
-                                            </div>
+                                        <span class="transform group-open:rotate-180">
+                                            ▿
+                                        </span>
+                                    </summary>
+                                    <div class="pl-4 mt-2 space-y-2">
+                                        {item.submenu.map((sub) => (
+                                            <a
+                                                href={buildUrl(
+                                                    sub.path,
+                                                    sub.external,
+                                                )}
+                                                class="block py-1 text-offwhite hover:text-pink"
+                                                target={
+                                                    sub.external
+                                                        ? "_blank"
+                                                        : null
+                                                }
+                                            >
+                                                {sub.name}
+                                                {sub.external && " ↗"}
+                                            </a>
                                         ))}
                                     </div>
-                                </div>
+                                </details>
                             ) : (
                                 <a
-                                    href={getFullPath(item.path, item.external)}
-                                    class="text-offwhite hover:text-pink uppercase font-medium"
-                                    target={
-                                        item.external ? "_blank" : undefined
-                                    }
-                                    rel={
-                                        item.external
-                                            ? "noopener noreferrer"
-                                            : undefined
-                                    }
+                                    href={buildUrl(item.path, item.external)}
+                                    class="block text-offwhite hover:text-pink uppercase"
                                 >
                                     {item.name}
-                                    {item.external && (
-                                        <span class="ml-1">↗</span>
-                                    )}
                                 </a>
                             )}
                         </div>
@@ -224,78 +162,35 @@ const getFullPath = (path: string, external?: boolean): string => {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const desktopDropdownTriggers =
-            document.querySelectorAll("[data-submenu-id]");
+        const toggle: HTMLElement | null =
+            document.getElementById("mobile-toggle");
+        const menu: HTMLElement | null = document.getElementById("mobile-menu");
+        const header: HTMLElement | null =
+            document.getElementById("mobile-header");
+        const isHomepage: boolean = window.location.pathname === "/";
 
-        desktopDropdownTriggers.forEach((trigger) => {
-            const triggerElement = trigger as HTMLElement;
-            const submenuId = triggerElement.dataset.submenuId as string;
-            const submenuElement = document.getElementById(submenuId);
+        toggle?.addEventListener("click", () => {
+            const isOpening: boolean =
+                menu?.classList.toggle("hidden") ?? false;
 
-            if (triggerElement && submenuElement) {
-                triggerElement.addEventListener("click", (e: Event) => {
-                    e.preventDefault();
-                    submenuElement.classList.toggle("hidden");
-                });
-            }
-        });
-
-        document.addEventListener("click", (e: Event) => {
-            const target = e.target as HTMLElement;
-
-            const isOutsideAllTriggers = ![...desktopDropdownTriggers].some(
-                (trigger) => trigger.contains(target),
-            );
-
-            if (
-                isOutsideAllTriggers &&
-                !target.closest('[id^="desktop-"][id$="-submenu"]')
-            ) {
-                document
-                    .querySelectorAll('[id^="desktop-"][id$="-submenu"]')
-                    .forEach((submenu) => {
-                        submenu.classList.add("hidden");
-                    });
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const mobileHeader = document.getElementById("mobile-header");
-
-        if (mobileMenuToggle && mobileMenu && mobileHeader) {
-            mobileMenuToggle.addEventListener("click", () => {
-                mobileMenu.classList.toggle("hidden");
-
-                if (mobileMenu.classList.contains("hidden")) {
-                    mobileHeader.classList.remove("bg-dark-pink");
-                    mobileHeader.classList.add("bg-green");
-                    mobileMenuToggle.classList.remove("text-offwhite");
-                    mobileMenuToggle.classList.add("text-pink");
-                } else {
-                    mobileHeader.classList.remove("bg-green");
-                    mobileHeader.classList.add("bg-dark-pink");
-                    mobileMenuToggle.classList.remove("text-pink");
-                    mobileMenuToggle.classList.add("text-offwhite");
-                }
-            });
-        }
-
-        // Mobile submenu toggles
-        const mobileSubmenuToggles = document.querySelectorAll(
-            "[data-submenu-toggle]",
-        );
-
-        mobileSubmenuToggles.forEach((toggle) => {
-            const toggleElement = toggle as HTMLElement;
-            const submenuId = toggleElement.dataset.submenuToggle as string;
-            const submenuElement = document.getElementById(submenuId);
-
-            if (toggleElement && submenuElement) {
-                toggleElement.addEventListener("click", () => {
-                    submenuElement.classList.toggle("hidden");
-                });
+            if (isOpening) {
+                header?.classList.remove("bg-dark-pink");
+                header?.classList.add(
+                    isHomepage ? "bg-green" : "bg-light-pink",
+                );
+                toggle.classList.remove("text-offwhite");
+                toggle.classList.add(
+                    isHomepage ? "text-offwhite" : "text-pink",
+                );
+            } else {
+                header?.classList.remove(
+                    isHomepage ? "bg-green" : "bg-light-pink",
+                );
+                header?.classList.add("bg-dark-pink");
+                toggle.classList.remove(
+                    isHomepage ? "text-offwhite" : "text-pink",
+                );
+                toggle.classList.add("text-offwhite");
             }
         });
     });

@@ -1,9 +1,25 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Substack from '../components/substack.astro'
-
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo.astro";
+import ProjectGallery from "../components/ProjectGallery.astro";
 ---
 
-<Layout>
-	<!-- <Substack /> -->
+<Layout bgColor="bg-green">
+	<div class="max-sm:min-h-screen h-full flex items-center justify-center p-4">
+		<div class="flex flex-col md:flex-row items-center gap-6">
+			<Logo width={540} height={540} />
+			<div class="flex flex-col">
+				<h1 class="text-6xl md:text-9xl leading-none text-offwhite">
+					Sound
+				</h1>
+				<h1
+					class="text-6xl md:text-9xl leading-none text-offwhite ml-8 md:ml-20"
+				>
+					Sorcery
+				</h1>
+			</div>
+		</div>
+	</div>
 </Layout>
+
+<script></script>
