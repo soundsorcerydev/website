@@ -4,26 +4,25 @@ backend:
 
 publish_mode: editorial_workflow
 
-# Media folder settings - this is where we organize images per event
-media_folder: "public/images"
-public_folder: "/images"
-
+media_folder: "public/images" # Where media will be stored
+public_folder: "/images" # Where media is accessed in the public URL
 
 collections:
-  - name: "events"
-    label: "Events"
-    folder: "src/pages/projects"
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Event Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text" }
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
       - {
-          label: "Event Images",
-          name: "images",
+          label: "Project Images",
+          name: "gallery",
           widget: "list",
           summary: "{{fields.image}}",
           field: { label: "Image", name: "image", widget: "image", media_folder: "/public/images/{{slug}}", public_folder: "/images/{{slug}}" }
         }
-      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }

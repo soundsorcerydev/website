@@ -1,38 +1,50 @@
 ---
-// src/pages/events/[slug].astro
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
 
-
+// Generate paths for all projects
 export async function getStaticPaths() {
-    const events = await getCollection("events", {
-        schema: ({ slug }: { slug: string }) => ({ slug }),
-    });
-    return events.map((entry) => ({
+    const projectEntries = await getCollection("projects");
+    return projectEntries.map((entry:any) => ({
         params: { slug: entry.slug },
         props: { entry },
     }));
 }
 
-const { entry } = Astro.props;
+interface ProjectEntry {
+    data: {
+        title: string;
+        featuredImage?: string;
+        gallery?: any[];
+    };
+    render: () => Promise<{ Content: any }>;
+}
+
+const { entry } = Astro.props as { entry: ProjectEntry };
 const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
+    <article class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-pink mb-4">
+            {entry.data.title}
+        </h1>
 
-        <Fragment slot="title">{entry.data.title}</Fragment>
-        <Fragment slot="images">
-            {
-                entry.data.images.map((image) => (
-                    <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                        <img
-                            src={image.image}
-                            alt={`Image from ${entry.data.title}`}
-                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        />
-                    </div>
-                ))
-            }
-        </Fragment>
+        {
+            entry.data.featuredImage && (
+                <img
+                    src={entry.data.featuredImage}
+                    alt={entry.data.title}
+                    class="w-full max-h-96 object-cover rounded-md mb-6"
+                />
+            )
+        }
 
+        <div class="prose max-w-none mb-8">
+            <Content />
+        </div>
+
+        <ProjectGallery gallery={entry.data.gallery} title={entry.data.title} />
+    </article>
 </Layout>
