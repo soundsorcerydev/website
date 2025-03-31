@@ -20,7 +20,7 @@ const projectPosts = await getCollection("projects");
 const projects: NavSubItem[] = projectPosts.map(
     (project: CollectionEntry<"projects">) => ({
         name: project.data.title,
-        path: `Projects/${project.slug}`,
+        path: `projects/${project.slug}`,
     }),
 );
 
@@ -31,11 +31,11 @@ const navItems: NavItem[] = [
     },
     {
         name: "About",
-        path: "About",
+        path: "about",
         submenu: [
-            { name: "Who We Are", path: "About/whoweare" },
-            { name: "Core Team", path: "About/coreteam" },
-            { name: "Collaborator", path: "About/collaborator" },
+            { name: "Who We Are", path: "about/whoweare" },
+            { name: "Core Team", path: "about/coreteam" },
+            { name: "Collaborators", path: "about/collaborators" },
             {
                 name: "What's On",
                 path: "https://events.humanitix.com/host/soundsorcery",
@@ -45,7 +45,7 @@ const navItems: NavItem[] = [
     },
     {
         name: "Projects",
-        path: "Projects",
+        path: "projects",
         submenu: projects,
     },
     { name: "Sponsors", path: "sponsors" },
