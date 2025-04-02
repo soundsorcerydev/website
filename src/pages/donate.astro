@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import donate from "../assets/images/others/donate.webp"
 
 const donation = [
     "$25 keeps our event free for an audience member or jammer, removing financial barriers.",
@@ -19,7 +20,7 @@ const donation = [
         <h2 class="text-4xl p-4 uppercase">Donate</h2>
         <div class="flex flex-col md:flex-row items-center gap-12 p-10 px-20">
             <Image
-                src="/src/assets/images/others/coreTeam.webp"
+                src={donate}
                 alt="Sound Sorcery logo"
                 class="rounded-md"
                 loading="eager"
@@ -46,14 +47,12 @@ const donation = [
                         <input
                             type="image"
                             src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif"
-                            border="0"
                             name="submit"
                             title="PayPal - The safer, easier way to pay online!"
                             alt="Donate with PayPal button"
                         />
                         <img
                             alt=""
-                            border="0"
                             src="https://www.paypal.com/en_AU/i/scr/pixel.gif"
                             width="1"
                             height="1"
