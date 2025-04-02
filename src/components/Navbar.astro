@@ -59,42 +59,51 @@ const buildUrl = (path: string, external?: boolean): string => {
 };
 ---
 
-<header class="sticky top-0 z-50 bg-transparent backdrop-blur-xs">
+<header class="sticky top-0 z-50 bg-transparent">
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex justify-center bg-dark-pink rounded-md p-1">
-        {
-            navItems.map((item) => (
-                <div class="relative group px-3 py-2">
-                    {item.submenu ? (
-                        <>
-                            <button class="text-offwhite hover:text-pink uppercase">
+    <div class="md:flex md:justify-center">
+        <nav
+            class="hidden md:flex justify-around bg-dark-pink rounded-md p-1 w-3/4"
+        >
+            {
+                navItems.map((item) => (
+                    <div class="relative group px-4 py-2">
+                        {item.submenu ? (
+                            <>
+                                <button class="text-offwhite hover:text-pink uppercase">
+                                    {item.name}
+                                </button>
+                                <div class="absolute hidden group-hover:block bg-dark-pink rounded-md mt-1 min-w-[200px]">
+                                    {item.submenu.map((sub) => (
+                                        <a
+                                            href={buildUrl(
+                                                sub.path,
+                                                sub.external,
+                                            )}
+                                            class="block px-4 py-2 text-offwhite hover:text-pink"
+                                            target={
+                                                sub.external ? "_blank" : null
+                                            }
+                                        >
+                                            {sub.name}
+                                            {sub.external && " ↗"}
+                                        </a>
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            <a
+                                href={buildUrl(item.path, item.external)}
+                                class="text-offwhite hover:text-pink uppercase"
+                            >
                                 {item.name}
-                            </button>
-                            <div class="absolute hidden group-hover:block bg-dark-pink rounded-md mt-1 min-w-[200px]">
-                                {item.submenu.map((sub) => (
-                                    <a
-                                        href={buildUrl(sub.path, sub.external)}
-                                        class="block px-4 py-2 text-offwhite hover:text-pink"
-                                        target={sub.external ? "_blank" : null}
-                                    >
-                                        {sub.name}
-                                        {sub.external && " ↗"}
-                                    </a>
-                                ))}
-                            </div>
-                        </>
-                    ) : (
-                        <a
-                            href={buildUrl(item.path, item.external)}
-                            class="text-offwhite hover:text-pink uppercase"
-                        >
-                            {item.name}
-                        </a>
-                    )}
-                </div>
-            ))
-        }
-    </nav>
+                            </a>
+                        )}
+                    </div>
+                ))
+            }
+        </nav>
+    </div>
 
     <!-- Mobile Nav -->
     <div
