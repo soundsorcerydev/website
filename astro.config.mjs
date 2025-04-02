@@ -9,13 +9,6 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    build: {
-      rollupOptions: {
-        output: {
-          entryFileNames: '[name]-[hash].js',
-        },
-      },
-    },
   },
 
   adapter: netlify()
