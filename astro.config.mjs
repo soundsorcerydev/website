@@ -8,7 +8,14 @@ import netlify from '@astrojs/netlify';
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: '[name]-[hash].js',
+        },
+      },
+    },
   },
 
   adapter: netlify()
