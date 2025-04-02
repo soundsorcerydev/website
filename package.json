@@ -17,5 +17,9 @@
   },
   "devDependencies": {
     "daisyui": "^5.0.6"
+  },
+  "resolutions": {
+    "trim": "^0.0.3",
+    "dompurify": "^3.2.4"
   }
 }
