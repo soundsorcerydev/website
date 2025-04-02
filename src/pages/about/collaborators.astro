@@ -1,0 +1,231 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CollabFrame from "../../components/CollabFrame.astro";
+import * as Images from "../../components/collabImageCollections.js";
+
+const sections = [
+    {
+        title: "Featured Artists",
+        items: [
+            { name: "Alice Tery", photo: Images.aliceTery, alt: "Alice Tery" },
+            {
+                name: "Bernice Teresa Fun",
+                photo: Images.berniceTeresaFun,
+                alt: "Bernice Teresa Fun",
+            },
+            {
+                name: "Courtney Severini",
+                photo: Images.courtneySeverini,
+                alt: "Courtney Severini",
+            },
+            { name: "Fran Liddle", photo: Images.franLiddle, alt: "Fran Liddle" },
+            {
+                name: "Harri Harding",
+                photo: Images.harriHarding,
+                alt: "Harri Harding",
+            },
+            {
+                name: "Hilary Geddes",
+                photo: Images.hilaryGeddesFeat,
+                alt: "Hilary Geddes",
+            },
+            { name: "Jade Kenji", photo: Images.jadeKenji, alt: "Jade Kenji" },
+            {
+                name: "Malaika Mfalme",
+                photo: Images.malaikaMfalme,
+                alt: "Malaika Mfalme",
+            },
+            { name: "Mary Heart", photo: Images.maryHeart, alt: "Mary Heart" },
+            { name: "Mary Rapp", photo: Images.maryRapp, alt: "Mary Rapp" },
+            { name: "Meklit", photo: Images.meklit, alt: "Meklit" },
+            { name: "Monstress", photo: Images.monstress, alt: "Monstress" },
+            { name: "Ms G", photo: Images.msG, alt: "Ms G" },
+            { name: "NANA", photo: Images.nana, alt: "NANA" },
+            { name: "Parvyn", photo: Images.parvyn, alt: "Parvyn" },
+            { name: "Sherene", photo: Images.sherene, alt: "Sherene" },
+            {
+                name: "Stella Anning",
+                photo: Images.stellaAnning,
+                alt: "Stella Anning",
+            },
+            { name: "Tiana Young", photo: Images.tianaYoung, alt: "Tiana Young" },
+        ],
+    },
+    {
+        title: "House Band Musicians",
+        items: [
+            {
+                name: "Amanda Jenkins",
+                photo: Images.amandaJenkins,
+                alt: "Amanda Jenkins",
+            },
+            {
+                name: "Catherine Golden",
+                photo: Images.catherineGolden,
+                alt: "Catherine Golden",
+            },
+            {
+                name: "Elle Rodriguez",
+                photo: Images.elleRodriguez,
+                alt: "Elle Rodriguez",
+            },
+            { name: "Emily Rose", photo: Images.emilyRose, alt: "Emily Rose" },
+            {
+                name: "Freyja Garbett",
+                photo: Images.freyjaGarbett,
+                alt: "Freyja Garbett",
+            },
+            { name: "Hayley Chan", photo: Images.hayleyChan, alt: "Hayley Chan" },
+            {
+                name: "Hazel Alexander",
+                photo: Images.hazelAlexander,
+                alt: "Hazel Alexander",
+            },
+            {
+                name: "Hilary Geddes",
+                photo: Images.hilaryGeddesHouse,
+                alt: "Hilary Geddes",
+            },
+            { name: "Holly Connor", photo: Images.hollyConnor, alt: "Holly Connor" },
+            { name: "Jenna Lewis", photo: Images.jennaLewis, alt: "Jenna Lewis" },
+            { name: "Jess Green", photo: Images.jessGreen, alt: "Jess Green" },
+            {
+                name: "Jodie Michael",
+                photo: Images.jodieMichael,
+                alt: "Jodie Michael",
+            },
+            { name: "Kali Gillen", photo: Images.kaliGillen, alt: "Kali Gillen" },
+            { name: "Lexi Green", photo: Images.lexiGreen, alt: "Lexi Green" },
+            { name: "Melissa Mony", photo: Images.melissaMony, alt: "Melissa Mony" },
+            {
+                name: "Olivia Diamant",
+                photo: Images.oliviaDiamant,
+                alt: "Olivia Diamant",
+            },
+            {
+                name: "Rosie Marks-Smith",
+                photo: Images.rosieMarksSmith,
+                alt: "Rosie Marks-Smith",
+            },
+            { name: "Sabine Tapia", photo: Images.sabineTapia, alt: "Sabine Tapia" },
+            { name: "Sarah Homeh", photo: Images.sarahHomeh, alt: "Sarah Homeh" },
+            { name: "Sarah Purdon", photo: Images.sarahPurdon, alt: "Sarah Purdon" },
+            {
+                name: "Zsa Zsa Gyulay",
+                photo: Images.zsaZsaGyulay,
+                alt: "Zsa Zsa Gyulay",
+            },
+        ],
+    },
+    {
+        title: "Visual Collaborators",
+        items: [
+            { name: "Alia Ardon", photo: Images.aliaArdon, alt: "Alia Ardon" },
+            {
+                name: "Julia Sarantis",
+                photo: Images.juliaSarantis,
+                alt: "Julia Sarantis",
+            },
+            {
+                name: "Megan Holloway",
+                photo: Images.meganHolloway,
+                alt: "Megan Holloway",
+            },
+            {
+                name: "Merinah Funnell",
+                photo: Images.merinahFunnell,
+                alt: "Merinah Funnell",
+            },
+            { name: "Soulish", photo: Images.soulish, alt: "Soulish" },
+            { name: "Syl Marie", photo: Images.sylMarie, alt: "Syl Marie" },
+            { name: "Vanessa Lam", photo: Images.vanessaLam, alt: "Vanessa Lam" },
+        ],
+    },
+    {
+        title: "Art Workers",
+        items: [
+            { name: "Ada Flynn", photo: Images.adaFlynn, alt: "Ada Flynn" },
+            { name: "Annika Unsen", photo: Images.annikaUnsen, alt: "Annika Unsen" },
+            {
+                name: "Damia O Loughlin",
+                photo: Images.damiaOLoughlin,
+                alt: "Damia O Loughlin",
+            },
+            { name: "Dom Parker", photo: Images.domParker, alt: "Dom Parker" },
+            {
+                name: "Elena Acquaviva",
+                photo: Images.elenaAcquaviva,
+                alt: "Elena Acquaviva",
+            },
+            {
+                name: "Michelle Barry",
+                photo: Images.michelleBarry,
+                alt: "Michelle Barry",
+            },
+            {
+                name: "Noah Jovignot",
+                photo: Images.noahJovignot,
+                alt: "Noah Jovignot",
+            },
+            { name: "Romy Dobbie", photo: Images.romyDobbie, alt: "Romy Dobbie" },
+            {
+                name: "Sally Hackett",
+                photo: Images.sallyHackett,
+                alt: "Sally Hackett",
+            },
+            { name: "Uma Volgmer", photo: Images.umaVolgmer, alt: "Uma Volgmer" },
+        ],
+    },
+    {
+        title: "Venue",
+        items: [
+            {
+                name: "The Bearded Tit",
+                photo: Images.beardedTit,
+                alt: "The Bearded Tit",
+            },
+            {
+                name: "Brand X - City of Sydney Creative studios",
+                photo: Images.brandX,
+                alt: "Brand X - City of Sydney Creative studios",
+            },
+        ],
+    },
+    {
+        title: "Catering",
+        items: [
+            {
+                name: "Auntie Wombat",
+                photo: Images.auntieWombat,
+                alt: "Auntie Wombat",
+            },
+        ],
+    },
+];
+---
+
+<Layout>
+    <div class="max-w-screen h-full flex flex-col items-center justify-around">
+        {
+            sections.map((section) => (
+                <>
+                    <h2 class="text-4xl p-4 uppercase">{section.title}</h2>
+                    <div class="flex flex-row flex-wrap justify-around">
+                        {section.items.map((member) => (
+                            <div class="flex flex-col m-10">
+                                <CollabFrame
+                                    src={member.photo}
+                                    alt={member.alt}
+                                    loading="lazy"
+                                />
+                                <p class="flex justify-center font-semibold">
+                                    {member.name}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            ))
+        }
+    </div>
+</Layout>

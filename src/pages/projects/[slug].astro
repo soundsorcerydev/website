@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
+
+// Generate paths for all projects
+export async function getStaticPaths() {
+    const projectEntries = await getCollection("projects");
+    return projectEntries.map((entry:any) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+interface ProjectEntry {
+    data: {
+        title: string;
+        featuredImage?: string;
+        gallery?: any[];
+    };
+    render: () => Promise<{ Content: any }>;
+}
+
+const { entry } = Astro.props as { entry: ProjectEntry };
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+    <article class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-pink mb-4">
+            {entry.data.title}
+        </h1>
+
+        {
+            entry.data.featuredImage && (
+                <img
+                    src={entry.data.featuredImage}
+                    alt={entry.data.title}
+                    class="w-full max-h-96 object-cover rounded-md mb-6"
+                />
+            )
+        }
+
+        <div class="prose max-w-none mb-8">
+            <Content />
+        </div>
+
+        <ProjectGallery gallery={entry.data.gallery} title={entry.data.title} />
+    </article>
+</Layout>
