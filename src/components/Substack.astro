@@ -1,0 +1,25 @@
+---
+
+---
+
+<div id="substack-feed-embed"></div>
+
+<script is:inline>
+    window.SubstackFeedWidget = {
+        substackUrl: "https://soundsorceryjam.substack.com",
+        posts: 6,
+        filter: "new",
+        colors: {
+            primary: "#8D5D8A",
+            secondary: "#593757",
+            background: "#DCC9E8",
+        },
+        // Override the API URL to use our proxy
+        apiUrl: "/api/substack-proxy",
+    };
+
+    const script = document.createElement("script");
+    script.src = "https://substackapi.com/embeds/feed.js";
+    script.async = true;
+    document.body.appendChild(script);
+</script>
