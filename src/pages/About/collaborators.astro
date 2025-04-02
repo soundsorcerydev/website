@@ -1,82 +1,179 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CollabFrame from "../../components/CollabFrame.astro";
+import * as Images from "../../components/collabImageCollections.js";
 
 const sections = [
     {
         title: "Featured Artists",
         items: [
-            { name: "Alice Tery", photo: "/src/assets/images/collaborators/featArtists/AliceTery.webp", alt: "Alice Tery" },
-            { name: "Bernice Teresa Fun", photo: "/src/assets/images/collaborators/featArtists/BerniceTeresaFun.webp", alt: "Bernice Teresa Fun" },
-            { name: "Courtney Severini", photo: "/src/assets/images/collaborators/featArtists/CourtneySeverini.webp", alt: "Courtney Severini" },
-            { name: "Fran Liddle", photo: "/src/assets/images/collaborators/featArtists/FranLiddle.webp", alt: "Fran Liddle" },
-            { name: "Harri Harding", photo: "/src/assets/images/collaborators/featArtists/HarriHarding.webp", alt: "Harri Harding" },
-            { name: "Hilary Geddes", photo: "/src/assets/images/collaborators/featArtists/HilaryGeddes.webp", alt: "Hilary Geddes" },
-            { name: "Jade Kenji", photo: "/src/assets/images/collaborators/featArtists/JadeKenji.webp", alt: "Jade Kenji" },
-            { name: "Malaika Mfalme", photo: "/src/assets/images/collaborators/featArtists/MalaikaMfalme.webp", alt: "Malaika Mfalme" },
-            { name: "Mary Heart", photo: "/src/assets/images/collaborators/featArtists/MaryHeart.webp", alt: "Mary Heart" },
-            { name: "Mary Rapp", photo: "/src/assets/images/collaborators/featArtists/MaryRapp.webp", alt: "Mary Rapp" },
-            { name: "Meklit", photo: "/src/assets/images/collaborators/featArtists/Meklit.webp", alt: "Meklit" },
-            { name: "Monstress", photo: "/src/assets/images/collaborators/featArtists/Monstress.webp", alt: "Monstress" },
-            { name: "Ms G", photo: "/src/assets/images/collaborators/featArtists/MsG.webp", alt: "Ms G" },
-            { name: "NANA", photo: "/src/assets/images/collaborators/featArtists/NANA.webp", alt: "NANA" },
-            { name: "Parvyn", photo: "/src/assets/images/collaborators/featArtists/Parvyn.webp", alt: "Parvyn" },
-            { name: "Sherene", photo: "/src/assets/images/collaborators/featArtists/Sherene.webp", alt: "Sherene" },
-            { name: "Stella Anning", photo: "/src/assets/images/collaborators/featArtists/StellaAnning.webp", alt: "Stella Anning" },
-            { name: "Tiana Young", photo: "/src/assets/images/collaborators/featArtists/TianaYoung.webp", alt: "Tiana Young" },
+            { name: "Alice Tery", photo: Images.aliceTery, alt: "Alice Tery" },
+            {
+                name: "Bernice Teresa Fun",
+                photo: Images.berniceTeresaFun,
+                alt: "Bernice Teresa Fun",
+            },
+            {
+                name: "Courtney Severini",
+                photo: Images.courtneySeverini,
+                alt: "Courtney Severini",
+            },
+            { name: "Fran Liddle", photo: Images.franLiddle, alt: "Fran Liddle" },
+            {
+                name: "Harri Harding",
+                photo: Images.harriHarding,
+                alt: "Harri Harding",
+            },
+            {
+                name: "Hilary Geddes",
+                photo: Images.hilaryGeddesFeat,
+                alt: "Hilary Geddes",
+            },
+            { name: "Jade Kenji", photo: Images.jadeKenji, alt: "Jade Kenji" },
+            {
+                name: "Malaika Mfalme",
+                photo: Images.malaikaMfalme,
+                alt: "Malaika Mfalme",
+            },
+            { name: "Mary Heart", photo: Images.maryHeart, alt: "Mary Heart" },
+            { name: "Mary Rapp", photo: Images.maryRapp, alt: "Mary Rapp" },
+            { name: "Meklit", photo: Images.meklit, alt: "Meklit" },
+            { name: "Monstress", photo: Images.monstress, alt: "Monstress" },
+            { name: "Ms G", photo: Images.msG, alt: "Ms G" },
+            { name: "NANA", photo: Images.nana, alt: "NANA" },
+            { name: "Parvyn", photo: Images.parvyn, alt: "Parvyn" },
+            { name: "Sherene", photo: Images.sherene, alt: "Sherene" },
+            {
+                name: "Stella Anning",
+                photo: Images.stellaAnning,
+                alt: "Stella Anning",
+            },
+            { name: "Tiana Young", photo: Images.tianaYoung, alt: "Tiana Young" },
         ],
     },
     {
         title: "House Band Musicians",
         items: [
-            { name: "Amanda Jenkins", photo: "/src/assets/images/collaborators/houseBand/AmandaJenkins.webp", alt: "Amanda Jenkins" },
-            { name: "Catherine Golden", photo: "/src/assets/images/collaborators/houseBand/CatherineGolden.webp", alt: "Catherine Golden" },
-            { name: "Elle Rodriguez", photo: "/src/assets/images/collaborators/houseBand/ElleRodriguez.webp", alt: "Elle Rodriguez" },
-            { name: "Emily Rose", photo: "/src/assets/images/collaborators/houseBand/EmilyRose.webp", alt: "Emily Rose" },
-            { name: "Freyja Garbett", photo: "/src/assets/images/collaborators/houseBand/FreyjaGarbett.webp", alt: "Freyja Garbett" },
-            { name: "Hayley Chan", photo: "/src/assets/images/collaborators/houseBand/HayleyChan.webp", alt: "Hayley Chan" },
-            { name: "Hazel Alexander", photo: "/src/assets/images/collaborators/houseBand/HazelAlexander.webp", alt: "Hazel Alexander" },
-            { name: "Hilary Geddes", photo: "/src/assets/images/collaborators/houseBand/HilaryGeddes.webp", alt: "Hilary Geddes" },
-            { name: "Holly Connor", photo: "/src/assets/images/collaborators/houseBand/HollyConnor.webp", alt: "Holly Connor" },
-            { name: "Jenna Lewis", photo: "/src/assets/images/collaborators/houseBand/JennaLewis.webp", alt: "Jenna Lewis" },
-            { name: "Jess Green", photo: "/src/assets/images/collaborators/houseBand/JessGreen.webp", alt: "Jess Green" },
-            { name: "Jodie Michael", photo: "/src/assets/images/collaborators/houseBand/JodieMichael.webp", alt: "Jodie Michael" },
-            { name: "Kali Gillen", photo: "/src/assets/images/collaborators/houseBand/KaliGillen.webp", alt: "Kali Gillen" },
-            { name: "Lexi Green", photo: "/src/assets/images/collaborators/houseBand/LexiGreen.webp", alt: "Lexi Green" },
-            { name: "Melissa Mony", photo: "/src/assets/images/collaborators/houseBand/MelissaMony.webp", alt: "Melissa Mony" },
-            { name: "Olivia Diamant", photo: "/src/assets/images/collaborators/houseBand/OliviaDiamant.webp", alt: "Olivia Diamant" },
-            { name: "Rosie Marks-Smith", photo: "/src/assets/images/collaborators/houseBand/RosieMarksSmith.webp", alt: "Rosie Marks-Smith" },
-            { name: "Sabine Tapia", photo: "/src/assets/images/collaborators/houseBand/SabineTapia.webp", alt: "Sabine Tapia" },
-            { name: "Sarah Homeh", photo: "/src/assets/images/collaborators/houseBand/SarahHomeh.webp", alt: "Sarah Homeh" },
-            { name: "Sarah Purdon", photo: "/src/assets/images/collaborators/houseBand/SarahPurdon.webp", alt: "Sarah Purdon" },
-            { name: "Zsa Zsa Gyulay", photo: "/src/assets/images/collaborators/houseBand/ZsaZsaGyulay.webp", alt: "Zsa Zsa Gyulay" },
+            {
+                name: "Amanda Jenkins",
+                photo: Images.amandaJenkins,
+                alt: "Amanda Jenkins",
+            },
+            {
+                name: "Catherine Golden",
+                photo: Images.catherineGolden,
+                alt: "Catherine Golden",
+            },
+            {
+                name: "Elle Rodriguez",
+                photo: Images.elleRodriguez,
+                alt: "Elle Rodriguez",
+            },
+            { name: "Emily Rose", photo: Images.emilyRose, alt: "Emily Rose" },
+            {
+                name: "Freyja Garbett",
+                photo: Images.freyjaGarbett,
+                alt: "Freyja Garbett",
+            },
+            { name: "Hayley Chan", photo: Images.hayleyChan, alt: "Hayley Chan" },
+            {
+                name: "Hazel Alexander",
+                photo: Images.hazelAlexander,
+                alt: "Hazel Alexander",
+            },
+            {
+                name: "Hilary Geddes",
+                photo: Images.hilaryGeddesHouse,
+                alt: "Hilary Geddes",
+            },
+            { name: "Holly Connor", photo: Images.hollyConnor, alt: "Holly Connor" },
+            { name: "Jenna Lewis", photo: Images.jennaLewis, alt: "Jenna Lewis" },
+            { name: "Jess Green", photo: Images.jessGreen, alt: "Jess Green" },
+            {
+                name: "Jodie Michael",
+                photo: Images.jodieMichael,
+                alt: "Jodie Michael",
+            },
+            { name: "Kali Gillen", photo: Images.kaliGillen, alt: "Kali Gillen" },
+            { name: "Lexi Green", photo: Images.lexiGreen, alt: "Lexi Green" },
+            { name: "Melissa Mony", photo: Images.melissaMony, alt: "Melissa Mony" },
+            {
+                name: "Olivia Diamant",
+                photo: Images.oliviaDiamant,
+                alt: "Olivia Diamant",
+            },
+            {
+                name: "Rosie Marks-Smith",
+                photo: Images.rosieMarksSmith,
+                alt: "Rosie Marks-Smith",
+            },
+            { name: "Sabine Tapia", photo: Images.sabineTapia, alt: "Sabine Tapia" },
+            { name: "Sarah Homeh", photo: Images.sarahHomeh, alt: "Sarah Homeh" },
+            { name: "Sarah Purdon", photo: Images.sarahPurdon, alt: "Sarah Purdon" },
+            {
+                name: "Zsa Zsa Gyulay",
+                photo: Images.zsaZsaGyulay,
+                alt: "Zsa Zsa Gyulay",
+            },
         ],
     },
     {
         title: "Visual Collaborators",
         items: [
-            { name: "Alia Ardon", photo: "/src/assets/images/collaborators/visualCollabs/AliaArdon.webp", alt: "Alia Ardon" },
-            { name: "Julia Sarantis", photo: "/src/assets/images/collaborators/visualCollabs/JuliaSarantis.webp", alt: "Julia Sarantis" },
-            { name: "Megan Holloway", photo: "/src/assets/images/collaborators/visualCollabs/MeganHolloway.webp", alt: "Megan Holloway" },
-            { name: "Merinah Funnell", photo: "/src/assets/images/collaborators/visualCollabs/MerinahFunnell.webp", alt: "Merinah Funnell" },
-            { name: "Soulish", photo: "/src/assets/images/collaborators/visualCollabs/Soulish.webp", alt: "Soulish" },
-            { name: "Syl Marie", photo: "/src/assets/images/collaborators/visualCollabs/SylMarie.webp", alt: "Syl Marie" },
-            { name: "Vanessa Lam", photo: "/src/assets/images/collaborators/visualCollabs/VanessaLam.webp", alt: "Vanessa Lam" },
+            { name: "Alia Ardon", photo: Images.aliaArdon, alt: "Alia Ardon" },
+            {
+                name: "Julia Sarantis",
+                photo: Images.juliaSarantis,
+                alt: "Julia Sarantis",
+            },
+            {
+                name: "Megan Holloway",
+                photo: Images.meganHolloway,
+                alt: "Megan Holloway",
+            },
+            {
+                name: "Merinah Funnell",
+                photo: Images.merinahFunnell,
+                alt: "Merinah Funnell",
+            },
+            { name: "Soulish", photo: Images.soulish, alt: "Soulish" },
+            { name: "Syl Marie", photo: Images.sylMarie, alt: "Syl Marie" },
+            { name: "Vanessa Lam", photo: Images.vanessaLam, alt: "Vanessa Lam" },
         ],
     },
     {
         title: "Art Workers",
         items: [
-            { name: "Ada Flynn", photo: "/src/assets/images/collaborators/artWorkers/AdaFlynn.webp", alt: "Ada Flynn" },
-            { name: "Annika Unsen", photo: "/src/assets/images/collaborators/artWorkers/AnnikaUnsen.webp", alt: "Annika Unsen" },
-            { name: "Damia O Loughlin", photo: "/src/assets/images/collaborators/artWorkers/DamiaOLoughlin.webp", alt: "Damia O Loughlin" },
-            { name: "Dom Parker", photo: "/src/assets/images/collaborators/artWorkers/DomParker.webp", alt: "Dom Parker" },
-            { name: "Elena Acquaviva", photo: "/src/assets/images/collaborators/artWorkers/ElenaAcquaviva.webp", alt: "Elena Acquaviva" },
-            { name: "Michelle Barry", photo: "/src/assets/images/collaborators/artWorkers/MichelleBarry.webp", alt: "Michelle Barry" },
-            { name: "Noah Jovignot", photo: "/src/assets/images/collaborators/artWorkers/NoahJovignot.webp", alt: "Noah Jovignot" },
-            { name: "Romy Dobbie", photo: "/src/assets/images/collaborators/artWorkers/RomyDobbie.webp", alt: "Romy Dobbie" },
-            { name: "Sally Hackett", photo: "/src/assets/images/collaborators/artWorkers/SallyHackett.webp", alt: "Sally Hackett" },
-            { name: "Uma Volgmer", photo: "/src/assets/images/collaborators/artWorkers/UmaVolgmer.webp", alt: "Uma Volgmer" },
+            { name: "Ada Flynn", photo: Images.adaFlynn, alt: "Ada Flynn" },
+            { name: "Annika Unsen", photo: Images.annikaUnsen, alt: "Annika Unsen" },
+            {
+                name: "Damia O Loughlin",
+                photo: Images.damiaOLoughlin,
+                alt: "Damia O Loughlin",
+            },
+            { name: "Dom Parker", photo: Images.domParker, alt: "Dom Parker" },
+            {
+                name: "Elena Acquaviva",
+                photo: Images.elenaAcquaviva,
+                alt: "Elena Acquaviva",
+            },
+            {
+                name: "Michelle Barry",
+                photo: Images.michelleBarry,
+                alt: "Michelle Barry",
+            },
+            {
+                name: "Noah Jovignot",
+                photo: Images.noahJovignot,
+                alt: "Noah Jovignot",
+            },
+            { name: "Romy Dobbie", photo: Images.romyDobbie, alt: "Romy Dobbie" },
+            {
+                name: "Sally Hackett",
+                photo: Images.sallyHackett,
+                alt: "Sally Hackett",
+            },
+            { name: "Uma Volgmer", photo: Images.umaVolgmer, alt: "Uma Volgmer" },
         ],
     },
     {
@@ -84,12 +181,12 @@ const sections = [
         items: [
             {
                 name: "The Bearded Tit",
-                photo: "/src/assets/images/collaborators/venue/beardedTit.webp",
+                photo: Images.beardedTit,
                 alt: "The Bearded Tit",
             },
             {
                 name: "Brand X - City of Sydney Creative studios",
-                photo: "/src/assets/images/collaborators/venue/brandX.webp",
+                photo: Images.brandX,
                 alt: "Brand X - City of Sydney Creative studios",
             },
         ],
@@ -99,7 +196,7 @@ const sections = [
         items: [
             {
                 name: "Auntie Wombat",
-                photo: "/src/assets/images/collaborators/catering/auntieWombat.webp",
+                photo: Images.auntieWombat,
                 alt: "Auntie Wombat",
             },
         ],
@@ -111,6 +208,7 @@ const sections = [
     <div class="max-w-screen h-full flex flex-col items-center justify-around">
         {
             sections.map((section) => (
+                <>
                     <h2 class="text-4xl p-4 uppercase">{section.title}</h2>
                     <div class="flex flex-row flex-wrap justify-around">
                         {section.items.map((member) => (
@@ -118,11 +216,15 @@ const sections = [
                                 <CollabFrame
                                     src={member.photo}
                                     alt={member.alt}
+                                    loading="lazy"
                                 />
-                                <p class="flex justify-center font-semibold">{member.name}</p>
+                                <p class="flex justify-center font-semibold">
+                                    {member.name}
+                                </p>
                             </div>
                         ))}
                     </div>
+                </>
             ))
         }
     </div>

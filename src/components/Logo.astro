@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets";
 const { width, height } = Astro.props;
+import soundSorceryLogo from "../assets/images/logos/soundSorcery.webp"
 ---
 
 <div class="flex">
         <Image
-            src="/src/assets/images/logos/soundsorcery.webp"
+            src={soundSorceryLogo}
             alt="Sound Sorcery logo"
             class="rounded-md"
             loading="eager"
