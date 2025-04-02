@@ -1,0 +1,41 @@
+---
+
+---
+
+<button
+    onclick="document.getElementById('kofi-modal').classList.remove('hidden')"
+    class="bg-pink hover:bg-dark-pink text-white font-bold py-2 px-6 rounded-lg"
+>
+    Support Us
+</button>
+
+<div
+    id="kofi-modal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center max-sm:p-10 p-4"
+>
+    <div class="bg-pink rounded-lg shadow-xl w-full max-w-md relative max-sm:scale-75 overflow-hidden">
+        <button
+            onclick="document.getElementById('kofi-modal').classList.add('hidden')"
+            class="absolute top-2 right-2 text-gray-500"
+            aria-label="Close"
+        >
+            ✕
+        </button>
+        <iframe
+            id="kofiframe"
+            src="https://ko-fi.com/soundsorcery/?hidefeed=true&widget=true&embed=true&preview=true"
+            style="border:none;width:100%;padding:4px;background:#dcc9e8;"
+            height="600"
+            title="soundsorcery"></iframe>
+    </div>
+</div>
+
+<script is:inline>
+    document
+        .getElementById("kofi-modal")
+        .addEventListener("click", function (e) {
+            if (e.target === this) {
+                this.classList.add("hidden");
+            }
+        });
+</script>
