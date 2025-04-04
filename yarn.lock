@@ -126,6 +126,15 @@
   dependencies:
     prismjs "^1.29.0"
 
+"@astrojs/react@^4.2.3":
+  version "4.2.3"
+  resolved "https://registry.npmjs.org/@astrojs/react/-/react-4.2.3.tgz#765c3056a45e1d392d81c9c0412b524a38fbc150"
+  integrity sha512-icL1hCnW1v+w+NCAz8REfsh9R1aGMW75fYBoeLjyhrVDxXQHiFbTfyBIHkgH79qqID7SM81+hPxHlqcgCuBP8w==
+  dependencies:
+    "@vitejs/plugin-react" "^4.3.4"
+    ultrahtml "^1.5.3"
+    vite "^6.2.4"
+
 "@astrojs/telemetry@3.2.0":
   version "3.2.0"
   resolved "https://registry.npmjs.org/@astrojs/telemetry/-/telemetry-3.2.0.tgz#6b396831601bee1b1a44aade83f2bc60a559db0d"
@@ -2799,6 +2808,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/react-dom@^19.1.1":
+  version "19.1.1"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-19.1.1.tgz#a8d097b28247d1129cf56e74d1622c98978c04ed"
+  integrity sha512-jFf/woGTVTjUJsl2O7hcopJ1r0upqoq/vIOoCj0yLh3RIXxWcljlpuZ+vEBRXsymD1jhfeJrlyTy/S1UW+4y1w==
+
 "@types/react-is@^19.0.0":
   version "19.0.0"
   resolved "https://registry.npmjs.org/@types/react-is/-/react-is-19.0.0.tgz#eccf45556cf1858e9116eed1f9e7b51496501a7a"
@@ -2806,7 +2820,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@^19.1.0":
   version "19.1.0"
   resolved "https://registry.npmjs.org/@types/react/-/react-19.1.0.tgz#73c43ad9bc43496ca8184332b111e2aef63fc9da"
   integrity sha512-UaicktuQI+9UKyA4njtDOGBD/67t8YEBt2xdfqu8+gP9hqPUPsiXlNPcpS2gVdjmis5GKPG3fCxbQLVgxsQZ8w==

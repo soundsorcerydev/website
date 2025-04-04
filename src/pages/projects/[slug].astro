@@ -1,50 +1,143 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ProjectGallery from "../../components/ProjectGallery.astro";
+import { createClient } from '@sanity/client';
 
-// Generate paths for all projects
+// Create the Sanity client
+const sanityClient = createClient({
+    // projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+    // dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+    projectId: 'ts62aukc',
+    dataset: 'production',
+    apiVersion: '2025-04-04',
+    useCdn: false,
+});
+
+// Generate paths for all galleries
 export async function getStaticPaths() {
-    const projectEntries = await getCollection("projects");
-    return projectEntries.map((entry:any) => ({
-        params: { slug: entry.slug },
-        props: { entry },
+    const galleries = await sanityClient.fetch(`
+        *[_type == "gallery" && showInNavbar == true] {
+        "slug": slug.current
+        }
+    `);
+    
+    return galleries.map((gallery: { slug: string }) => ({
+        params: { slug: gallery.slug },
+        props: { slug: gallery.slug },
     }));
 }
 
-interface ProjectEntry {
-    data: {
-        title: string;
-        featuredImage?: string;
-        gallery?: any[];
-    };
-    render: () => Promise<{ Content: any }>;
+// Define interfaces for type safety
+interface GallerySection {
+    title: string;
+    description?: string;
+    photos: GalleryImage[];
 }
 
-const { entry } = Astro.props as { entry: ProjectEntry };
-const { Content } = await entry.render();
+interface GalleryImage {
+    image: {
+        asset: {
+        url: string;
+        };
+    };
+    caption?: string;
+    alt?: string;
+}
+
+interface Gallery {
+    title: string;
+    description?: string;
+    mainImage?: {
+        asset: {
+        url: string;
+        };
+    };
+    sections: GallerySection[];
+}
+
+// Fetch the specific gallery using the slug
+const { slug } = Astro.props;
+const gallery = await sanityClient.fetch<Gallery>(`
+    *[_type == "gallery" && slug.current == $slug][0]{
+        title,
+        description,
+        mainImage {
+        asset-> {
+            url
+        }
+        },
+        sections[] {
+        title,
+        description,
+        photos[] {
+            image {
+            asset-> {
+                url
+            }
+            },
+            caption,
+            alt
+        }
+        }
+    }
+`, { slug });
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={gallery.title}>
     <article class="container mx-auto px-4 py-8">
+        <!-- Main Gallery Title -->
         <h1 class="text-3xl md:text-4xl font-bold text-pink mb-4">
-            {entry.data.title}
+        {gallery.title}
         </h1>
-
-        {
-            entry.data.featuredImage && (
-                <img
-                    src={entry.data.featuredImage}
-                    alt={entry.data.title}
-                    class="w-full max-h-96 object-cover rounded-md mb-6"
-                />
-            )
-        }
-
+        
+        <!-- Main Image (if exists) -->
+        {gallery.mainImage && (
+        <img
+            src={gallery.mainImage.asset.url}
+            alt={gallery.title}
+            class="w-full max-h-96 object-cover rounded-md mb-6"
+        />
+        )}
+        
+        <!-- Main Gallery Description -->
+        {gallery.description && (
         <div class="prose max-w-none mb-8">
-            <Content />
+            <p>{gallery.description}</p>
         </div>
-
-        <ProjectGallery gallery={entry.data.gallery} title={entry.data.title} />
+        )}
+        
+        <!-- Gallery Sections -->
+        {gallery.sections.map((section) => (
+        <div class="mb-12">
+            <!-- Section Title -->
+            <h2 class="text-2xl font-bold text-pink mb-3">
+            {section.title}
+            </h2>
+            
+            <!-- Section Description -->
+            {section.description && (
+            <div class="prose max-w-none mb-4">
+                <p>{section.description}</p>
+            </div>
+            )}
+            
+            <!-- Section Photos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {section.photos.map((photo) => (
+                <div class="relative">
+                <img 
+                    src={photo.image.asset.url} 
+                    alt={photo.alt || section.title} 
+                    class="w-full h-64 object-cover rounded-md"
+                />
+                {photo.caption && (
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-sm rounded-b-md">
+                    {photo.caption}
+                    </div>
+                )}
+                </div>
+            ))}
+            </div>
+        </div>
+        ))}
     </article>
 </Layout>
