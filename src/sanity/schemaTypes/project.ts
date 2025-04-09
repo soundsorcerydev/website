@@ -1,4 +1,3 @@
-// Each main project category
 export default {
     name: 'project',
     title: 'Project',
@@ -32,7 +31,7 @@ export default {
             title: 'Navbar Order',
             type: 'number',
             description: 'Position in the navbar menu (lower numbers appear first)',
-            // hidden: ({ document }) => !document?.showInNavbar,
+            hidden: ({ document }: { document: { showInNavbar?: boolean } }) => !document?.showInNavbar,
         },
         {
             name: 'description',

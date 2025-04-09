@@ -3,8 +3,10 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
 import sanity from '@sanity/astro';
-
 import react from '@astrojs/react';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,13 +15,10 @@ export default defineConfig({
     envPrefix: 'PUBLIC_'
   },
   integrations: [sanity({
-    // projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    // dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-    projectId: 'ts62aukc',
-    dataset: 'production',
-    
+    projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
+    dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
+    apiVersion: process.env.SANITY_API_VERSION,
     useCdn: false,
-    apiVersion: "2025-04-04",
     studioBasePath: '/admin'
   }), react()],
   adapter: netlify(),

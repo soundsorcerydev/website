@@ -1,6 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { createClient } from "@sanity/client";
+import { sanityClient } from "../lib/sanityClient";
 
 const { pathname } = Astro.url;
 const isHomepage = pathname === "/";
@@ -22,15 +21,6 @@ interface SanityGallery {
     _id: string;
 }
 
-const sanityClient = createClient({
-    // projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    // dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-    projectId: 'ts62aukc',
-    dataset: 'production',
-    apiVersion: "2025-04-04", // Use current date in YYYY-MM-DD format
-    useCdn: false, // Match your setting in astro.config
-});
-
 const sanityGalleries = await sanityClient.fetch(`
   *[_type == "project" && showInNavbar == true] | order(navbarOrder asc) {
     title,
@@ -44,15 +34,6 @@ const projects: NavSubItem[] = sanityGalleries.map((gallery: SanityGallery) => (
     name: gallery.title,
     path: `projects/${gallery.slug}`,
 }));
-
-// const projectPosts = await getCollection("projects");
-// const projects: NavSubItem[] = projectPosts.map(
-//     (project: CollectionEntry<"projects">) => ({
-//         name: project.data.title,
-//         path: `projects/${project.slug}`,
-//     }),
-// );
-
 
 const navItems: NavItem[] = [
     {

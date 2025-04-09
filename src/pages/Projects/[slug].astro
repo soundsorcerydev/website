@@ -1,143 +1,184 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { createClient } from '@sanity/client';
+import { sanityClient } from "../../lib/sanityClient";
+import { Vimeo, YouTube } from "astro-embed";
 
-// Create the Sanity client
-const sanityClient = createClient({
-    // projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    // dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-    projectId: 'ts62aukc',
-    dataset: 'production',
-    apiVersion: '2025-04-04',
-    useCdn: false,
-});
-
-// Generate paths for all galleries
 export async function getStaticPaths() {
-    const galleries = await sanityClient.fetch(`
-        *[_type == "gallery" && showInNavbar == true] {
+    const projects = await sanityClient.fetch(`
+        *[_type == "project" && showInNavbar == true] {
         "slug": slug.current
         }
     `);
-    
-    return galleries.map((gallery: { slug: string }) => ({
-        params: { slug: gallery.slug },
-        props: { slug: gallery.slug },
+
+    return projects.map((project: { slug: string }) => ({
+        params: { slug: project.slug },
+        props: { slug: project.slug },
     }));
 }
 
-// Define interfaces for type safety
-interface GallerySection {
-    title: string;
-    description?: string;
-    photos: GalleryImage[];
-}
-
-interface GalleryImage {
-    image: {
-        asset: {
-        url: string;
-        };
-    };
-    caption?: string;
-    alt?: string;
-}
-
-interface Gallery {
-    title: string;
-    description?: string;
-    mainImage?: {
-        asset: {
-        url: string;
-        };
-    };
-    sections: GallerySection[];
-}
-
-// Fetch the specific gallery using the slug
 const { slug } = Astro.props;
-const gallery = await sanityClient.fetch<Gallery>(`
-    *[_type == "gallery" && slug.current == $slug][0]{
-        title,
-        description,
-        mainImage {
-        asset-> {
-            url
-        }
+
+//GROQ query
+const gallery = await sanityClient.fetch(
+    `
+  *[_type == "project" && slug.current == $slug][0]{
+    title,
+    description,
+    mainImage {
+      asset->{
+        _id,
+        url
+      }
+    },
+    sections[] {
+      title,
+      description,
+      quotes,
+      photos[] {
+        asset->{
+          _id,
+          url
         },
-        sections[] {
+        caption,
+        alt
+      },
+      videos[] {
         title,
-        description,
-        photos[] {
-            image {
-            asset-> {
-                url
-            }
-            },
-            caption,
-            alt
-        }
-        }
+        url,
+        caption
+      }
     }
-`, { slug });
+  }
+`,
+    { slug },
+);
+
+function getVideoType(url: string) {
+    if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        return "youtube";
+    } else if (url.includes("vimeo.com")) {
+        return "vimeo";
+    }
+    return "other";
+}
+
+const sections = gallery.sections || [];
 ---
 
 <Layout title={gallery.title}>
-    <article class="container mx-auto px-4 py-8">
-        <!-- Main Gallery Title -->
-        <h1 class="text-3xl md:text-4xl font-bold text-pink mb-4">
-        {gallery.title}
-        </h1>
-        
-        <!-- Main Image (if exists) -->
-        {gallery.mainImage && (
-        <img
-            src={gallery.mainImage.asset.url}
-            alt={gallery.title}
-            class="w-full max-h-96 object-cover rounded-md mb-6"
-        />
-        )}
-        
-        <!-- Main Gallery Description -->
-        {gallery.description && (
-        <div class="prose max-w-none mb-8">
-            <p>{gallery.description}</p>
-        </div>
-        )}
-        
-        <!-- Gallery Sections -->
-        {gallery.sections.map((section) => (
-        <div class="mb-12">
-            <!-- Section Title -->
-            <h2 class="text-2xl font-bold text-pink mb-3">
-            {section.title}
-            </h2>
-            
-            <!-- Section Description -->
-            {section.description && (
-            <div class="prose max-w-none mb-4">
-                <p>{section.description}</p>
-            </div>
-            )}
-            
-            <!-- Section Photos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {section.photos.map((photo) => (
-                <div class="relative">
-                <img 
-                    src={photo.image.asset.url} 
-                    alt={photo.alt || section.title} 
-                    class="w-full h-64 object-cover rounded-md"
+    <article
+        class="w-max-screen h-full flex flex-col items-center justify-center px-20"
+    >
+        <h2 class="text-4xl p-4 uppercase">
+            {gallery.title}
+        </h2>
+        {
+            gallery.mainImage?.asset?.url && (
+                <img
+                    src={gallery.mainImage.asset.url}
+                    alt={gallery.title}
+                    class="w-full max-h-96 object-cover rounded-md mb-6"
                 />
-                {photo.caption && (
-                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-sm rounded-b-md">
-                    {photo.caption}
-                    </div>
-                )}
+            )
+        }
+        {
+            gallery.description && (
+                <div class="text-justify pb-8">
+                    <p>{gallery.description}</p>
                 </div>
-            ))}
-            </div>
-        </div>
-        ))}
+            )
+        }
+
+        <!-- Gallery Sections -->
+        {
+            sections.map((section: any) => (
+                <div class="flex flex-col items-center justify-center mb-12">
+                    <h2 class="text-2xl font-bold text-pink mb-3">
+                        {section.title}
+                    </h2>
+                    {section.description && (
+                        <div class="mb-4 p-4">
+                            <p>{section.description}</p>
+                        </div>
+                    )}
+                    {section.quotes && (
+                        <div class="flex justify-center items-center w-3/4 mb-4 p-4 border-x-2 border-light-pink">
+                            <p class="italic font-bold">{section.quotes}</p>
+                        </div>
+                    )}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-4">
+                        {section.photos &&
+                            section.photos.map(
+                                (photo: {
+                                    asset?: { url?: string };
+                                    caption?: string;
+                                    alt?: string;
+                                }) => (
+                                    <div class="relative  w-full max-w-full">
+                                        {photo.asset?.url && (
+                                            <img
+                                                src={photo.asset.url}
+                                                alt={photo.alt || section.title}
+                                                class="w-full h-64 object-cover rounded-md"
+                                            />
+                                        )}
+                                        {photo.caption && (
+                                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-sm rounded-b-md">
+                                                {photo.caption}
+                                            </div>
+                                        )}
+                                    </div>
+                                ),
+                            )}
+                    </div>
+                    <div>
+                        {section.videos && section.videos.length > 0 && (
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                {section.videos.map(
+                                    (video: {
+                                        title: string;
+                                        url: string;
+                                        caption?: string;
+                                    }) => {
+                                        const videoType = getVideoType(
+                                            video.url,
+                                        );
+                                        return (
+                                            <div class="video-container mb-4">
+                                                <h3 class="text-lg font-medium mb-2">
+                                                    {video.title}
+                                                </h3>
+                                                {videoType === "youtube" && (
+                                                    <YouTube id={video.url} />
+                                                )}
+                                                {videoType === "vimeo" && (
+                                                    <Vimeo id={video.url} />
+                                                )}
+                                                {videoType === "other" && (
+                                                    <a
+                                                        href={video.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        class="block text-pink hover:underline"
+                                                    >
+                                                        Watch Video:{" "}
+                                                        {video.title}
+                                                    </a>
+                                                )}
+                                                {video.caption && (
+                                                    <p class="text-sm text-gray-600 mt-2">
+                                                        {video.caption}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        );
+                                    },
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ))
+        }
     </article>
 </Layout>
