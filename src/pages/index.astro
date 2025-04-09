@@ -5,10 +5,14 @@ import Logo from "../components/Logo.astro";
 
 <Layout bgColor="bg-green">
 	<div class="max-sm:min-h-screen flex items-center justify-center p-4">
-		<div class="flex flex-col md:flex-row items-center justify-center gap-6 md:py-36 xl:py-20">
+		<div
+			class="flex flex-col md:flex-row items-center justify-center gap-6 md:py-36 xl:py-20"
+		>
 			<Logo width={540} height={540} />
 			<div class="flex flex-col">
-				<h1 class="text-6xl md:text-8xl lg:text-9xl leading-none text-offwhite">
+				<h1
+					class="text-6xl md:text-8xl lg:text-9xl leading-none text-offwhite"
+				>
 					Sound
 				</h1>
 				<h1
@@ -19,5 +23,21 @@ import Logo from "../components/Logo.astro";
 			</div>
 		</div>
 	</div>
-</Layout>
+	<script>
 
+		declare global {
+			interface Window {
+				netlifyIdentity: any;
+			}
+		}
+		if (window.netlifyIdentity) {
+			window.netlifyIdentity.on("init", (user:any) => {
+				if (!user) {
+					window.netlifyIdentity.on("login", () => {
+						document.location.href = "/admin/";
+					});
+				}
+			});
+		}
+	</script>
+</Layout>

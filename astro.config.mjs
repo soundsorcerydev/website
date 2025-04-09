@@ -1,15 +1,25 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
-
 import netlify from '@astrojs/netlify';
+import sanity from '@sanity/astro';
+import react from '@astrojs/react';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    envPrefix: 'PUBLIC_'
   },
-
-  adapter: netlify()
+  integrations: [sanity({
+    projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
+    dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
+    apiVersion: process.env.SANITY_API_VERSION,
+    useCdn: false,
+    studioBasePath: '/admin'
+  }), react()],
+  adapter: netlify(),
 });
