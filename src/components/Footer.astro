@@ -3,14 +3,14 @@ import Logo from "./Logo.astro";
 ---
 
 <footer class="bg-pink relative">
-    <div class="flex flex-col-reverse sm:flex-row p-5 gap-8 decoration-mauve sm:justify-between sticky bottom-0">
-        <div class="max-w-screen-lg flex flex-col gap-8 sm:justify-around sm:items-start items-center">
-            <p class="text-justify">
+    <div class="flex flex-col-reverse sm:flex-row p-5 gap-2 decoration-mauve sm:justify-between sticky bottom-0">
+        <div class="max-w-screen flex flex-col gap-8 sm:justify-around sm:items-start items-center">
+            <h3 class="text-justify pt-4">
                 Sound Sorcery acknowledges the Gadigal people of the Eora Nation
                 as the traditional owners of the land on which we meet. We pay
                 our respects to Elders past and present. Sovereignty was never
                 ceded.
-            </p>
+            </h3>
             <p class="text-xs text-start">
                 Website by <a
                     href="https://ashsahu.com"
@@ -20,10 +20,10 @@ import Logo from "./Logo.astro";
             </p>
         </div>
         <div class="flex flex-col flex-nowrap items-center">
-            <div class="w-[100px] h-[100px]">
+            <div class="w-[80px] h-[80px]">
                 <Logo width={100} height={100} />
             </div>
-            <a href="/website/src/pages/contact.astro"> Contact Us</a>
+            <a href="/contact" class="text-mauve font-semibold"> Contact Us</a>
         </div>
     </div>
 </footer>
