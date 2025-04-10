@@ -17,7 +17,7 @@ export default defineConfig({
   integrations: [sanity({
     projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
     dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
-    apiVersion: process.env.SANITY_API_VERSION,
+    apiVersion: "2025-04-04",
     useCdn: false,
     studioBasePath: '/admin'
   }), react()],

@@ -8,7 +8,7 @@ export default defineConfig({
   basePath: '/admin',
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: import.meta.env.SANITY_API_VERSION,
+  apiVersion: "2025-04-04",
   plugins: [structureTool()],
   schema: {
     types: schemaTypes,
