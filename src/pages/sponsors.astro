@@ -1,10 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import creativeAustralia from "../assets/images/logos/creativeAus.webp"
-import citySyd from "../assets/images/logos/cityOfSyd.webp"
-import heapsNormal from "../assets/images/logos/HN.webp"
-import beardedTit from "../assets/images/logos/BT.webp"
+import creativeAustralia from "../assets/images/logos/creativeAus.webp";
+import citySyd from "../assets/images/logos/cityOfSyd.webp";
+import heapsNormal from "../assets/images/logos/HN.webp";
+import beardedTit from "../assets/images/logos/BT.webp";
 ---
 
 <Layout>
@@ -45,23 +45,20 @@ import beardedTit from "../assets/images/logos/BT.webp"
             width="400"
             height="400"
         />
-        <div class="flex flex-col justify-center text-center">
-            <p class="flex justify-center">Keen to become our sponsor?</p>
-            <a
-                href="/path/to/file.pdf"
-                rel="nofollow noopener noreferrer"
-                referrerpolicy="no-referrer"
-                download="filename.pdf"
-                class="font-semibold pdf-link text-mauve"
-                >Download our partnership document
-            </a>
-        </div>
+        <p class="flex justify-center">Keen to become a sponsor?</p>
         <div class="flex justify-center">
             <button
                 type="submit"
                 class="bg-pink text-offwhite px-6 py-2 rounded-lg hover:bg-dark-pink focus:outline-none uppercase"
             >
-                Get in touch with us
+                <a
+                    href="../../public/Partnership-Opportunities-2025.pdf"
+                    rel="nofollow noopener noreferrer"
+                    referrerpolicy="no-referrer"
+                    download
+                    class="font-semibold pdf-link"
+                    >Download our partnership document
+                </a>
             </button>
         </div>
     </div>
