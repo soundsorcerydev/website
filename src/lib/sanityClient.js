@@ -1,8 +1,11 @@
 import { createClient } from "@sanity/client";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const sanityClient = createClient({
-    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-    apiVersion: import.meta.env.SANITY_API_VERSION,
+    projectId: process.env.PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.PUBLIC_SANITY_DATASET,
+    apiVersion: process.env.SANITY_API_VERSION,
     useCdn: false,
 });

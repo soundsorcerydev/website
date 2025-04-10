@@ -102,38 +102,40 @@ const sections = gallery.sections || [];
                         </div>
                     )}
                     {section.quotes && (
-                        <div class="flex justify-center items-center w-3/4 mb-4 p-4 border-x-2 border-green">
+                        <div class="flex justify-center items-center w-3/4 mb-4 p-4 border-x-2 border-pink">
                             <p class="italic font-bold">{section.quotes}</p>
                         </div>
                     )}
+<div class="flex flex-row flex-wrap justify-center gap-4">
+    {section.photos &&
+        section.photos.map(
+            (photo: {
+                asset?: { url?: string };
+                caption?: string;
+                alt?: string;
+            }) => (
+                <div class="flex flex-col items-center">
+                    {photo.asset?.url && (
+                        <div class="relative">
+                            <img
+                                src={photo.asset.url}
+                                alt={photo.alt || section.title}
+                                class="w-96 h-64 object-cover rounded-md"
+                            />
+                        </div>
+                    )}
+                    {photo.caption && (
+                        <p class="mt-2 text-sm text-center max-w-96">
+                            {photo.caption}
+                        </p>
+                    )}
+                </div>
+            ),
+        )}
+</div>
                     <div class="flex flex-row flex-wrap justify-center gap-4">
-                        {section.photos &&
-                            section.photos.map(
-                                (photo: {
-                                    asset?: { url?: string };
-                                    caption?: string;
-                                    alt?: string;
-                                }) => (
-                                    <div class="">
-                                        {photo.asset?.url && (
-                                            <img
-                                                src={photo.asset.url}
-                                                alt={photo.alt || section.title}
-                                                class="w-96 h-64 object-cover rounded-md"
-                                            />
-                                        )}
-                                        {photo.caption && (
-                                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-sm rounded-b-md">
-                                                {photo.caption}
-                                            </div>
-                                        )}
-                                    </div>
-                                ),
-                            )}
-                    </div>
-                    <div>
                         {section.videos && section.videos.length > 0 && (
-                            <div class="flex flex-col">
+                            <div class="w-full flex flex-col items-center gap-4">
                                 {section.videos.map(
                                     (video: {
                                         title: string;
@@ -144,29 +146,34 @@ const sections = gallery.sections || [];
                                             video.url,
                                         );
                                         return (
-                                            <div class="video-container mb-4">
-                                                <h3 class="text-lg font-medium mb-2">
+                                            <div class="video-container mb-4 w-full flex flex-col items-center">
+                                                <h3 class="text-lg font-medium mb-2 text-center w-auto max-w-full px-4">
                                                     {video.title}
                                                 </h3>
-                                                {videoType === "youtube" && (
-                                                    <YouTube id={video.url} />
-                                                )}
-                                                {videoType === "vimeo" && (
-                                                    <Vimeo id={video.url} />
-                                                )}
-                                                {videoType === "other" && (
-                                                    <a
-                                                        href={video.url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        class="block text-pink hover:underline"
-                                                    >
-                                                        Watch Video:{" "}
-                                                        {video.title}
-                                                    </a>
-                                                )}
+                                                <div class="aspect-video max-w-2xl w-sm md:w-2xl">
+                                                    {videoType ===
+                                                        "youtube" && (
+                                                        <YouTube
+                                                            id={video.url}
+                                                        />
+                                                    )}
+                                                    {videoType === "vimeo" && (
+                                                        <Vimeo id={video.url} />
+                                                    )}
+                                                    {videoType === "other" && (
+                                                        <a
+                                                            href={video.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            class="block text-pink hover:underline"
+                                                        >
+                                                            Watch Video:{" "}
+                                                            {video.title}
+                                                        </a>
+                                                    )}
+                                                </div>
                                                 {video.caption && (
-                                                    <p class="text-sm text-gray-600 mt-2">
+                                                    <p class="text-justify mt-2 w-auto px-10 text-sm">
                                                         {video.caption}
                                                     </p>
                                                 )}
