@@ -1,13 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SubstackFeed from "../components/SubstackFeed.astro";
 ---
 
 <Layout>
     <div class="w-max-screen h-full flex flex-col items-center gap-2">
         <!-- <h2 class="text-4xl p-4 uppercase">Blog</h2> -->
         <div class="w-4/5 h-4/5 py-4">
-            <SubstackFeed client:load/>
+            <div class="space-y-8">
+                <div id="substack-feed-embed"></div>
+                <script is:inline client:load>
+                    window.SubstackFeedWidget = {
+                        substackUrl: "soundsorceryjam.substack.com",
+                        posts: 8,
+                        colors: {
+                            primary: "#8D5D8A",
+                            secondary: "#593757",
+                            background: "#DCC9E8",
+                        },
+                    };
+                </script>
+                <script
+                    is:inline
+                    src="https://substackapi.com/embeds/feed.js"
+                    async></script>
+            </div>
         </div>
     </div>
 </Layout>
