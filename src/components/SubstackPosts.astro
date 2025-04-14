@@ -4,7 +4,7 @@
 <div class="space-y-8">
     <div id="substack-feed-embed"></div>
 
-    <script>
+    <script is:inline>
         window.SubstackFeedWidget = {
             substackUrl: "soundsorceryjam.substack.com",
             posts: 8,
@@ -15,5 +15,5 @@
             },
         };
     </script>
-    <script src="https://substackapi.com/embeds/feed.js" async></script>
+    <script is:inline src="https://substackapi.com/embeds/feed.js" async></script>
 </div>
