@@ -30,28 +30,3 @@ p {
     font-family: 'Lexend', sans-serif;
     font-weight: 300;
 }
-
-@plugin "daisyui/theme" {
-    name: "sound";
-    default: true;
-    prefersdark: false;
-    color-scheme: "light";
-    --color-base-100: #dcc9e8;
-    --color-base-200: #0c5a4d;
-    --color-base-300: #c38bc0;
-    --color-base-content: #593757;
-    --color-primary: #8d5d8a;
-    --color-primary-content: #fcf2f8;
-    --color-secondary: #ff9598;
-    --color-secondary-content: #593757;
-    --color-accent: #c6fff2;
-    --color-accent-content: #09372f;
-    --radius-selector: 1rem;
-    --radius-field: 2rem;
-    --radius-box: 0.5rem;
-    --size-selector: 0.25rem;
-    --size-field: 0.25rem;
-    --border: 1px;
-    --depth: 0;
-    --noise: 0;
-}

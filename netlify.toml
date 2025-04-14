@@ -1,7 +1,0 @@
-[build]
-  command = "yarn build"
-  publish = "dist"
-
-[build.environment]
-  SANITY_PROJECT_ID = "ts62aukc"
-  SANITY_DATASET = "production"
