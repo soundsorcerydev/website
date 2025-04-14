@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Substack from "../components/SubstackAPI.astro";
+import Substack from "../components/SubstackPosts.astro";
 ---
 
 <Layout>
     <div class="w-max-screen h-full flex flex-col items-center gap-2">
         <!-- <h2 class="text-4xl p-4 uppercase">Blog</h2> -->
-        <div class="w-4/5 h-4/5 mb-10">
-            <Substack />
+        <div class="w-4/5 h-4/5 py-4">
+            <Substack client:load/>
         </div>
     </div>
 </Layout>
