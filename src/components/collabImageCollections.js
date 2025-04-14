@@ -66,7 +66,7 @@ export { default as sallyHackett } from "../assets/images/collaborators/artWorke
 export { default as umaVolgmer } from "../assets/images/collaborators/artWorkers/UmaVolgmer.webp";
 
 // Web Team
-export { default as webTeam } from "../assets/images/collaborators/webTeam/webteam.webp";
+export { default as webTeam } from "../assets/images/collaborators/webTeam/webTeam.webp";
 
 // Venue
 export { default as beardedTit } from "../assets/images/collaborators/venue/beardedTit.webp";

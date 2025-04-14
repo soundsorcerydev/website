@@ -18,7 +18,6 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.props;
 
-//GROQ query
 const gallery = await sanityClient.fetch(
     `
   *[_type == "project" && slug.current == $slug][0]{
@@ -67,7 +66,7 @@ const sections = gallery.sections || [];
 
 <Layout>
     <article
-        class="w-max-screen h-full flex flex-col items-center justify-center px-10"
+        class="w-max-screen h-full flex flex-col items-center justify-center md:px-20 p-4"
     >
         <h2 class="text-4xl p-4 uppercase text-center">
             {gallery.title}
@@ -89,7 +88,6 @@ const sections = gallery.sections || [];
             )
         }
 
-        <!-- Gallery Sections -->
         {
             sections.map((section: any) => (
                 <div class="flex flex-col items-center justify-center mb-12">
@@ -102,8 +100,8 @@ const sections = gallery.sections || [];
                         </div>
                     )}
                     {section.quotes && (
-                        <div class="flex justify-center items-center w-3/4 mb-4 p-4 border-x-2 border-pink">
-                            <p class="italic font-bold">{section.quotes}</p>
+                        <div class="flex justify-center items-center w-3/4 mb-8 p-4 shadow-md shadow-mauve rounded-lg">
+                            <p class="font-semibold italic">{section.quotes}</p>
                         </div>
                     )}
 <div class="flex flex-row flex-wrap justify-center gap-4">
