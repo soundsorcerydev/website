@@ -1,7 +1,4 @@
 ---
-// ContactForm.astro
-
-const formName = "contact";
 ---
 
 <form
@@ -10,7 +7,7 @@ const formName = "contact";
     data-netlify="true"
     class="bg-green p-4 md:p-8 rounded-lg shadow-md w-full mx-auto"
 >
-    <input type="hidden" name="form-name" value="Sound Sorcery Form" />
+    <input type="hidden" name="subject" value="Enquiry from %{formName} (%{submissionId})" />
 
     <div class="mb-4 flex flex-col md:flex-row md:items-center">
         <label

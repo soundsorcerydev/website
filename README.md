@@ -1,48 +1,106 @@
-# Astro Starter Kit: Basics
+# Sound Sorcery
 
-```sh
-yarn create astro@latest -- --template basics
-```
+An astro website for Sound Sorcery which is a bi-monthly jam for women & gender diverse baddies in Gadigal Country
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Technologies
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This website is built with:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- [Astro](https://astro.build/) - A modern static site builder
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Sanity](https://www.sanity.io/) - Headless CMS for content management
 
-## 🚀 Project Structure
+## Prerequisites
 
-Inside of your Astro project, you'll see the following folders and files:
+- Node.js (v22.x or higher)
+- npm or yarn
+- Sanity account
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/soundsorcerydev/website.git
+   cd website
+   ```
+
+2. Install Dependencies:
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up Environment Variables
+- Create a ```.env``` file in the root directory
+- Add the following variables:
+   ```sh
+   PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+   PUBLIC_SANITY_DATASET=production
+   ```
+
+## Development
+
+   ```sh
+   npm run dev
+   # or
+   yarn dev
+   ```
+   Your site should now be running at ```http://localhost:4321```
+
+## Content management (Sanity Studio)
+
+    Sanity Studio can be accessed at ```http://localhost:4321/admin```
+
+## Build for production
+
+   ```sh
+   npm run build
+   # or
+   yarn build
+   ```
+
+## Project Structure
+
+Inside of the Astro project, you'll see the following folders and files:
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── astro.config.mjs      # Astro configuration
+├── public/               # Static assets
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/           # Images used
+│   ├── components/       # Reusable UI components
+│   ├── layouts/          # Page layouts
+│   ├── lib/              # Utility functions
+│   ├── pages/            # Astro pages
+│   ├── sanity/           # Sanity Schema
+│   └── styles/           # Global styles
+├── sanity.config.ts      # Sanity configuration
+└── tailwind.config.cjs   # Tailwind configuration
+└── tsconfig.json         # Typescript configuration
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## License
 
-## 🧞 Commands
+MIT License
 
-All commands are run from the root of the project, from a terminal:
+Copyright (c) [2025] [Ash Sahu]
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn build`           | Build your production site to `./dist/`          |
-| `yarn preview`         | Preview your build locally, before deploying     |
-| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn astro -- --help` | Get help using the Astro CLI                     |
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## 👀 Want to learn more?
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
