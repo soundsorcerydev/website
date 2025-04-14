@@ -29,7 +29,6 @@ const sanityGalleries = await sanityClient.fetch(`
     }
 `);
 
-// Map Sanity galleries to NavSubItem format
 const projects: NavSubItem[] = sanityGalleries.map((gallery: SanityGallery) => ({
     name: gallery.title,
     path: `projects/${gallery.slug}`,
@@ -81,7 +80,7 @@ const buildUrl = (path: string, external?: boolean): string => {
                     <div class="relative group px-4 py-2">
                         {item.submenu ? (
                             <>
-                                <button class="text-offwhite hover:text-pink uppercase">
+                                <button class="text-offwhite hover:text-pink uppercase font-semibold">
                                     {item.name}
                                 </button>
                                 <div class="absolute hidden group-hover:block bg-dark-pink rounded-md mt-1 min-w-[200px]">
@@ -105,7 +104,7 @@ const buildUrl = (path: string, external?: boolean): string => {
                         ) : (
                             <a
                                 href={buildUrl(item.path, item.external)}
-                                class="text-offwhite hover:text-pink uppercase"
+                                class="text-offwhite hover:text-pink uppercase font-semibold"
                             >
                                 {item.name}
                             </a>
