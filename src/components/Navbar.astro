@@ -75,24 +75,24 @@ const buildUrl = (path: string, external?: boolean): string => {
     <!-- Desktop Nav -->
     <div class="md:flex md:justify-center">
         <nav
-            class="hidden md:flex justify-around bg-dark-pink rounded-md p-1 w-3/4"
+            class="hidden md:flex justify-around bg-purple rounded-md p-1 w-3/4"
         >
             {
                 navItems.map((item) => (
                     <div class="relative group px-4 py-2">
                         {item.submenu ? (
                             <>
-                                <button class="text-offwhite hover:text-pink uppercase font-semibold">
+                                <button class="text-white hover:text-pink uppercase font-medium">
                                     {item.name}
                                 </button>
-                                <div class="absolute hidden group-hover:block bg-dark-pink rounded-md mt-1 min-w-[200px]">
+                                <div class="absolute hidden group-hover:block bg-purple rounded-md mt-1 min-w-[200px]">
                                     {item.submenu.map((sub) => (
                                         <a
                                             href={buildUrl(
                                                 sub.path,
                                                 sub.external,
                                             )}
-                                            class="block px-4 py-2 text-offwhite hover:text-pink"
+                                            class="block px-4 py-2 text-white hover:text-pink"
                                             target={
                                                 sub.external ? "_blank" : null
                                             }
@@ -106,7 +106,7 @@ const buildUrl = (path: string, external?: boolean): string => {
                         ) : (
                             <a
                                 href={buildUrl(item.path, item.external)}
-                                class="text-offwhite hover:text-pink uppercase font-semibold"
+                                class="text-white hover:text-pink uppercase font-medium"
                             >
                                 {item.name}
                             </a>
@@ -126,20 +126,20 @@ const buildUrl = (path: string, external?: boolean): string => {
             <div></div>
             <button
                 id="mobile-toggle"
-                class={`font-medium ${isHomepage ? "text-offwhite" : "text-pink"}`}
+                class={`font-medium ${isHomepage ? "text-white" : "text-pink"}`}
             >
                 Menu
             </button>
         </div>
 
-        <div id="mobile-menu" class="hidden bg-dark-pink">
+        <div id="mobile-menu" class="hidden bg-purple">
             <div class="p-4 space-y-4">
                 {
                     navItems.map((item) => (
                         <div class="mb-4">
                             {item.submenu ? (
                                 <details class="group">
-                                    <summary class="flex justify-between items-center text-offwhite hover:text-pink uppercase cursor-pointer">
+                                    <summary class="flex justify-between items-center text-white hover:text-pink uppercase cursor-pointer">
                                         {item.name}
                                         <span class="transform group-open:rotate-180">
                                             ▿
@@ -152,7 +152,7 @@ const buildUrl = (path: string, external?: boolean): string => {
                                                     sub.path,
                                                     sub.external,
                                                 )}
-                                                class="block py-1 text-offwhite hover:text-pink"
+                                                class="block py-1 text-white hover:text-pink"
                                                 target={
                                                     sub.external
                                                         ? "_blank"
@@ -168,7 +168,7 @@ const buildUrl = (path: string, external?: boolean): string => {
                             ) : (
                                 <a
                                     href={buildUrl(item.path, item.external)}
-                                    class="block text-offwhite hover:text-pink uppercase"
+                                    class="block text-white hover:text-pink uppercase"
                                 >
                                     {item.name}
                                 </a>
@@ -195,23 +195,21 @@ const buildUrl = (path: string, external?: boolean): string => {
                 menu?.classList.toggle("hidden") ?? false;
 
             if (isOpening) {
-                header?.classList.remove("bg-dark-pink");
+                header?.classList.remove("bg-purple");
                 header?.classList.add(
                     isHomepage ? "bg-green" : "bg-light-pink",
                 );
-                toggle.classList.remove("text-offwhite");
-                toggle.classList.add(
-                    isHomepage ? "text-offwhite" : "text-pink",
-                );
+                toggle.classList.remove("text-white");
+                toggle.classList.add(isHomepage ? "text-white" : "text-pink");
             } else {
                 header?.classList.remove(
                     isHomepage ? "bg-green" : "bg-light-pink",
                 );
-                header?.classList.add("bg-dark-pink");
+                header?.classList.add("bg-purple");
                 toggle.classList.remove(
-                    isHomepage ? "text-offwhite" : "text-pink",
+                    isHomepage ? "text-white" : "text-pink",
                 );
-                toggle.classList.add("text-offwhite");
+                toggle.classList.add("text-white");
             }
         });
     });
