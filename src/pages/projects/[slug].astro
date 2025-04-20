@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { sanityClient } from "../../lib/sanityClient";
+import { sanityClient } from "../../sanity/lib/sanityClient";
 import { Vimeo, YouTube } from "astro-embed";
 
 export async function getStaticPaths() {
@@ -62,7 +62,17 @@ function getVideoType(url: string) {
 }
 
 const sections = gallery.sections || [];
+const isVisualEditing =
+    import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
 ---
+
+{
+    isVisualEditing && (
+        <div class="fixed top-0 left-0 right-0 bg-blue-800 text-white p-2 text-center z-50">
+            Visual Editing Mode Active
+        </div>
+    )
+}
 
 <Layout>
     <article
@@ -100,37 +110,41 @@ const sections = gallery.sections || [];
                         </div>
                     )}
                     {section.quotes && (
-                        <div class="flex justify-center items-center w-3/4 mb-8 p-4 shadow-md shadow-mauve rounded-lg">
-                            <p class="font-semibold italic">{section.quotes}</p>
+                        <div class="flex justify-center items-center w-3/4 mb-8 p-4 border-x-2 border-dark-pink">
+                            <p class="italic">{section.quotes}</p>
+                            {/* <p class=""><strong>{section.quotes}</strong></p> */}
                         </div>
                     )}
-<div class="flex flex-row flex-wrap justify-center gap-4">
-    {section.photos &&
-        section.photos.map(
-            (photo: {
-                asset?: { url?: string };
-                caption?: string;
-                alt?: string;
-            }) => (
-                <div class="flex flex-col items-center">
-                    {photo.asset?.url && (
-                        <div class="relative">
-                            <img
-                                src={photo.asset.url}
-                                alt={photo.alt || section.title}
-                                class="w-96 h-64 object-cover rounded-md"
-                            />
-                        </div>
-                    )}
-                    {photo.caption && (
-                        <p class="mt-2 text-sm text-center max-w-96">
-                            {photo.caption}
-                        </p>
-                    )}
-                </div>
-            ),
-        )}
-</div>
+                    <div class="flex flex-row flex-wrap justify-center gap-4">
+                        {section.photos &&
+                            section.photos.map(
+                                (photo: {
+                                    asset?: { url?: string };
+                                    caption?: string;
+                                    alt?: string;
+                                }) => (
+                                    <div class="flex flex-col items-center">
+                                        {photo.asset?.url && (
+                                            <div class="relative">
+                                                <img
+                                                    src={photo.asset.url}
+                                                    alt={
+                                                        photo.alt ||
+                                                        section.title
+                                                    }
+                                                    class="w-96 h-64 object-cover rounded-md"
+                                                />
+                                            </div>
+                                        )}
+                                        {photo.caption && (
+                                            <p class="mt-2 text-sm text-center max-w-96">
+                                                {photo.caption}
+                                            </p>
+                                        )}
+                                    </div>
+                                ),
+                            )}
+                    </div>
                     <div class="flex flex-row flex-wrap justify-center gap-4">
                         {section.videos && section.videos.length > 0 && (
                             <div class="w-full flex flex-col items-center gap-4">

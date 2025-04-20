@@ -1,5 +1,5 @@
 ---
-import { sanityClient } from "../lib/sanityClient";
+import { sanityClient } from "../sanity/lib/sanityClient";
 
 const { pathname } = Astro.url;
 const isHomepage = pathname === "/";
@@ -29,10 +29,12 @@ const sanityGalleries = await sanityClient.fetch(`
     }
 `);
 
-const projects: NavSubItem[] = sanityGalleries.map((gallery: SanityGallery) => ({
-    name: gallery.title,
-    path: `projects/${gallery.slug}`,
-}));
+const projects: NavSubItem[] = sanityGalleries.map(
+    (gallery: SanityGallery) => ({
+        name: gallery.title,
+        path: `projects/${gallery.slug}`,
+    }),
+);
 
 const navItems: NavItem[] = [
     {
