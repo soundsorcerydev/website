@@ -21,8 +21,13 @@ export { default as tianaYoung } from "../assets/images/collaborators/featArtist
 
 
 // House Band Musicians
+export { default as abbyConstable } from "../assets/images/collaborators/houseBand/AbbyConstable.webp";
+export { default as adriannaCicchitelli } from "../assets/images/collaborators/houseBand/AdriannaCicchitelli.webp";
+export { default as aliFoster } from "../assets/images/collaborators/houseBand/AliFoster.webp";
 export { default as amandaJenkins } from "../assets/images/collaborators/houseBand/AmandaJenkins.webp";
 export { default as catherineGolden } from "../assets/images/collaborators/houseBand/CatherineGolden.webp";
+export { default as chiaraMinotto } from "../assets/images/collaborators/houseBand/ChiaraMinotto.webp";
+export { default as ellenKirkwood } from "../assets/images/collaborators/houseBand/EllenKirkwood.webp";
 export { default as elleRodriguez } from "../assets/images/collaborators/houseBand/ElleRodriguez.webp";
 export { default as emilyRose } from "../assets/images/collaborators/houseBand/EmilyRose.webp";
 export { default as freyjaGarbett } from "../assets/images/collaborators/houseBand/FreyjaGarbett.webp";
