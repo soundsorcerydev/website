@@ -1,13 +1,24 @@
 ---
+
 ---
 
 <form
     name="Sound Sorcery Form"
     method="POST"
+    netlify-honeypot-"bot-field"
     data-netlify="true"
+    action="/success"
     class="bg-green p-4 md:p-8 rounded-lg shadow-md w-full mx-auto"
 >
-    <input type="hidden" name="subject" value="Enquiry from %{formName} (%{submissionId})" />
+    <input
+        type="hidden"
+        name="subject"
+        value="Enquiry from %{formName} (%{submissionId})"
+    />
+
+    <div hidden>
+        <input name="bot-field" />
+    </div>
 
     <div class="mb-4 flex flex-col md:flex-row md:items-center">
         <label
@@ -78,7 +89,7 @@
     <div class="flex justify-center">
         <button
             type="submit"
-            class="bg-dark-green text-offwhite px-6 py-2 rounded-lg hover:bg-mint-green hover:text-dark-green uppercase"
+            class="hover:bg-dark-green hover:text-white px-6 py-2 rounded-lg bg-mint-green text-dark-green uppercase"
         >
             Submit
         </button>
