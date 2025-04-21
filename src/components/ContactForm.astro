@@ -5,7 +5,7 @@
 <form
     name="Sound Sorcery Form"
     method="POST"
-    netlify-honeypot-"bot-field"
+    netlify-honeypot="bot-field"
     data-netlify="true"
     action="/success/"
     class="bg-green p-4 md:p-8 rounded-lg shadow-md w-full mx-auto"
@@ -13,12 +13,18 @@
     <input
         type="hidden"
         name="subject"
-        value="Enquiry from %{formName} (%{submissionId})"
+        value="New Sound Sorcery Form Submission"
     />
 
     <div hidden>
         <input name="bot-field" />
     </div>
+
+    <!-- <input
+        type="hidden"
+        name="_redirect"
+        value="https://fixes--soundsorcery.netlify.app/success/"
+    /> -->
 
     <div class="mb-4 flex flex-col md:flex-row md:items-center">
         <label
