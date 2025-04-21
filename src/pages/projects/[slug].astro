@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { sanityClient } from "../../sanity/lib/sanityClient";
 import { loadQuery } from "../../sanity/lib/load-query";
 import { Vimeo, YouTube } from "astro-embed";
 
@@ -53,7 +52,6 @@ const { data: gallery } = await loadQuery({
         }
     }`,
     params: { slug },
-    preview: preview
 });
 
 function getVideoType(url: string) {
@@ -105,7 +103,6 @@ const sections = gallery.sections || [];
                     {section.quotes && (
                         <div class="flex justify-center items-center w-3/4 mb-8 p-4 border-x-2 border-dark-pink">
                             <p class="italic">{section.quotes}</p>
-                            {/* <p class=""><strong>{section.quotes}</strong></p> */}
                         </div>
                     )}
                     <div class="flex flex-row flex-wrap justify-center gap-4">

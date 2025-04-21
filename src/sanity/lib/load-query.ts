@@ -1,39 +1,34 @@
-import { type QueryParams } from "@sanity/client";
-import { getClient } from "./sanityClient";
-import dotenv from 'dotenv';
-dotenv.config();
+import { type QueryParams } from "sanity";
+import { sanityClient } from "sanity:client";
 
-const visualEditingEnabled = process.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
-const token = process.env.PUBLIC_SANITY_API_READ_TOKEN;
+const visualEditingEnabled =
+    import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
+const token = import.meta.env.PUBLIC_SANITY_API_READ_TOKEN;
 
 export async function loadQuery<QueryResponse>({
     query,
     params,
-    preview = visualEditingEnabled,
 }: {
     query: string;
     params?: QueryParams;
-    preview?: boolean;
 }) {
-    if (preview && !token) {
+    if (visualEditingEnabled && !token) {
         throw new Error(
-            "The `SANITY_API_READ_TOKEN` environment variable is required for preview mode."
+            "The `SANITY_API_READ_TOKEN` environment variable is required during Visual Editing.",
         );
     }
 
-    const client = getClient(preview);
-    const perspective = preview ? "previewDrafts" : "published";
+    const perspective = visualEditingEnabled ? "previewDrafts" : "published";
 
-    // Use the appropriate client based on preview mode
-    const { result, resultSourceMap } = await client.fetch<QueryResponse>(
+    const { result, resultSourceMap } = await sanityClient.fetch<QueryResponse>(
         query,
         params ?? {},
         {
             filterResponse: false,
             perspective,
-            resultSourceMap: preview ? "withKeyArraySelector" : false,
-            stega: preview,
-            ...(preview ? { token } : {}),
+            resultSourceMap: visualEditingEnabled ? "withKeyArraySelector" : false,
+            stega: visualEditingEnabled,
+            ...(visualEditingEnabled ? { token } : {}),
         },
     );
 

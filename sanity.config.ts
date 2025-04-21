@@ -5,8 +5,8 @@ import { presentationTool } from "sanity/presentation";
 import { resolve } from "./src/sanity/lib/resolve";
 
 export default defineConfig({
-  name: 'default',
-  title: 'Sound Sorcery',
+  // name: 'default',
+  // title: 'Sound Sorcery',
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
   useCdn: false,
