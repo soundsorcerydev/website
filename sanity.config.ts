@@ -7,9 +7,9 @@ import { resolve } from "./src/sanity/lib/resolve";
 export default defineConfig({
   name: 'default',
   title: 'Sound Sorcery',
-  // basePath: '/admin',
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
+  useCdn: false,
   apiVersion: "2025-04-04",
   plugins: [
     structureTool(),

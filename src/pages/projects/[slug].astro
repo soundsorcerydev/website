@@ -1,14 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { sanityClient } from "../../sanity/lib/sanityClient";
+import { loadQuery } from "../../sanity/lib/load-query";
 import { Vimeo, YouTube } from "astro-embed";
 
 export async function getStaticPaths() {
-    const projects = await sanityClient.fetch(`
-        *[_type == "project" && showInNavbar == true] {
-        "slug": slug.current
-        }
-    `);
+    const { data: projects } = await loadQuery({
+        query: `*[_type == "project" && showInNavbar == true] {
+            "slug": slug.current
+        }`
+    });
 
     return projects.map((project: { slug: string }) => ({
         params: { slug: project.slug },
@@ -18,39 +19,42 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.props;
 
-const gallery = await sanityClient.fetch(
-    `
-  *[_type == "project" && slug.current == $slug][0]{
-    title,
-    description,
-    mainImage {
-      asset->{
-        _id,
-        url
-      }
-    },
-    sections[] {
-      title,
-      description,
-      quotes,
-      photos[] {
-        asset->{
-          _id,
-          url
-        },
-        caption,
-        alt
-      },
-      videos[] {
+// Check if the page is in preview mode (from URL query param)
+const preview = Astro.url.searchParams.get('preview') === 'true';
+
+// Load the project data with the preview flag
+const { data: gallery } = await loadQuery({
+    query: `*[_type == "project" && slug.current == $slug][0]{
         title,
-        url,
-        caption
-      }
-    }
-  }
-`,
-    { slug },
-);
+        description,
+        mainImage {
+            asset->{
+                _id,
+                url
+            }
+        },
+        sections[] {
+            title,
+            description,
+            quotes,
+            photos[] {
+                asset->{
+                    _id,
+                    url
+                },
+                caption,
+                alt
+            },
+            videos[] {
+                title,
+                url,
+                caption
+            }
+        }
+    }`,
+    params: { slug },
+    preview: preview
+});
 
 function getVideoType(url: string) {
     if (url.includes("youtube.com") || url.includes("youtu.be")) {
@@ -62,18 +66,7 @@ function getVideoType(url: string) {
 }
 
 const sections = gallery.sections || [];
-const isVisualEditing =
-    import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
 ---
-
-{
-    isVisualEditing && (
-        <div class="fixed top-0 left-0 right-0 bg-blue-800 text-white p-2 text-center z-50">
-            Visual Editing Mode Active
-        </div>
-    )
-}
-
 <Layout>
     <article
         class="w-max-screen h-full flex flex-col items-center justify-center md:px-20 p-4"

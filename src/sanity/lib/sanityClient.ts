@@ -7,9 +7,6 @@ export const sanityClient = createClient({
     dataset: process.env.PUBLIC_SANITY_DATASET,
     apiVersion: '2025-04-04',
     useCdn: false,
-    eventSourceOptions: {
-        withCredentials: true,
-    }
 });
 
 // Preview client with token
@@ -24,9 +21,6 @@ export const previewClient = createClient({
         enabled: true,
         studioUrl: '/admin',
     },
-    eventSourceOptions: {
-        withCredentials: true,
-    }
 });
 
 // Helper function to get the right client

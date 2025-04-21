@@ -13,11 +13,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     envPrefix: 'PUBLIC_',
-    define: {
-      'process.env.PUBLIC_SANITY_PROJECT_ID': JSON.stringify(process.env.PUBLIC_SANITY_PROJECT_ID),
-      'process.env.PUBLIC_SANITY_DATASET': JSON.stringify(process.env.PUBLIC_SANITY_DATASET),
-      'process.env.PUBLIC_SANITY_API_TOKEN': JSON.stringify(process.env.PUBLIC_SANITY_API_TOKEN)
-    }
+    // define: {
+    //   'process.env.PUBLIC_SANITY_PROJECT_ID': JSON.stringify(process.env.PUBLIC_SANITY_PROJECT_ID),
+    //   'process.env.PUBLIC_SANITY_DATASET': JSON.stringify(process.env.PUBLIC_SANITY_DATASET),
+    //   'process.env.PUBLIC_SANITY_API_TOKEN': JSON.stringify(process.env.PUBLIC_SANITY_API_TOKEN)
+    // }
   },
   integrations: [sanity({
     projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',

@@ -25,7 +25,7 @@ export async function loadQuery<QueryResponse>({
     const perspective = preview ? "previewDrafts" : "published";
 
     // Use the appropriate client based on preview mode
-    const { result, resultSourceMap } = await client.fetch(
+    const { result, resultSourceMap } = await client.fetch<QueryResponse>(
         query,
         params ?? {},
         {
@@ -33,7 +33,8 @@ export async function loadQuery<QueryResponse>({
             perspective,
             resultSourceMap: preview ? "withKeyArraySelector" : false,
             stega: preview,
-        }
+            ...(preview ? { token } : {}),
+        },
     );
 
     return {
