@@ -1,2 +1,2 @@
 # public/_redirects
-/contact  /success  200!  Form=contact
+/contact  /success/  200!  Form=contact
