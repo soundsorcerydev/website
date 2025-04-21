@@ -7,13 +7,6 @@ export const sanityClient = createClient({
     dataset: process.env.PUBLIC_SANITY_DATASET,
     apiVersion: '2025-04-04',
     useCdn: false,
-
-    token: process.env.PUBLIC_SANITY_API_READ_TOKEN,
-    perspective: "previewDrafts",
-    stega: {
-        enabled: true,
-        studioUrl: '/admin',
-    },
     eventSourceOptions: {
         withCredentials: true,
     }
@@ -29,7 +22,7 @@ export const previewClient = createClient({
     perspective: "previewDrafts",
     stega: {
         enabled: true,
-        studioUrl: '/studio',
+        studioUrl: '/admin',
     },
     eventSourceOptions: {
         withCredentials: true,

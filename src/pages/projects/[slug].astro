@@ -157,21 +157,19 @@ const isVisualEditing =
                                         },
                                         index: number,
                                     ) => {
-                                        // Added index parameter
                                         const videoType = getVideoType(
                                             video.url,
                                         );
-                                        const isOdd = index % 2 === 0; // Determine if it's odd-numbered (0-based index)
-
+                                        const isOdd = index % 2 === 0;
                                         return (
                                             <div class="video-container mb-4 w-full max-w-4xl px-4">
                                                 <h3 class="text-lg font-medium mb-2 text-center w-auto max-w-full px-4">
                                                     {video.title}
                                                 </h3>
                                                 <div
-                                                    class={`flex ${isOdd ? "flex-row" : "flex-row-reverse"} items-start gap-6 w-full`}
+                                                    class={`flex flex-col md:flex-row ${isOdd ? "md:flex-row" : "md:flex-row-reverse"} items-start gap-6 w-full`}
                                                 >
-                                                    <div class="aspect-video flex-1 max-w-2xl w-sm md:w-2xl">
+                                                    <div class="aspect-video flex-1 max-w-2xl w-full">
                                                         {videoType ===
                                                             "youtube" && (
                                                             <YouTube
@@ -199,7 +197,7 @@ const isVisualEditing =
                                                     </div>
                                                     {video.caption && (
                                                         <p
-                                                            class={`text-justify mt-2 flex-1 text-sm ${isOdd ? "text-left" : "text-right"}`}
+                                                            class={`text-justify mt-2 flex-1 text-sm md:${isOdd ? "text-left" : "text-right"}`}
                                                         >
                                                             {video.caption}
                                                         </p>
