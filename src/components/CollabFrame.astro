@@ -1,19 +1,30 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 const { src, alt } = Astro.props;
+const placeholderUrl = `${src}?w=20&blur=20&q=30`;
 ---
 
 <div class="flex justify-center">
     <div
         class="rounded-full overflow-hidden w-32 h-32 sm:h-52 sm:w-52 lg:w-80 lg:h-80 filter"
+        style={`background-image: url('${placeholderUrl}');`}
     >
+        <!-- <div
+            class="absolute inset-0 bg-cover bg-center scale-105 blur-sm transition-opacity duration-300"
+            style={`background-image: url('${placeholderUrl}');`}
+            aria-hidden="true"
+            id="placeholder"
+        >
+        </div> -->
         <Image
             src={src}
             alt={alt}
-            width={300}
-            height={300}
             class="w-full h-full object-cover grayscale hover:filter-none"
             loading="lazy"
+            quality={80}
+            densities={[1, 2]}
+            inferSize={true}
+            decoding="async"
         />
     </div>
 </div>

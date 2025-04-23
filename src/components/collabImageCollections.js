@@ -1,6 +1,6 @@
 // Featured Artists
 export { default as aliceTery } from "../assets/images/collaborators/featArtists/AliceTery.webp";
-export { default as berniceTeresaFun } from "../assets/images/collaborators/featArtists/BerniceTeresaFun.webp";
+export { default as berniceTeresaFun } from "../assets/images/collaborators/featArtists/BerniceTeresa.webp";
 export { default as claireRobinson } from "../assets/images/collaborators/featArtists/ClaireRobinson.webp";
 export { default as courtneySeverini } from "../assets/images/collaborators/featArtists/CourtneySeverini.webp";
 export { default as franLiddle } from "../assets/images/collaborators/featArtists/FranLiddle.webp";
