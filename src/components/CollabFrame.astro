@@ -1,30 +1,35 @@
 ---
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 const { src, alt } = Astro.props;
-const placeholderUrl = `${src}?w=20&blur=20&q=30`;
+
+const blurredPlaceholder = await getImage({
+    src: src,
+    format: "webp",
+    width: 20, // Reduced size for better blur effect
+});
 ---
 
 <div class="flex justify-center">
     <div
-        class="rounded-full overflow-hidden w-32 h-32 sm:h-52 sm:w-52 lg:w-80 lg:h-80 filter"
-        style={`background-image: url('${placeholderUrl}');`}
+        class="relative rounded-full overflow-hidden w-32 h-32 sm:h-52 sm:w-52 lg:w-80 lg:h-80"
     >
-        <!-- <div
-            class="absolute inset-0 bg-cover bg-center scale-105 blur-sm transition-opacity duration-300"
-            style={`background-image: url('${placeholderUrl}');`}
+        <img
+            src={blurredPlaceholder.src}
+            class="absolute inset-0 w-full h-full object-cover blur-lg grayscale"
+            alt={`Blurred ${alt}`}
             aria-hidden="true"
-            id="placeholder"
-        >
-        </div> -->
+        />
         <Image
             src={src}
             alt={alt}
-            class="w-full h-full object-cover grayscale hover:filter-none"
+            class="relative w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
             loading="lazy"
             quality={80}
             densities={[1, 2]}
             inferSize={true}
             decoding="async"
+            onload="this.classList.remove('opacity-0')"
+            class:list={["opacity-0"]}
         />
     </div>
 </div>
