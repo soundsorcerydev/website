@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sanityIntegration from "@sanity/astro";
 import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
 import sanity from '@sanity/astro';
@@ -14,7 +15,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     envPrefix: 'PUBLIC_',
   },
-  integrations: [sanity({
+  integrations: [sanityIntegration({
     projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'projectID',
     dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
     apiVersion: "2025-04-04",

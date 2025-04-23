@@ -4,6 +4,7 @@ import { loadQuery } from "../../sanity/lib/load-query";
 import { Vimeo, YouTube } from "astro-embed";
 import SanityImages from "../../components/SanityImages.astro";
 
+export const prerender = true;
 export async function getStaticPaths() {
     const { data: projects } = await loadQuery({
         query: `*[_type == "project" && showInNavbar == true] {
