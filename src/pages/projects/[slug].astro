@@ -2,12 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import { loadQuery } from "../../sanity/lib/load-query";
 import { Vimeo, YouTube } from "astro-embed";
+import SanityImages from "../../components/SanityImages.astro";
 
 export async function getStaticPaths() {
     const { data: projects } = await loadQuery({
         query: `*[_type == "project" && showInNavbar == true] {
             "slug": slug.current
-        }`
+        }`,
     });
 
     return projects.map((project: { slug: string }) => ({
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.props;
 
 // Check if the page is in preview mode (from URL query param)
-const preview = Astro.url.searchParams.get('preview') === 'true';
+const preview = Astro.url.searchParams.get("preview") === "true";
 
 // Load the project data with the preview flag
 const { data: gallery } = await loadQuery({
@@ -65,6 +66,7 @@ function getVideoType(url: string) {
 
 const sections = gallery.sections || [];
 ---
+
 <Layout>
     <article
         class="w-max-screen h-full flex flex-col items-center justify-center md:px-20 p-4"
@@ -74,16 +76,18 @@ const sections = gallery.sections || [];
         </h2>
         {
             gallery.mainImage?.asset?.url && (
-                <img
+                <SanityImages
                     src={gallery.mainImage.asset.url}
                     alt={gallery.title}
-                    class="w-full max-h-96 object-cover rounded-md mb-6"
+                    width="1200"
+                    height="384"
+                    className="w-full max-h-96 object-cover rounded-md"
                 />
             )
         }
         {
             gallery.description && (
-                <div class="text-justify pb-8">
+                <div class="text-justify pb-8 px-8 md:px-2">
                     <p>{gallery.description}</p>
                 </div>
             )
@@ -96,7 +100,7 @@ const sections = gallery.sections || [];
                         {section.title}
                     </h2>
                     {section.description && (
-                        <div class="mb-4 p-4 text-justify">
+                        <div class="mb-4 px-10 md:px-4 text-justify">
                             <p>{section.description}</p>
                         </div>
                     )}
@@ -113,21 +117,16 @@ const sections = gallery.sections || [];
                                     caption?: string;
                                     alt?: string;
                                 }) => (
-                                    <div class="flex flex-col items-center">
+                                    <div class="flex flex-col items-center w-72 sm:w-64 md:w-96">
                                         {photo.asset?.url && (
-                                            <div class="relative">
-                                                <img
-                                                    src={photo.asset.url}
-                                                    alt={
-                                                        photo.alt ||
-                                                        section.title
-                                                    }
-                                                    class="w-96 h-64 object-cover rounded-md"
-                                                />
-                                            </div>
+                                            <SanityImages
+                                                src={photo.asset.url}
+                                                alt={photo.alt || section.title}
+                                                className="w-full h-48 md:h-64 rounded-md object-cover"
+                                            />
                                         )}
                                         {photo.caption && (
-                                            <p class="mt-2 text-sm text-center max-w-96">
+                                            <p class="mt-2 text-sm text-center max-w-full">
                                                 {photo.caption}
                                             </p>
                                         )}
@@ -159,7 +158,7 @@ const sections = gallery.sections || [];
                                                 <div
                                                     class={`flex flex-col md:flex-row ${isOdd ? "md:flex-row" : "md:flex-row-reverse"} items-start gap-6 w-full`}
                                                 >
-                                                    <div class="aspect-video flex-1 max-w-2xl md:min-w-2xl w-full">
+                                                    <div class="aspect-video flex-1 min-w-xs md:min-w-3xl">
                                                         {videoType ===
                                                             "youtube" && (
                                                             <YouTube

@@ -1,0 +1,34 @@
+---
+// src/components/OptimizedImage.astro
+const { src, alt, className = "" } = Astro.props;
+
+// Create a blurry placeholder by adding Sanity parameters
+const placeholderSrc = `${src}?w=20&blur=20&q=30`;
+
+// Optimize the main image with different sizes for responsive loading
+const optimizedSrc = `${src}?auto=format&q=80&w=800`;
+const smallSrc = `${src}?auto=format&q=80&w=400`;
+const mediumSrc = `${src}?auto=format&q=80&w=800`;
+const largeSrc = `${src}?auto=format&q=80&w=1200`;
+---
+
+<div class={`relative overflow-hidden bg-transparent ${className}`}>
+    <!-- Placeholder background -->
+    <div
+        class="absolute inset-0 bg-cover bg-center blur-sm scale-105 transform"
+        style={`background-image: url('${placeholderSrc}');`}
+        id="placeholder"
+    >
+    </div>
+
+    <!-- Main responsive image -->
+    <img
+        src={optimizedSrc}
+        srcset={`${smallSrc} 400w, ${mediumSrc} 800w, ${largeSrc} 1200w`}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+        alt={alt}
+        loading="lazy"
+        class="relative w-full h-full object-cover transition-opacity duration-200 ease-in-out opacity-0 z-10"
+        onload="this.classList.remove('opacity-0'); this.classList.add('opacity-100'); this.previousElementSibling.classList.add('opacity-0');"
+    />
+</div>
