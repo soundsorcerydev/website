@@ -1,7 +1,7 @@
 ---
 
 ---
-
+<input type="hidden" name="join_mailing_list" value="No" id="hidden-mailing-list">
 <form
     name="Sound Sorcery Form"
     method="POST"
@@ -93,6 +93,7 @@
             name="join_mailing_list"
             value="yes"
             class="mr-2 h-5 w-5 rounded border-mint-green text-pink focus:ring-pink"
+            onchange="document.getElementById('hidden-mailing-list').value = this.checked ? 'Yes' : 'No'"
         />
         <label
             for="mailing-list"
