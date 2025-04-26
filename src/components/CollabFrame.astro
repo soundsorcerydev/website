@@ -1,11 +1,10 @@
 ---
 import { getImage, Image } from "astro:assets";
 const { src, alt } = Astro.props;
-
 const blurredPlaceholder = await getImage({
     src: src,
     format: "webp",
-    width: 20, // Reduced size for better blur effect
+    width: 20,
 });
 ---
 
@@ -22,14 +21,11 @@ const blurredPlaceholder = await getImage({
         <Image
             src={src}
             alt={alt}
-            class="relative w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
-            loading="lazy"
-            quality={80}
-            densities={[1, 2]}
+            class="relative w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-0"
+            loading="eager"
+            quality={60}
             inferSize={true}
-            decoding="async"
-            onload="this.classList.remove('opacity-0')"
-            class:list={["opacity-0"]}
-        />
+            decoding="async" onload="this.classList.remove('opacity-0')" />
+        </Image>
     </div>
 </div>
