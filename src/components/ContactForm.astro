@@ -86,15 +86,13 @@
         ></textarea>
     </div>
 
-    <input type="hidden" name="join_mailing_list" value="No" id="hidden-mailing-list">
     <div class="mb-6 flex justify-center">
         <input
             type="checkbox"
             id="mailing-list"
             name="join_mailing_list"
-            value="yes"
+            value="Yes"
             class="mr-2 h-5 w-5 rounded border-mint-green text-pink focus:ring-pink"
-            onchange="document.getElementById('hidden-mailing-list').value = this.checked ? 'Yes' : 'No'"
         />
         <label
             for="mailing-list"
@@ -102,6 +100,7 @@
         >
             Join the mailing list!
         </label>
+        <input type="hidden" name="join_mailing_list" value="No">
     </div>
 
     <div class="flex justify-center">
