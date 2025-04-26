@@ -1,11 +1,45 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import GeethaBalakrishnan from "../../assets/images/core_team/GeethaBalakrishnan.webp";
 import HarriHarding from "../../assets/images/core_team/HarriHarding.webp";
 import HayleyChan from "../../assets/images/core_team/HayleyChan.webp";
 import KateRichards from "../../assets/images/core_team/KateRichards.webp";
 import SarahHomeh from "../../assets/images/core_team/SarahHomeh.webp";
+import CoreFrame from "../../components/CoreFrame.astro";
+
+const teamMembers = [
+    {
+        name: "Geetha Balakrishnan",
+        role: "Series Producer",
+        image: GeethaBalakrishnan,
+        url: "https://magickal-ms-g.com/",
+    },
+    {
+        name: "Sarah Homeh",
+        role: "Series Co-Producer",
+        image: SarahHomeh,
+        url: "https://www.sarahhomeh.com/",
+    },
+    {
+        name: "Harri Harding",
+        role: "Trans-Inclusivity advisor",
+        image: HarriHarding,
+        url: "https://heyharri.com/",
+    },
+    {
+        name: "Hayley Chan",
+        role: "Marketing & Administration Assistant",
+        image: HayleyChan,
+        url: "https://hayleychandrums.com/",
+    },
+    {
+        name: "Kate Richards",
+        role: "Marketing 2024",
+        image: KateRichards,
+        url: "https://au.linkedin.com/in/kate-richards-64602617a",
+    },
+];
 ---
 
 <Layout>
@@ -13,145 +47,26 @@ import SarahHomeh from "../../assets/images/core_team/SarahHomeh.webp";
     <div
         class="flex flex-row justify-center p-8 gap-10 md:gap-22 overflow-hidden flex-wrap"
     >
-        <div class="flex flex-col items-center gap-1">
-            <div
-                class="lg:w-96 lg:h-64 w-66 h-44 flex flex-col rounded-full items-center justify-center overflow-hidden"
-            >
-                <div
-                    class="w-full h-full object-cover grayscale hover:filter-none"
-                >
+        {
+            teamMembers.map((member) => (
+                <div class="flex flex-col items-center gap-1">
+                    <CoreFrame
+                        src={member.image}
+                        alt={member.name}
+                        url={member.url}
+                    />
                     <a
-                        href="https://magickal-ms-g.com/"
+                        href={member.url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        class="hover:text-purple"
                     >
-                        <Image
-                            src={GeethaBalakrishnan}
-                            alt="Geetha Balakrishnan"
-                        />
+                        <p class="text-center sm:text-base md:text-lg lg:text-xl">
+                            {member.name} ({member.role})
+                        </p>
                     </a>
                 </div>
-            </div>
-            <a
-                href="https://magickal-ms-g.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-purple"
-            >
-                <p class="text-center sm:text-base md:text-lg lg:text-xl">
-                    Geetha Balakrishnan (Series Producer)
-                </p>
-            </a>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div
-                class="lg:w-96 lg:h-64 w-66 h-44 rounded-full flex items-center justify-center overflow-hidden"
-            >
-                <div
-                    class="w-full h-full object-cover grayscale hover:filter-none"
-                >
-                    <a
-                        href="https://www.sarahhomeh.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image src={SarahHomeh} alt="Sarah Homeh" />
-                    </a>
-                </div>
-            </div>
-            <a
-                href="https://www.sarahhomeh.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-purple"
-            >
-                <p class="text-center sm:text-base md:text-lg lg:text-xl">
-                    Sarah Homeh (Series Co-Producer)
-                </p>
-            </a>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div
-                class="lg:w-96 lg:h-64 w-66 h-44 rounded-full flex items-center justify-center overflow-hidden"
-            >
-                <div
-                    class="w-full h-full object-cover grayscale hover:filter-none"
-                >
-                    <a
-                        href="https://heyharri.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image src={HarriHarding} alt="Harri Harding" />
-                    </a>
-                </div>
-            </div>
-            <a
-                href="https://heyharri.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-purple"
-            >
-                <p class="text-center sm:text-base md:text-lg lg:text-xl">
-                    Harri Harding (Trans-Inclusivity advisor)
-                </p>
-            </a>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div
-                class="lg:w-96 lg:h-64 w-66 h-44 rounded-full flex items-center justify-center overflow-hidden"
-            >
-                <div
-                    class="w-full h-full object-cover grayscale hover:filter-none"
-                >
-                    <a
-                        href="https://hayleychandrums.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image src={HayleyChan} alt="Haley Chan" />
-                    </a>
-                </div>
-            </div>
-            <a
-                href="https://hayleychandrums.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-purple"
-            >
-                <p class="text-center sm:text-base md:text-lg lg:text-xl">
-                    Hayley Chan (Marketing & Administration Assistant)
-                </p>
-            </a>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div
-                class="lg:w-96 lg:h-64 w-66 h-44 rounded-full flex items-center justify-center overflow-hidden"
-            >
-                <div
-                    class="w-full h-full object-cover grayscale hover:filter-none"
-                >
-                    <a
-                        href="https://au.linkedin.com/in/kate-richards-64602617a"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="hover:underline hover:text-purple"
-                    >
-                        <Image src={KateRichards} alt="Kate Richards" />
-                    </a>
-                </div>
-            </div>
-            <a
-                href="https://au.linkedin.com/in/kate-richards-64602617a"
-                _blank"
-                rel="noopener noreferrer"
-                class="hover:text-purple"
-                "
-            >
-                <p class="text-center sm:text-base md:text-lg lg:text-xl">
-                    Kate Richards (Marketing 2024)
-                </p>
-            </a>
-        </div>
+            ))
+        }
     </div>
 </Layout>

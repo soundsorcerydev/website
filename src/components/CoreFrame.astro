@@ -1,0 +1,34 @@
+---
+import { getImage, Image } from "astro:assets";
+
+const { src, alt, url } = Astro.props;
+
+const blurredPlaceholder = await getImage({
+    src: src,
+    format: "webp",
+    width: 20,
+});
+---
+
+<div
+    class="lg:w-96 lg:h-64 w-66 h-44 rounded-full flex items-center justify-center overflow-hidden relative"
+>
+    <!-- Blurred placeholder -->
+    <div class="absolute inset-0">
+        <img
+            src={blurredPlaceholder.src}
+            class="w-full h-full object-cover blur-lg"
+            alt={`Blurred ${alt}`}
+            aria-hidden="true"
+        />
+    </div>
+
+    <!-- Main image -->
+    <div
+        class="w-full h-full object-cover grayscale hover:filter-none relative z-10"
+    >
+        <a href={url} target="_blank" rel="noopener noreferrer">
+            <Image src={src} alt={alt} loading="eager" quality={60} />
+        </a>
+    </div>
+</div>
