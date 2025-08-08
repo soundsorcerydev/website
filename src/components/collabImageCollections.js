@@ -52,6 +52,7 @@ export { default as zsaZsaGyulay } from "../assets/images/collaborators/houseBan
 export { default as aliaArdon } from "../assets/images/collaborators/visualCollabs/AliaArdon.webp";
 export { default as adviteeyaKhujneri } from "../assets/images/collaborators/visualCollabs/AdviteeyaKhujneri.webp";
 export { default as juliaSarantis } from "../assets/images/collaborators/visualCollabs/JuliaSarantis.webp";
+export {default as kyneishaMurray} from "../assets/images/collaborators/visualCollabs/KyneishaMurray.webp";
 export { default as meganHolloway } from "../assets/images/collaborators/visualCollabs/MeganHolloway.webp";
 export { default as merinahFunnell } from "../assets/images/collaborators/visualCollabs/MerinahFunnell.webp";
 export { default as soulish } from "../assets/images/collaborators/visualCollabs/Soulish.webp";
