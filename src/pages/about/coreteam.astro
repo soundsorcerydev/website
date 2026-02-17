@@ -6,6 +6,7 @@ import HarriHarding from "../../assets/images/core_team/HarriHarding.webp";
 import HayleyChan from "../../assets/images/core_team/HayleyChan.webp";
 import KateRichards from "../../assets/images/core_team/KateRichards.webp";
 import SarahHomeh from "../../assets/images/core_team/SarahHomeh.webp";
+import { malaikaMfalme } from "../../components/collabImageCollections";
 import CoreFrame from "../../components/CoreFrame.astro";
 
 const teamMembers = [
@@ -22,16 +23,22 @@ const teamMembers = [
         url: "https://www.sarahhomeh.com/",
     },
     {
-        name: "Harri Harding",
-        role: "Trans-Inclusivity advisor",
-        image: HarriHarding,
-        url: "https://heyharri.com/",
-    },
-    {
         name: "Hayley Chan",
         role: "Marketing & Administration Assistant",
         image: HayleyChan,
         url: "https://hayleychandrums.com/",
+    },
+    {
+        name: "Malaika Mfalme",
+        role: "Trans-Inclusivity advisor",
+        image: malaikaMfalme,
+        url: "https://www.instagram.com/malaikangelking/?hl=en",
+    },
+    {
+        name: "Harri Harding",
+        role: "Trans-Inclusivity advisor 2024-2025",
+        image: HarriHarding,
+        url: "https://heyharri.com/",
     },
     {
         name: "Kate Richards",
@@ -44,12 +51,10 @@ const teamMembers = [
 
 <Layout>
     <h2 class="max-w-screen text-4xl p-4 text-center uppercase">Core Team</h2>
-    <div
-        class="flex flex-row justify-center p-8 gap-10 md:gap-22 overflow-hidden flex-wrap"
-    >
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 p-8 max-w-7xl mx-auto justify-items-center">
         {
             teamMembers.map((member) => (
-                <div class="flex flex-col items-center gap-1">
+                <div class="flex flex-col items-center gap-4 w-72">
                     <CoreFrame
                         src={member.image}
                         alt={member.name}
@@ -62,8 +67,9 @@ const teamMembers = [
                         class="hover:text-purple"
                     >
                         <p class="text-center sm:text-base md:text-lg lg:text-xl">
-                            {member.name} ({member.role})
+                            {member.name}
                         </p>
+                        <p class="text-center text-sm md:text-base lg:text-base">{member.role}</p>
                     </a>
                 </div>
             ))
