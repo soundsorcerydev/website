@@ -7,21 +7,11 @@ import Layout from "../layouts/Layout.astro";
         <h2 class="text-4xl p-4 uppercase text-center">Sound Sorcery Substack</h2>
         <div class="w-4/5 h-4/5 py-4">
             <div class="space-y-8">
-                <div id="substack-feed-embed"></div>
-                <script is:inline client:load>
-                    window.SubstackFeedWidget = {
-                        substackUrl: "soundsorceryjam.substack.com",
-                        posts: 8,
-                        colors: {
-                            primary: "#8D5D8A",
-                            secondary: "#593757",
-                            background: "#DCC9E8",
-                        },
-                    };
+                <div data-supascribe-embed-id="29459843848" data-supascribe-feed></div>
                 </script>
                 <script
                     is:inline
-                    src="https://substackapi.com/embeds/feed.js"
+                    src="https://js.supascribe.com/v1/loader/MZY0JfRyL2WmYsT3eBzQJRop4g53.js"
                     async></script>
             </div>
         </div>
