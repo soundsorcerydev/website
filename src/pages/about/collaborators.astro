@@ -449,10 +449,30 @@ const sections = [
 
 <Layout>
     <div class="max-w-screen h-full flex flex-col items-center justify-around">
+        <nav class="flex flex-row flex-wrap items-center justify-center gap-2 py-4 px-6 text-center sticky top-0 z-10 bg-white/90 backdrop-blur">
+            {
+                sections.map((section, index) => (
+                    <>
+                        <a
+                            href={`#section-${index}`}
+                            class="text-sm uppercase font-semibold hover:text-purple whitespace-nowrap"
+                        >
+                            {section.title}
+                        </a>
+                        {index < sections.length - 1 && (
+                            <span class="text-sm text-pink">|</span>
+                        )}
+                    </>
+                ))
+            }
+        </nav>
         {
-            sections.map((section) => (
+            sections.map((section, index) => (
                 <>
-                    <h2 class="text-4xl p-4 uppercase text-center">
+                    <h2
+                        id={`section-${index}`}
+                        class="text-2xl p-4 uppercase text-center scroll-mt-24"
+                    >
                         {section.title}
                     </h2>
                     <div class="flex flex-row flex-wrap justify-around">
