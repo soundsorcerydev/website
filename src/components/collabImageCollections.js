@@ -31,7 +31,7 @@ export { default as zoeK } from "../assets/images/collaborators/featArtists/ZoeK
 
 // House Band Musicians
 export { default as abbyConstable } from "../assets/images/collaborators/houseBand/AbbyConstable.webp";
-export { default as adriannaCicchitelli } from "../assets/images/collaborators/houseBand/AdriannaCicchitelli.webp";
+export { default as adriannaCicchitelliHouseBand } from "../assets/images/collaborators/houseBand/AdriannaCicchitelliHouseBand.webp";
 export { default as aliFoster } from "../assets/images/collaborators/houseBand/AliFoster.webp";
 export { default as amandaJenkins } from "../assets/images/collaborators/houseBand/AmandaJenkins.webp";
 export { default as catherineGolden } from "../assets/images/collaborators/houseBand/CatherineGolden.webp";
