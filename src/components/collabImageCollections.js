@@ -1,4 +1,5 @@
 // Featured Artists
+export { default as adriannaCicchitelli } from "../assets/images/collaborators/featArtists/AdriannaCicchitelli.webp";
 export { default as aliceTerry } from "../assets/images/collaborators/featArtists/AliceTerry.webp";
 export { default as berniceTeresaFun } from "../assets/images/collaborators/featArtists/BerniceTeresa.webp";
 export { default as claireRobinson } from "../assets/images/collaborators/featArtists/ClaireRobinson.webp";
@@ -6,18 +7,26 @@ export { default as courtneySeverini } from "../assets/images/collaborators/feat
 export { default as franLiddle } from "../assets/images/collaborators/featArtists/FranLiddle.webp";
 export { default as harriHarding } from "../assets/images/collaborators/featArtists/HarriHarding.webp";
 export { default as hilaryGeddesFeat } from "../assets/images/collaborators/featArtists/HilaryGeddes.webp";
+export { default as hinanoFujisaki } from "../assets/images/collaborators/featArtists/HinanoFujisaki.webp";
+export { default as imbi } from "../assets/images/collaborators/featArtists/imbi.webp";
 export { default as jadeKenji } from "../assets/images/collaborators/featArtists/JadeKenji.webp";
+export { default as laGati } from "../assets/images/collaborators/featArtists/LaGati.webp";
 export { default as malaikaMfalme } from "../assets/images/collaborators/featArtists/MalaikaMfalme.webp";
 export { default as maryHeart } from "../assets/images/collaborators/featArtists/MaryHeart.webp";
 export { default as maryRapp } from "../assets/images/collaborators/featArtists/MaryRapp.webp";
 export { default as meklit } from "../assets/images/collaborators/featArtists/Meklit.webp";
 export { default as monstress } from "../assets/images/collaborators/featArtists/Monstress.webp";
+export { default as missEmilia } from "../assets/images/collaborators/featArtists/MissEmilia.webp";
 export { default as msG } from "../assets/images/collaborators/featArtists/MsG.webp";
 export { default as nana } from "../assets/images/collaborators/featArtists/NANA.webp";
+export { default as nead } from "../assets/images/collaborators/featArtists/Nead.webp";
 export { default as parvyn } from "../assets/images/collaborators/featArtists/Parvyn.webp";
+export { default as rubyFirmstone } from "../assets/images/collaborators/featArtists/RubyFirmstone.webp";
+export { default as sallyKing } from "../assets/images/collaborators/featArtists/SallyKing.webp";
 export { default as sherene } from "../assets/images/collaborators/featArtists/Sherene.webp";
 export { default as stellaAnning } from "../assets/images/collaborators/featArtists/StellaAnning.webp";
 export { default as tianaYoung } from "../assets/images/collaborators/featArtists/TianaYoung.webp";
+export { default as zoeK } from "../assets/images/collaborators/featArtists/ZoeK.webp";
 
 
 // House Band Musicians
@@ -73,6 +82,7 @@ export { default as umaVolgmer } from "../assets/images/collaborators/artWorkers
 
 // Web Team
 export { default as webTeam } from "../assets/images/collaborators/webTeam/webTeam.webp";
+export { default as romyDobbieWeb } from "../assets/images/collaborators/webTeam/RomyDobbieWeb.webp";
 
 // Venue
 export { default as beardedTit } from "../assets/images/collaborators/venue/beardedTit.webp";
