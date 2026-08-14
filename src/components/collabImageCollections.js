@@ -100,6 +100,11 @@ export { default as francisEden} from "../assets/images/collaborators/soundEngin
 export { default as webTeam } from "../assets/images/collaborators/webTeam/webTeam.webp";
 export { default as romyDobbieWeb } from "../assets/images/collaborators/webTeam/RomyDobbieWeb.webp";
 
+// Workshop Facilitators
+export { default as andreaLim } from "../assets/images/collaborators/workshop/AndreaLim.webp";
+export { default as malaikaMfalmeWorkshop } from "../assets/images/collaborators/workshop/MalaikaMfalme.webp";
+export { default as parvynWorkshop } from "../assets/images/collaborators/workshop/Parvyn.webp";
+
 // Venue
 export { default as beardedTit } from "../assets/images/collaborators/venue/beardedTit.webp";
 export { default as brandX } from "../assets/images/collaborators/venue/brandX.webp";
