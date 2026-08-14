@@ -81,15 +81,18 @@ export { default as vanessaLam } from "../assets/images/collaborators/visualColl
 
 // Art Workers
 export { default as adaFlynn } from "../assets/images/collaborators/artWorkers/AdaFlynn.webp";
-export { default as annikaUnsen } from "../assets/images/collaborators/artWorkers/AnnikaUnsen.webp";
 export { default as damiaOLoughlin } from "../assets/images/collaborators/artWorkers/DamiaOLoughlin.webp";
-export { default as domParker } from "../assets/images/collaborators/artWorkers/DomParker.webp";
-export { default as elenaAcquaviva } from "../assets/images/collaborators/artWorkers/ElenaAcquaviva.webp";
-export { default as michelleBarry } from "../assets/images/collaborators/artWorkers/MichelleBarry.webp";
 export { default as noahJovignot } from "../assets/images/collaborators/artWorkers/NoahJovignot.webp";
 export { default as romyDobbie } from "../assets/images/collaborators/artWorkers/RomyDobbie.webp";
-export { default as sallyHackett } from "../assets/images/collaborators/artWorkers/SallyHackett.webp";
 export { default as umaVolkmer } from "../assets/images/collaborators/artWorkers/UmaVolkmer.webp";
+
+// Sound Engineers
+export { default as michelleBarry } from "../assets/images/collaborators/soundEngineers/MichelleBarry.webp";
+export { default as annikaUnsen } from "../assets/images/collaborators/soundEngineers/AnnikaUnsen.webp";
+export { default as sallyHackett } from "../assets/images/collaborators/soundEngineers/SallyHackett.webp";
+export { default as elenaAcquaviva } from "../assets/images/collaborators/soundEngineers/ElenaAcquaviva.webp";
+export { default as domParker } from "../assets/images/collaborators/soundEngineers/DomParker.webp";
+export { default as francisEden} from "../assets/images/collaborators/soundEngineers/FrancisEden.webp";
 
 // Web Team
 export { default as webTeam } from "../assets/images/collaborators/webTeam/webTeam.webp";
