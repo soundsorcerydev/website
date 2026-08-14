@@ -1,7 +1,7 @@
 // Featured Artists
 export { default as adriannaCicchitelli } from "../assets/images/collaborators/featArtists/AdriannaCicchitelli.webp";
 export { default as aliceTerry } from "../assets/images/collaborators/featArtists/AliceTerry.webp";
-export { default as berniceTeresaFun } from "../assets/images/collaborators/featArtists/BerniceTeresa.webp";
+export { default as berniceTeresa } from "../assets/images/collaborators/featArtists/BerniceTeresa.webp";
 export { default as claireRobinson } from "../assets/images/collaborators/featArtists/ClaireRobinson.webp";
 export { default as courtneySeverini } from "../assets/images/collaborators/featArtists/CourtneySeverini.webp";
 export { default as franLiddle } from "../assets/images/collaborators/featArtists/FranLiddle.webp";
@@ -31,14 +31,17 @@ export { default as zoeK } from "../assets/images/collaborators/featArtists/ZoeK
 
 // House Band Musicians
 export { default as abbyConstable } from "../assets/images/collaborators/houseBand/AbbyConstable.webp";
-export { default as adriannaCicchitelliHouseBand } from "../assets/images/collaborators/houseBand/AdriannaCicchitelliHouseBand.webp";
+export { default as adriannaCicchitelliHouseBand } from "../assets/images/collaborators/houseBand/AdriannaCicchitelli.webp";
 export { default as aliFoster } from "../assets/images/collaborators/houseBand/AliFoster.webp";
 export { default as amandaJenkins } from "../assets/images/collaborators/houseBand/AmandaJenkins.webp";
+export { default as berniceTesaraHouseBand } from "../assets/images/collaborators/houseBand/BerniceTesara.webp";
 export { default as catherineGolden } from "../assets/images/collaborators/houseBand/CatherineGolden.webp";
 export { default as chiaraMinotto } from "../assets/images/collaborators/houseBand/ChiaraMinotto.webp";
+export { default as courtneySeveriniHouseBand } from "../assets/images/collaborators/houseBand/CourtneySeverini.webp";
 export { default as ellenKirkwood } from "../assets/images/collaborators/houseBand/EllenKirkwood.webp";
 export { default as elleRodriguez } from "../assets/images/collaborators/houseBand/ElleRodriguez.webp";
 export { default as emilyRose } from "../assets/images/collaborators/houseBand/EmilyRose.webp";
+export { default as fionaJohnson } from "../assets/images/collaborators/houseBand/FionaJohnson.webp";
 export { default as freyjaGarbett } from "../assets/images/collaborators/houseBand/FreyjaGarbett.webp";
 export { default as hayleyChan } from "../assets/images/collaborators/houseBand/HayleyChan.webp";
 export { default as hazelAlexander } from "../assets/images/collaborators/houseBand/HazelAlexander.webp";
@@ -48,13 +51,19 @@ export { default as jennaLewis } from "../assets/images/collaborators/houseBand/
 export { default as jessGreen } from "../assets/images/collaborators/houseBand/JessGreen.webp";
 export { default as jodieMichael } from "../assets/images/collaborators/houseBand/JodieMichael.webp";
 export { default as kaliGillen } from "../assets/images/collaborators/houseBand/KaliGillen.webp";
+export { default as kirstenFletcher } from "../assets/images/collaborators/houseBand/KirstenFletcher.webp";
+export { default as laurenWhite } from "../assets/images/collaborators/houseBand/LaurenWhite.webp";
 export { default as lexiGreen } from "../assets/images/collaborators/houseBand/LexiGreen.webp";
 export { default as melissaMony } from "../assets/images/collaborators/houseBand/MelissaMony.webp";
+export { default as minaJohanssonn } from "../assets/images/collaborators/houseBand/MinaJohanssonn.webp";
 export { default as oliviaDiamant } from "../assets/images/collaborators/houseBand/OliviaDiamant.webp";
+export { default as ramonaSpicer } from "../assets/images/collaborators/houseBand/RamonaSpicer.webp";
 export { default as rosieMarksSmith } from "../assets/images/collaborators/houseBand/RosieMarksSmith.webp";
 export { default as sabineTapia } from "../assets/images/collaborators/houseBand/SabineTapia.webp";
 export { default as sarahHomeh } from "../assets/images/collaborators/houseBand/SarahHomeh.webp";
 export { default as sarahPurdon } from "../assets/images/collaborators/houseBand/SarahPurdon.webp";
+export { default as sharonJakovsky } from "../assets/images/collaborators/houseBand/SharonJakovsky.webp";
+export { default as tinaHarris } from "../assets/images/collaborators/houseBand/TinaHarris.webp";
 export { default as zsaZsaGyulay } from "../assets/images/collaborators/houseBand/ZsaZsaGyulay.webp";
 
 // Visual Collaborators
