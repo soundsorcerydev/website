@@ -74,13 +74,15 @@ export { default as juliaSarantis } from "../assets/images/collaborators/photogr
 export { default as meganHolloway } from "../assets/images/collaborators/photographers/MeganHolloway.webp";
 export { default as sylMarie } from "../assets/images/collaborators/photographers/SylMarie.webp";
 // Visual Collaborators
+export { default as adaFlynn } from "../assets/images/collaborators/visualCollabs/AdaFlynn.webp";
+export { default as damiaOLoughlinVisual } from "../assets/images/collaborators/visualCollabs/DamiaOLoughlin.webp";
 export {default as kyneishaMurray} from "../assets/images/collaborators/visualCollabs/KyneishaMurray.webp";
 export { default as merinahFunnell } from "../assets/images/collaborators/visualCollabs/MerinahFunnell.webp";
 export { default as soulish } from "../assets/images/collaborators/visualCollabs/Soulish.webp";
 export { default as vanessaLam } from "../assets/images/collaborators/visualCollabs/VanessaLam.webp";
 
 // Art Workers
-export { default as adaFlynn } from "../assets/images/collaborators/artWorkers/AdaFlynn.webp";
+export { default as adviteeyaKhujneriArt } from "../assets/images/collaborators/artWorkers/AdviteeyaKhujneri.webp";
 export { default as damiaOLoughlin } from "../assets/images/collaborators/artWorkers/DamiaOLoughlin.webp";
 export { default as noahJovignot } from "../assets/images/collaborators/artWorkers/NoahJovignot.webp";
 export { default as romyDobbie } from "../assets/images/collaborators/artWorkers/RomyDobbie.webp";
