@@ -66,15 +66,17 @@ export { default as sharonJakovsky } from "../assets/images/collaborators/houseB
 export { default as tinaHarris } from "../assets/images/collaborators/houseBand/TinaHarris.webp";
 export { default as zsaZsaGyulay } from "../assets/images/collaborators/houseBand/ZsaZsaGyulay.webp";
 
+// Photographers 
+export { default as adviteeyaKhujneri } from "../assets/images/collaborators/photographers/AdviteeyaKhujneri.webp";
+export { default as aliaArdon } from "../assets/images/collaborators/photographers/AliaArdon.webp";
+export { default as chrissieHall } from "../assets/images/collaborators/photographers/ChrissieHall.webp";
+export { default as juliaSarantis } from "../assets/images/collaborators/photographers/JuliaSarantis.webp";
+export { default as meganHolloway } from "../assets/images/collaborators/photographers/MeganHolloway.webp";
+export { default as sylMarie } from "../assets/images/collaborators/photographers/SylMarie.webp";
 // Visual Collaborators
-export { default as aliaArdon } from "../assets/images/collaborators/visualCollabs/AliaArdon.webp";
-export { default as adviteeyaKhujneri } from "../assets/images/collaborators/visualCollabs/AdviteeyaKhujneri.webp";
-export { default as juliaSarantis } from "../assets/images/collaborators/visualCollabs/JuliaSarantis.webp";
 export {default as kyneishaMurray} from "../assets/images/collaborators/visualCollabs/KyneishaMurray.webp";
-export { default as meganHolloway } from "../assets/images/collaborators/visualCollabs/MeganHolloway.webp";
 export { default as merinahFunnell } from "../assets/images/collaborators/visualCollabs/MerinahFunnell.webp";
 export { default as soulish } from "../assets/images/collaborators/visualCollabs/Soulish.webp";
-export { default as sylMarie } from "../assets/images/collaborators/visualCollabs/SylMarie.webp";
 export { default as vanessaLam } from "../assets/images/collaborators/visualCollabs/VanessaLam.webp";
 
 // Art Workers
@@ -87,7 +89,7 @@ export { default as michelleBarry } from "../assets/images/collaborators/artWork
 export { default as noahJovignot } from "../assets/images/collaborators/artWorkers/NoahJovignot.webp";
 export { default as romyDobbie } from "../assets/images/collaborators/artWorkers/RomyDobbie.webp";
 export { default as sallyHackett } from "../assets/images/collaborators/artWorkers/SallyHackett.webp";
-export { default as umaVolgmer } from "../assets/images/collaborators/artWorkers/UmaVolgmer.webp";
+export { default as umaVolkmer } from "../assets/images/collaborators/artWorkers/UmaVolkmer.webp";
 
 // Web Team
 export { default as webTeam } from "../assets/images/collaborators/webTeam/webTeam.webp";
