@@ -83,23 +83,7 @@ const sections: SponsorSection[] = [
 <Layout>
     <h2 class="max-w-screen text-4xl p-4 text-center uppercase">Sponsors</h2>
     <div class="max-w-screen h-full flex flex-col items-center justify-around">
-        <nav class="flex flex-row flex-wrap items-center justify-center gap-2 py-4 px-6 text-center">
-            {
-                sections.map((section, index) => (
-                    <>
-                        <a
-                            href={`#section-${index}`}
-                            class="text-sm uppercase font-semibold hover:text-purple whitespace-nowrap"
-                        >
-                            {section.title}
-                        </a>
-                        {index < sections.length - 1 && (
-                            <span class="text-sm text-pink">|</span>
-                        )}
-                    </>
-                ))
-            }
-        </nav>
+        
         {
             sections.map((section, index) => (
                 <>
