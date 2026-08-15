@@ -102,9 +102,12 @@ export { default as romyDobbieWeb } from "../assets/images/collaborators/webTeam
 
 // Workshop Facilitators
 export { default as andreaLim } from "../assets/images/collaborators/workshop/AndreaLim.webp";
+export { default as danicaLani } from "../assets/images/collaborators/workshop/DanicaLani.webp";
 export { default as malaikaMfalmeWorkshop } from "../assets/images/collaborators/workshop/MalaikaMfalme.webp";
+export { default as nirikoMcClure } from "../assets/images/collaborators/workshop/NirikoMcClure.webp";
 export { default as parvynWorkshop } from "../assets/images/collaborators/workshop/Parvyn.webp";
 export { default as sallyHackettWorkshop } from "../assets/images/collaborators/workshop/SallyHackett.webp";
+export { default as sandyEvans } from "../assets/images/collaborators/workshop/SandyEvans.webp";
 
 // Venue
 export { default as beardedTit } from "../assets/images/collaborators/venue/beardedTit.webp";
