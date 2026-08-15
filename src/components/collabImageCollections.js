@@ -111,3 +111,4 @@ export { default as brandX } from "../assets/images/collaborators/venue/brandX.w
 
 // Catering
 export { default as auntieWombat } from "../assets/images/collaborators/catering/auntieWombat.webp";
+export { default as khoiEatery } from "../assets/images/collaborators/catering/KhoiEatery.webp";
