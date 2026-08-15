@@ -1,7 +1,7 @@
 // Featured Artists
 export { default as adriannaCicchitelli } from "../assets/images/collaborators/featArtists/AdriannaCicchitelli.webp";
 export { default as aliceTerry } from "../assets/images/collaborators/featArtists/AliceTerry.webp";
-export { default as berniceTeresa } from "../assets/images/collaborators/featArtists/BerniceTeresa.webp";
+export { default as berniceTesara } from "../assets/images/collaborators/featArtists/BerniceTesara.webp";
 export { default as claireRobinson } from "../assets/images/collaborators/featArtists/ClaireRobinson.webp";
 export { default as courtneySeverini } from "../assets/images/collaborators/featArtists/CourtneySeverini.webp";
 export { default as franLiddle } from "../assets/images/collaborators/featArtists/FranLiddle.webp";
@@ -112,3 +112,8 @@ export { default as brandX } from "../assets/images/collaborators/venue/brandX.w
 // Catering
 export { default as auntieWombat } from "../assets/images/collaborators/catering/auntieWombat.webp";
 export { default as khoiEatery } from "../assets/images/collaborators/catering/KhoiEatery.webp";
+
+// Chart Writing Volunteers
+export { default as berniceTesaraChart } from "../assets/images/collaborators/chartWriting/BerniceTesara.webp";
+export { default as hazelAlexanderChart } from "../assets/images/collaborators/chartWriting/HazelAlexander.webp";
+export { default as milesRooney } from "../assets/images/collaborators/chartWriting/MilesRooney.webp";
