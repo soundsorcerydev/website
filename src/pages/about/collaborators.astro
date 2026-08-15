@@ -4,7 +4,20 @@ import CollabFrame from "../../components/CollabFrame.astro";
 import * as Images from "../../components/collabImageCollections.js";
 import { Image } from "astro:assets";
 
-const sections = [
+interface CollabMember {
+    name: string;
+    photo: ImageMetadata;
+    alt: string;
+    url?: string;
+    note?: string;
+}
+
+interface CollabSection {
+    title: string;
+    items: CollabMember[];
+}
+
+const sections: CollabSection[] = [
     {
         title: "Featured Artists",
         items: [
@@ -597,13 +610,15 @@ const sections = [
                 url: "https://www.brandx.org.au/",
             },
             {
-                name: "Inner West Council // Special mention to Hannah and Raffaela",
+                name: "Inner West Council",
+                note: "Special mention to Hannah and Raffaela",
                 photo: Images.innerWestCouncil,
                 alt: "Inner West Council",
                 url: "https://www.innerwest.nsw.gov.au/",
             },
             {
-                name: "Pleasure Club // Special mention to Sabrina, Josh, Sienna, Harry, and all the bar staff.",
+                name: "Pleasure Club",
+                note: "Special mention to Sabrina, Josh, Sienna, Harry, and all the bar staff.",
                 photo: Images.pleasureClub,
                 alt: "Pleasure Club",
                 url: "https://www.instagram.com/alwaysapleasure.club/?hl=en",
@@ -716,6 +731,11 @@ const sections = [
                                         member.name
                                     )}
                                 </p>
+                                {member.note && (
+                                    <p class="text-xs text-center font-normal opacity-70 max-w-[200px] mx-auto mt-1">
+                                        {member.note}
+                                    </p>
+                                )}
                             </div>
                         ))}
                     </div>
