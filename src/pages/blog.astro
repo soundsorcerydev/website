@@ -8,7 +8,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="w-4/5 h-4/5 py-4">
             <div class="space-y-8">
                 <div data-supascribe-embed-id="29459843848" data-supascribe-feed></div>
-               
+
                 <script
                     is:inline
                     src="https://js.supascribe.com/v1/loader/MZY0JfRyL2WmYsT3eBzQJRop4g53.js"
@@ -17,3 +17,41 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </div>
 </Layout>
+
+<script is:inline>
+    // Stopgap: Supascribe's feed widget sometimes renders the same post
+    // twice inside .supascribe-feed-widget. This watches the embed container
+    // and strips out duplicate entries (same href) after the widget renders.
+    (function () {
+        const container = document.querySelector(
+            '[data-supascribe-embed-id="29459843848"]'
+        );
+        if (!container) return;
+
+        function dedupe() {
+            const widget = container.querySelector(".supascribe-feed-widget");
+            if (!widget) return;
+
+            const seen = new Set();
+            widget.querySelectorAll("a[href]").forEach((link) => {
+                const href = link.getAttribute("href");
+                if (seen.has(href)) {
+                    link.remove();
+                } else {
+                    seen.add(href);
+                }
+            });
+        }
+
+        // Supascribe injects the widget asynchronously, so watch for it
+        // rather than running dedupe immediately.
+        const observer = new MutationObserver(() => {
+            dedupe();
+        });
+
+        observer.observe(container, { childList: true, subtree: true });
+
+        // Also run once in case it's already rendered by the time this fires.
+        dedupe();
+    })();
+</script>
