@@ -108,6 +108,8 @@ export { default as parvynWorkshop } from "../assets/images/collaborators/worksh
 // Venue
 export { default as beardedTit } from "../assets/images/collaborators/venue/beardedTit.webp";
 export { default as brandX } from "../assets/images/collaborators/venue/brandX.webp";
+export { default as innerWestCouncil } from "../assets/images/collaborators/venue/InnerWestCouncil.webp";
+export { default as pleasureClub } from "../assets/images/collaborators/venue/PleasureClub.webp";
 
 // Catering
 export { default as auntieWombat } from "../assets/images/collaborators/catering/auntieWombat.webp";
