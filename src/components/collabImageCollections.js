@@ -104,6 +104,7 @@ export { default as romyDobbieWeb } from "../assets/images/collaborators/webTeam
 export { default as andreaLim } from "../assets/images/collaborators/workshop/AndreaLim.webp";
 export { default as malaikaMfalmeWorkshop } from "../assets/images/collaborators/workshop/MalaikaMfalme.webp";
 export { default as parvynWorkshop } from "../assets/images/collaborators/workshop/Parvyn.webp";
+export { default as sallyHackettWorkshop } from "../assets/images/collaborators/workshop/SallyHackett.webp";
 
 // Venue
 export { default as beardedTit } from "../assets/images/collaborators/venue/beardedTit.webp";
