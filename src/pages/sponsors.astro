@@ -9,52 +9,165 @@ import IWCblack from "../assets/images/logos/IWCblack.webp";
 import pleasureClub from "../assets/images/logos/PleasureClub.webp";
 import SBI from "../assets/images/logos/SBI.webp";
 import sydneyPosters from "../assets/images/logos/sydneyPosters.webp";
+
+interface Sponsor {
+    name: string;
+    photo: ImageMetadata;
+    alt: string;
+    url?: string;
+    note?: string;
+}
+
+interface SponsorSection {
+    title: string;
+    items: Sponsor[];
+}
+
+const sections: SponsorSection[] = [
+    {
+        title: "Sponsors",
+        items: [
+            {
+                name: "City of Sydney",
+                photo: citySyd,
+                alt: "City of Sydney",
+                note: "Special mention to Jennifer Trinca",
+            },
+            {
+                name: "Inner West Council",
+                photo: IWCblack,
+                alt: "Inner West Council",
+            },
+            {
+                name: "Sydney Band Instruments",
+                photo: SBI,
+                alt: "Sydney Band Instruments",
+                note: "Special mention to Mike Raper and Jenna Lewis",
+            },
+            {
+                name: "Sydney Posters",
+                photo: sydneyPosters,
+                alt: "Sydney Posters",
+                note: "Special mention to Adrian and Ada",
+            },
+            {
+                name: "Pleasure Club",
+                photo: pleasureClub,
+                alt: "Pleasure Club",
+            },
+        ],
+    },
+    {
+        title: "Past Sponsors",
+        items: [
+            {
+                name: "Creative Australia",
+                photo: creativeAustralia,
+                alt: "Creative Australia",
+            },
+            {
+                name: "The Bearded Tit",
+                photo: beardedTit,
+                alt: "The Bearded Tit",
+            },
+            {
+                name: "Heaps Normal",
+                photo: heapsNormal,
+                alt: "Heaps Normal",
+            },
+        ],
+    },
+];
 ---
 
 <Layout>
-    <div class="w-full flex flex-col items-center justify-center p-8 gap-8">
-        <h2 class="max-w-screen text-4xl p-4 text-center uppercase">Sponsors</h2>
+    <h2 class="max-w-screen text-4xl p-4 text-center uppercase">Sponsors</h2>
+    <div class="max-w-screen h-full flex flex-col items-center justify-around">
+        <nav class="flex flex-row flex-wrap items-center justify-center gap-2 py-4 px-6 text-center">
+            {
+                sections.map((section, index) => (
+                    <>
+                        <a
+                            href={`#section-${index}`}
+                            class="text-sm uppercase font-semibold hover:text-purple whitespace-nowrap"
+                        >
+                            {section.title}
+                        </a>
+                        {index < sections.length - 1 && (
+                            <span class="text-sm text-pink">|</span>
+                        )}
+                    </>
+                ))
+            }
+        </nav>
+        {
+            sections.map((section, index) => (
+                <>
+                    <h2
+                        id={`section-${index}`}
+                        class="text-2xl p-4 uppercase text-center scroll-mt-24"
+                    >
+                        {section.title}
+                    </h2>
+                    <div class="flex flex-row flex-wrap justify-around">
+                        {section.items.map((sponsor) => (
+                            <div class="flex flex-col items-center m-10">
+                                {sponsor.url ? (
+                                    <a
+                                        href={sponsor.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center justify-center p-4"
+                                    >
+                                        <Image
+                                            src={sponsor.photo}
+                                            alt={sponsor.alt}
+                                            loading="lazy"
+                                            width={300}
+                                            height={120}
+                                            class="max-h-24 object-contain"
+                                        />
+                                    </a>
+                                ) : (
+                                    <div class="flex items-center justify-center p-4">
+                                        <Image
+                                            src={sponsor.photo}
+                                            alt={sponsor.alt}
+                                            loading="lazy"
+                                            width={300}
+                                            height={120}
+                                            class="max-h-24 object-contain"
+                                        />
+                                    </div>
+                                )}
+                                <p class="flex justify-center font-semibold text-center">
+                                    {sponsor.url ? (
+                                        <a
+                                            href={sponsor.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="hover:text-purple"
+                                        >
+                                            {sponsor.name}
+                                        </a>
+                                    ) : (
+                                        sponsor.name
+                                    )}
+                                </p>
+                                {sponsor.note && (
+                                    <p class="text-xs text-center font-normal opacity-70 max-w-[200px] mx-auto mt-1">
+                                        {sponsor.note}
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </>
+            ))
+        }
 
-        <div class="w-full max-w-6xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center py-6">
-            <div class="flex items-center justify-center p-4">
-                <Image src={citySyd} alt="City of Sydney" loading="eager" width={300} height={120} class="max-h-24 object-contain" />
-            </div>
-
-            <div class="flex items-center justify-center p-4">
-                <Image src={IWCblack} alt="Inner West Council" loading="eager" width={220} height={120} class="max-h-24 object-contain" />
-            </div>
-
-            <div class="flex items-center justify-center p-4">
-                <Image src={SBI} alt="Sydney Band Instruments" loading="eager" width={220} height={120} class="max-h-24 object-contain" />
-            </div>
-
-            <div class="flex items-center justify-center p-4">
-                <Image src={sydneyPosters} alt="Sydney Posters" loading="eager" width={220} height={120} class="max-h-24 object-contain" />
-            </div>
-
-            <div class="flex items-center justify-center p-4">
-                <Image src={pleasureClub} alt="Pleasure Club" loading="eager" width={220} height={120} class="max-h-24 object-contain" />
-            </div>
-        </div>
-
-        <h2 class="text-3xl font-semibold text-center pt-6">Past Sponsors</h2>
-
-        <div class="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center py-6">
-            <div class="flex items-center justify-center p-4">
-                <Image src={creativeAustralia} alt="Creative Australia" loading="eager" width={300} height={120} class="max-h-24 object-contain" />
-            </div>
-
-            <div class="flex items-center justify-center p-4">
-                <Image src={beardedTit} alt="The Bearded Tit" loading="eager" width={220} height={120} class="max-h-24 object-contain" />
-            </div>
-
-            <div class="flex items-center justify-center p-4">
-                <Image src={heapsNormal} alt="Heaps Normal" loading="eager" width={220} height={120} class="max-h-24 object-contain" />
-            </div>
-        </div>
-
-        <p class="text-center">Keen to become a sponsor?</p>
-        <div class="flex justify-center">
+        <p class="text-center mt-8">Keen to become a sponsor?</p>
+        <div class="flex justify-center mb-10">
             <button type="submit" class="bg-pink text-white px-8 py-4 rounded-lg hover:bg-dark-pink focus:outline-none uppercase">
                 <a href="/Sound-Sorcery-Partnership-Opportunities-2026.pdf" rel="nofollow noopener noreferrer" referrerpolicy="no-referrer" download="Sound-Sorcery-Partnership-Opportunities-2026.pdf" class="font-semibold pdf-link">Download our partnership document</a>
             </button>
