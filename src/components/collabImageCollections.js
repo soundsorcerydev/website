@@ -94,7 +94,6 @@ export { default as annikaUnsen } from "../assets/images/collaborators/soundEngi
 export { default as sallyHackett } from "../assets/images/collaborators/soundEngineers/SallyHackett.webp";
 export { default as elenaAcquaviva } from "../assets/images/collaborators/soundEngineers/ElenaAcquaviva.webp";
 export { default as domParker } from "../assets/images/collaborators/soundEngineers/DomParker.webp";
-export { default as francisEden} from "../assets/images/collaborators/soundEngineers/FrancisEden.webp";
 
 // Web Team
 export { default as webTeam } from "../assets/images/collaborators/webTeam/webTeam.webp";
