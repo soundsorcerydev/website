@@ -118,8 +118,3 @@ export { default as pleasureClub } from "../assets/images/collaborators/venue/Pl
 // Catering
 export { default as auntieWombat } from "../assets/images/collaborators/catering/auntieWombat.webp";
 export { default as khoiEatery } from "../assets/images/collaborators/catering/KhoiEatery.webp";
-
-// Chart Writing Volunteers
-export { default as berniceTesaraChart } from "../assets/images/collaborators/chartWriting/BerniceTesara.webp";
-export { default as hazelAlexanderChart } from "../assets/images/collaborators/chartWriting/HazelAlexander.webp";
-export { default as milesRooney } from "../assets/images/collaborators/chartWriting/MilesRooney.webp";
