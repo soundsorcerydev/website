@@ -15,7 +15,6 @@ interface Sponsor {
     photo: ImageMetadata;
     alt: string;
     url?: string;
-    note?: string;
 }
 
 interface SponsorSection {
@@ -31,7 +30,6 @@ const sections: SponsorSection[] = [
                 name: "City of Sydney",
                 photo: citySyd,
                 alt: "City of Sydney",
-                note: "Special mention to Jennifer Trinca",
             },
             {
                 name: "Inner West Council",
@@ -42,13 +40,11 @@ const sections: SponsorSection[] = [
                 name: "Sydney Band Instruments",
                 photo: SBI,
                 alt: "Sydney Band Instruments",
-                note: "Special mention to Mike Raper and Jenna Lewis",
             },
             {
                 name: "Sydney Posters",
                 photo: sydneyPosters,
                 alt: "Sydney Posters",
-                note: "Special mention to Adrian and Ada",
             },
             {
                 name: "Pleasure Club",
@@ -139,11 +135,7 @@ const sections: SponsorSection[] = [
                                         sponsor.name
                                     )}
                                 </p>
-                                {sponsor.note && (
-                                    <p class="text-xs text-center font-normal opacity-70 max-w-[200px] mx-auto mt-1">
-                                        {sponsor.note}
-                                    </p>
-                                )}
+                               
                             </div>
                         ))}
                     </div>
